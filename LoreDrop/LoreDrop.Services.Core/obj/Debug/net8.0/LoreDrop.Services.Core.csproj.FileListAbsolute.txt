@@ -1,0 +1,12 @@
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/bin/Debug/net8.0/LoreDrop.Services.Core.deps.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/bin/Debug/net8.0/LoreDrop.Services.Core.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/bin/Debug/net8.0/LoreDrop.Services.Core.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/Debug/net8.0/LoreDrop.Services.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/Debug/net8.0/LoreDrop.Services.Core.AssemblyInfoInputs.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/Debug/net8.0/LoreDrop.Services.Core.AssemblyInfo.cs
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/Debug/net8.0/LoreDrop.Services.Core.csproj.CoreCompileInputs.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/Debug/net8.0/LoreDrop.Services.Core.sourcelink.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/Debug/net8.0/LoreDrop.Services.Core.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/Debug/net8.0/refint/LoreDrop.Services.Core.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/Debug/net8.0/LoreDrop.Services.Core.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/Debug/net8.0/ref/LoreDrop.Services.Core.dll

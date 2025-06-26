@@ -1,0 +1,12 @@
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/bin/Debug/net8.0/LoreDrop.GCommon.deps.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/bin/Debug/net8.0/LoreDrop.GCommon.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/bin/Debug/net8.0/LoreDrop.GCommon.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/obj/Debug/net8.0/LoreDrop.GCommon.GeneratedMSBuildEditorConfig.editorconfig
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/obj/Debug/net8.0/LoreDrop.GCommon.AssemblyInfoInputs.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/obj/Debug/net8.0/LoreDrop.GCommon.AssemblyInfo.cs
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/obj/Debug/net8.0/LoreDrop.GCommon.csproj.CoreCompileInputs.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/obj/Debug/net8.0/LoreDrop.GCommon.sourcelink.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/obj/Debug/net8.0/LoreDrop.GCommon.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/obj/Debug/net8.0/refint/LoreDrop.GCommon.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/obj/Debug/net8.0/LoreDrop.GCommon.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/obj/Debug/net8.0/ref/LoreDrop.GCommon.dll

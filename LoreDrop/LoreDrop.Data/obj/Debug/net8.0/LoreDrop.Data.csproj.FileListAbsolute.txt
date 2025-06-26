@@ -1,0 +1,15 @@
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/bin/Debug/net8.0/LoreDrop.Data.deps.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/bin/Debug/net8.0/LoreDrop.Data.runtimeconfig.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/bin/Debug/net8.0/LoreDrop.Data.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/bin/Debug/net8.0/LoreDrop.Data.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/LoreDrop.Data.csproj.AssemblyReference.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/LoreDrop.Data.GeneratedMSBuildEditorConfig.editorconfig
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/LoreDrop.Data.AssemblyInfoInputs.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/LoreDrop.Data.AssemblyInfo.cs
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/LoreDrop.Data.csproj.CoreCompileInputs.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/LoreDrop.Data.sourcelink.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/LoreDrop.Data.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/refint/LoreDrop.Data.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/LoreDrop.Data.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/LoreDrop.Data.genruntimeconfig.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/obj/Debug/net8.0/ref/LoreDrop.Data.dll

@@ -1,0 +1,15 @@
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/bin/Debug/net8.0/LoreDrop.Data.Models.deps.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/bin/Debug/net8.0/LoreDrop.Data.Models.runtimeconfig.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/bin/Debug/net8.0/LoreDrop.Data.Models.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/bin/Debug/net8.0/LoreDrop.Data.Models.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/LoreDrop.Data.Models.csproj.AssemblyReference.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/LoreDrop.Data.Models.GeneratedMSBuildEditorConfig.editorconfig
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/LoreDrop.Data.Models.AssemblyInfoInputs.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/LoreDrop.Data.Models.AssemblyInfo.cs
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/LoreDrop.Data.Models.csproj.CoreCompileInputs.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/LoreDrop.Data.Models.sourcelink.json
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/LoreDrop.Data.Models.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/refint/LoreDrop.Data.Models.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/LoreDrop.Data.Models.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/LoreDrop.Data.Models.genruntimeconfig.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/obj/Debug/net8.0/ref/LoreDrop.Data.Models.dll

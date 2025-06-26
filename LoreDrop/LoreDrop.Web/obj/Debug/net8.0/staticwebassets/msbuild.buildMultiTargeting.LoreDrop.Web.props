@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/LoreDrop.Web.props" />
+</Project>
