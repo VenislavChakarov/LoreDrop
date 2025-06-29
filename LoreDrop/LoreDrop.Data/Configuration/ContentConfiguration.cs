@@ -41,11 +41,11 @@ public class ContentConfiguration : IEntityTypeConfiguration<Content>
         
         entity
             .HasQueryFilter(c => c.IsDeleted == false);
-        
-        
+
+
         entity
             .HasOne(c => c.Genre)
             .WithMany(g => g.Contents)
-            .HasForeignKey(c => c.GenreId)
+            .HasForeignKey(c => c.GenreId);
     }
 }
