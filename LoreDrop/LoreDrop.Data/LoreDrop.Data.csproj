@@ -17,4 +17,9 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LoreDrop.Data.Models\LoreDrop.Data.Models.csproj" />
+      <ProjectReference Include="..\LoreDrop.GCommon\LoreDrop.GCommon.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1156,6 +1156,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "LoreDrop.Data.Models": "1.0.0",
+          "LoreDrop.GCommon": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.17",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.17",
           "Microsoft.AspNetCore.Identity.UI": "8.0.17",
@@ -1166,6 +1168,32 @@
         },
         "runtime": {
           "bin/placeholder/LoreDrop.Data.dll": {}
+        }
+      },
+      "LoreDrop.Data.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.17",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.17",
+          "Microsoft.AspNetCore.Identity.UI": "8.0.17",
+          "Microsoft.EntityFrameworkCore.Sqlite": "8.0.17"
+        },
+        "compile": {
+          "bin/placeholder/LoreDrop.Data.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LoreDrop.Data.Models.dll": {}
+        }
+      },
+      "LoreDrop.GCommon/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/LoreDrop.GCommon.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LoreDrop.GCommon.dll": {}
         }
       },
       "LoreDrop.Web.ViewModels/1.0.0": {
@@ -2885,6 +2913,16 @@
       "type": "project",
       "path": "../LoreDrop.Data/LoreDrop.Data.csproj",
       "msbuildProject": "../LoreDrop.Data/LoreDrop.Data.csproj"
+    },
+    "LoreDrop.Data.Models/1.0.0": {
+      "type": "project",
+      "path": "../LoreDrop.Data.Models/LoreDrop.Data.Models.csproj",
+      "msbuildProject": "../LoreDrop.Data.Models/LoreDrop.Data.Models.csproj"
+    },
+    "LoreDrop.GCommon/1.0.0": {
+      "type": "project",
+      "path": "../LoreDrop.GCommon/LoreDrop.GCommon.csproj",
+      "msbuildProject": "../LoreDrop.GCommon/LoreDrop.GCommon.csproj"
     },
     "LoreDrop.Web.ViewModels/1.0.0": {
       "type": "project",

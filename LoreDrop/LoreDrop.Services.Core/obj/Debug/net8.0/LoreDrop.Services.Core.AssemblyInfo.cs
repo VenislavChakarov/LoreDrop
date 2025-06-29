@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoreDrop.Services.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4a031c98b6bacc3ca4d7766d558e32b6393b7c25")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0159e33d79ec4b0193818caf12a2d0e70faffd93")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoreDrop.Services.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoreDrop.Services.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
