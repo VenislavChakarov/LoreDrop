@@ -17,7 +17,7 @@ namespace LoreDrop
                                    throw new InvalidOperationException(
                                        "Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<LoreDropDbContext>(options =>
-                options.UseSqlite(connectionString));
+                options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
