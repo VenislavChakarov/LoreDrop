@@ -12,7 +12,7 @@ public class ValidationConstants
         
     }
 
-    public static class Comment
+    public static class Comments
     {
         public const int TextMinLength = 1;
         public const int TextMaxLength = 2000;
