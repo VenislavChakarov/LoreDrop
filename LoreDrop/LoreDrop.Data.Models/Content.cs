@@ -25,5 +25,6 @@ public class Content
     public ICollection<UserFavorites> UserFavorites { get; set; } = new HashSet<UserFavorites>();
     
     public ICollection<UserSaved> UserSaved { get; set; } = new HashSet<UserSaved>();
-    
+
+    public ICollection<Comments> Comments { get; set; } = new HashSet<Comments>();
 }
