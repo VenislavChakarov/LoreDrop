@@ -10,6 +10,9 @@ public class ValidationConstants
         public const int DescriptionMinLength = 5;
         public const int DescriptionMaxLength = 10000;
         
+        public const int AuthorNameMinLength = 3;
+        public const int AuthorNameMaxLength = 100;
+        
     }
 
     public static class Comments

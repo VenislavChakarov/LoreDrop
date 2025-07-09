@@ -10,6 +10,8 @@ public class Content
     
     public string Description { get; set; } = null!;
     
+    public string Author { get; set; } = null!;
+    
     public double? Rating { get; set; }
     
     public string? ImageUrl { get; set; }

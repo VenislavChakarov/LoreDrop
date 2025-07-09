@@ -21,6 +21,11 @@ public class ContentConfiguration : IEntityTypeConfiguration<Content>
             .Property(c => c.Description)
             .IsRequired()
             .HasMaxLength(DescriptionMaxLength);
+
+        entity
+            .Property(c => c.Author)
+            .IsRequired()
+            .HasMaxLength(AuthorNameMaxLength);
         
         entity
             .Property(c => c.Rating)

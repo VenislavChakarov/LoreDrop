@@ -4,6 +4,7 @@ using LoreDrop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoreDrop.Data.Migrations
 {
     [DbContext(typeof(LoreDropDbContext))]
-    partial class LoreDropDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250709153933_UpdateingModel")]
+    partial class UpdateingModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +39,7 @@ namespace LoreDrop.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 9, 15, 42, 13, 134, DateTimeKind.Utc).AddTicks(190));
+                        .HasDefaultValue(new DateTime(2025, 7, 9, 15, 39, 33, 343, DateTimeKind.Utc).AddTicks(7750));
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -66,13 +69,12 @@ namespace LoreDrop.Data.Migrations
 
                     b.Property<string>("Author")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 9, 15, 42, 13, 133, DateTimeKind.Utc).AddTicks(5980));
+                        .HasDefaultValue(new DateTime(2025, 7, 9, 15, 39, 33, 343, DateTimeKind.Utc).AddTicks(2590));
 
                     b.Property<string>("Description")
                         .IsRequired()
