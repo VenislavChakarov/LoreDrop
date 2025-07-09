@@ -1,12 +1,14 @@
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using LoreDrop.Data;
 using LoreDrop.Web.ViewModels.Series;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace LoreDrop.Controllers
 {
-    public class SeriesController : BaseController
+    public class SeriesController : Controller
     {
+        
         private readonly LoreDropDbContext _context;
 
         public SeriesController(LoreDropDbContext context)
@@ -31,6 +33,11 @@ namespace LoreDrop.Controllers
             var series = _context.Series.Find(id);
             if (series == null) return NotFound();
             return View(series);
+        }
+        
+        public IActionResult Create()
+        {
+            return View(new SeriesFromViewModel());
         }
     }
 }

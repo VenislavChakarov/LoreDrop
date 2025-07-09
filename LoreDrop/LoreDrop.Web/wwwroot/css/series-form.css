@@ -1,20 +1,26 @@
 /* series-form.css */
 
-/* Page & Card */
+/* Page container */
 .series-form-page {
     display: flex;
     justify-content: center;
-    padding: 40px 20px;
-    background-color: #f9fff4;
+    align-items: center;
+    min-height: calc(100vh - 140px); /* navbar + footer */
+    background-color: #fafafa;
+    padding: 20px;
 }
+
+/* Card styling like auth-card */
 .series-form-card {
-    background: #fff;
-    padding: 30px 40px;
+    background-color: #b1f5b1;               /* pastel green */
+    padding: 40px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     width: 100%;
     max-width: 600px;
 }
+
+/* Heading */
 .series-form-card h2 {
     margin-bottom: 24px;
     font-size: 1.8em;
@@ -25,42 +31,58 @@
 /* Form groups */
 .form-group {
     margin-bottom: 16px;
-}
-.form-group.small {
-    flex: 1;
-    min-width: 45%;
-}
-.form-row {
-    display: flex;
-    gap: 20px;
+    text-align: left;
 }
 .form-group label {
     display: block;
     margin-bottom: 6px;
     font-weight: bold;
 }
+
+/* Text inputs, textarea & select */
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 10px 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 1em;
-    background-color: #e6f5e6;
+    background-color: #fff;                  /* white */
     transition: background-color 0.2s, box-shadow 0.2s;
 }
+
+/* Disable textarea resize */
+.form-group textarea {
+    resize: none;
+}
+
 .form-group input:focus,
-.form-group textarea:focus {
-    background-color: #d0f0d0;
+.form-group textarea:focus,
+.form-group select:focus {
+    background-color: #e8e8e8;               /* light grey on focus */
     box-shadow: 0 0 4px rgba(34,204,34,0.4);
     outline: none;
 }
+
+/* Small fields in one row */
+.form-row {
+    display: flex;
+    justify-content: space-between; /* author left, date right */
+    gap: 20px;
+}
+.form-group.small {
+    flex: 1;
+    min-width: 45%;
+}
+
+/* Validation text */
 .text-error {
     color: #e00;
     font-size: 0.9em;
 }
 
-/* Actions */
+/* Action buttons */
 .form-actions {
     display: flex;
     justify-content: space-between;

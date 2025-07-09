@@ -7,11 +7,13 @@ public class ValidationConstants
         public const int TitleMinLength = 3;
         public const int TitleMaxLength = 100;
 
-        public const int DescriptionMinLength = 5;
+        public const int DescriptionMinLength = 10;
         public const int DescriptionMaxLength = 10000;
         
         public const int AuthorNameMinLength = 3;
         public const int AuthorNameMaxLength = 100;
+        
+        public const string DateFrmat = "yyyy-MM-dd";
         
     }
 

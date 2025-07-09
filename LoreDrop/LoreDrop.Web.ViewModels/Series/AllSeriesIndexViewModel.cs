@@ -8,5 +8,7 @@ public class AllSeriesIndexViewModel
     
     public double? Rating { get; set; }
     
+    public string Author { get; set; } = null!;
+    
     public string? ImageUrl { get; set; }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoreDrop.GCommon")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+89c2f2d906926d7c05f522a9aa5ad325f18581de")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ca7ceeb663390b4252acef644390dd0de6c1dbc")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoreDrop.GCommon")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoreDrop.GCommon")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

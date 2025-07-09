@@ -275,3 +275,5 @@
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Services.Core.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Services.Core.pdb

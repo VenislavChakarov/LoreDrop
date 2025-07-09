@@ -2936,9 +2936,25 @@
           "bin/placeholder/LoreDrop.GCommon.dll": {}
         }
       },
+      "LoreDrop.Services.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/LoreDrop.Services.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LoreDrop.Services.Core.dll": {}
+        }
+      },
       "LoreDrop.Web.ViewModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LoreDrop.Data": "1.0.0",
+          "LoreDrop.Data.Models": "1.0.0",
+          "LoreDrop.GCommon": "1.0.0",
+          "LoreDrop.Services.Core": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/LoreDrop.Web.ViewModels.dll": {}
         },
@@ -8106,6 +8122,11 @@
       "type": "project",
       "path": "../LoreDrop.GCommon/LoreDrop.GCommon.csproj",
       "msbuildProject": "../LoreDrop.GCommon/LoreDrop.GCommon.csproj"
+    },
+    "LoreDrop.Services.Core/1.0.0": {
+      "type": "project",
+      "path": "../LoreDrop.Services.Core/LoreDrop.Services.Core.csproj",
+      "msbuildProject": "../LoreDrop.Services.Core/LoreDrop.Services.Core.csproj"
     },
     "LoreDrop.Web.ViewModels/1.0.0": {
       "type": "project",

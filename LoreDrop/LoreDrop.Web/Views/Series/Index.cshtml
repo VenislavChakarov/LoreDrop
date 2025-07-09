@@ -1,4 +1,5 @@
-@*@model IEnumerable<LoreDrop.Models.Series>*@
+@using LoreDrop.Web.ViewModels.Series
+@model List<LoreDrop.Data.Models.Series>
 @{
     ViewData["Title"] = "All Series";
 }
@@ -22,13 +23,13 @@
                     <img src="@(string.IsNullOrEmpty(series.ImageUrl) 
                                   ? Url.Content("~/images/default-series.jpg") 
                                   : series.ImageUrl)"
-                         alt="@series.Title" />
+                         alt="@series.Tittle" />
                 </div>
                 <div class="card-content">
-                    <h3>@series.Title</h3>
+                    <h3>@series.Tittle</h3>
                     <div class="star-rating">
                         @{
-                            int fullStars = (int)System.Math.Floor(series.Rating);
+                            int fullStars = (int)Math.Floor((double)series.Rating);
                             bool halfStar = (series.Rating - fullStars) >= 0.5;
                             int emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
 

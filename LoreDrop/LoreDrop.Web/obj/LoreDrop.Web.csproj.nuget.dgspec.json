@@ -287,6 +287,64 @@
         }
       }
     },
+    "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/LoreDrop.Services.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/LoreDrop.Services.Core.csproj",
+        "projectName": "LoreDrop.Services.Core",
+        "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/LoreDrop.Services.Core.csproj",
+        "packagesPath": "/Users/venislavchakarov/.nuget/packages/",
+        "outputPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/venislavchakarov/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.410/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/LoreDrop.Web.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -308,7 +366,20 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/LoreDrop.Data.Models.csproj": {
+                "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/LoreDrop.Data.Models.csproj"
+              },
+              "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/LoreDrop.Data.csproj": {
+                "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data/LoreDrop.Data.csproj"
+              },
+              "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/LoreDrop.GCommon.csproj": {
+                "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/LoreDrop.GCommon.csproj"
+              },
+              "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/LoreDrop.Services.Core.csproj": {
+                "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/LoreDrop.Services.Core.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

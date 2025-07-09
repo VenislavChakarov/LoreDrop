@@ -10,3 +10,13 @@
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/obj/Debug/net8.0/refint/LoreDrop.Web.ViewModels.dll
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/obj/Debug/net8.0/LoreDrop.Web.ViewModels.pdb
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/obj/Debug/net8.0/ref/LoreDrop.Web.ViewModels.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/bin/Debug/net8.0/LoreDrop.Data.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/bin/Debug/net8.0/LoreDrop.Data.Models.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/bin/Debug/net8.0/LoreDrop.GCommon.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/bin/Debug/net8.0/LoreDrop.Services.Core.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/bin/Debug/net8.0/LoreDrop.Data.Models.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/bin/Debug/net8.0/LoreDrop.Data.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/bin/Debug/net8.0/LoreDrop.GCommon.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/bin/Debug/net8.0/LoreDrop.Services.Core.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/obj/Debug/net8.0/LoreDrop.Web.ViewModels.csproj.AssemblyReference.cache
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/obj/Debug/net8.0/LoreDrop.FE6A405F.Up2Date

@@ -1,8 +1,4 @@
-@*@model LoreDrop.Models.Series*@
-@{
-    ViewData["Title"] = "Create Series";
-}
-
+@model LoreDrop.Web.ViewModels.Series.SeriesFromViewModel
 @section Styles {
     <link rel="stylesheet" href="~/css/series-form.css" asp-append-version="true" />
 }
@@ -17,6 +13,14 @@
                 <input asp-for="Title" />
                 <span asp-validation-for="Title" class="text-error"></span>
             </div>
+            
+            <div class="form-group">
+                <label asp-for="Genre"></label>
+                @*<select asp-for="Genre" asp-items="(SelectList)ViewData[\"GenreList\"]">
+                    <option value="">-- Select Genre --</option>
+                </select>*@
+                <span asp-validation-for="Genre" class="text-error"></span>
+            </div>
       
             <div class="form-group">
                 <label asp-for="Description"></label>
@@ -26,14 +30,14 @@
       
             <div class="form-row">
                 <div class="form-group small">
-                    <label asp-for="DateAdded"></label>
-                    <input asp-for="DateAdded" type="date" />
-                    <span asp-validation-for="DateAdded" class="text-error"></span>
-                </div>
-                <div class="form-group small">
                     <label asp-for="Author"></label>
                     <input asp-for="Author" />
                     <span asp-validation-for="Author" class="text-error"></span>
+                </div>
+                <div class="form-group small">
+                    <label asp-for="DateAdded"></label>
+                    <input asp-for="DateAdded" type="date" />
+                    <span asp-validation-for="DateAdded" class="text-error"></span>
                 </div>
             </div>
       
