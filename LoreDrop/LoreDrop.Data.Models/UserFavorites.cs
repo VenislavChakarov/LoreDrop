@@ -8,7 +8,7 @@ public class UserFavorites
     
     public virtual IdentityUser User { get; set; } = null!;
     
-    public int ContentId { get; set; }
+    public int SeriesId { get; set; }
     
-    public virtual Content Content { get; set; } = null!;
+    public virtual Series Series { get; set; } = null!;
 }

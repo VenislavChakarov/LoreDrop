@@ -9,10 +9,10 @@ public class UserFavoritesConfiguration : IEntityTypeConfiguration<UserFavorites
     public void Configure(EntityTypeBuilder<UserFavorites> entity)
     {
         entity
-            .HasKey(uf => new { uf.UserId, uf.ContentId });
+            .HasKey(uf => new { uf.UserId, uf.SeriesId });
 
         entity
-            .HasQueryFilter(uf => uf.Content.IsDeleted == false);
+            .HasQueryFilter(uf => uf.Series.IsDeleted == false);
 
         entity
             .HasOne(uf => uf.User)
@@ -21,9 +21,9 @@ public class UserFavoritesConfiguration : IEntityTypeConfiguration<UserFavorites
             .OnDelete(DeleteBehavior.Restrict);
 
         entity
-            .HasOne(uf => uf.Content)
+            .HasOne(uf => uf.Series)
             .WithMany(c => c.UserFavorites)
-            .HasForeignKey(uf => uf.ContentId)
+            .HasForeignKey(uf => uf.SeriesId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

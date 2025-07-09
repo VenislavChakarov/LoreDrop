@@ -14,7 +14,7 @@ public class LoreDropDbContext : IdentityDbContext
         
     }
     
-    public virtual DbSet<Content> Contents { get; set; }
+    public virtual DbSet<Series> Series { get; set; }
     public virtual DbSet<Comments> Comments { get; set; } = null!;
     public virtual DbSet<UserSaved> UserSaved { get; set; } = null!;
     public virtual DbSet<UserFavorites> UserFavorites { get; set; } = null!;

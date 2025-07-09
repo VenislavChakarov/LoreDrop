@@ -73,12 +73,15 @@ body {
   color: #fff;
 }
 /* Series Grid */
+/* Series Grid */
 .series-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   margin: 40px 0;
 }
+
+/* Each Series Card */
 .series-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -86,30 +89,70 @@ body {
   overflow: hidden;
   text-decoration: none;
   color: inherit;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
+
 .series-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
+
+/* Image on top */
 .card-image img {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
+
+/* Card Content layout */
 .card-content {
   padding: 16px;
   text-align: center;
 }
+
 .card-content h3 {
   margin: 0 0 8px;
   font-size: 1.2em;
+  font-weight: bold;
 }
-.card-content p {
-  margin: 0;
+
+.card-content .rating {
+  margin: 4px 0;
   font-size: 1em;
-  color: #555;
+  color: #22cc22; /* highlight rating with your theme green */
+  font-weight: bold;
 }
+
+.card-content .author {
+  margin: 4px 0;
+  font-size: 0.95em;
+  color: #666;
+}
+
+/* Star rating container */
+.star-rating {
+  display: inline-block;
+  font-size: 0; /* remove spacing */
+  position: relative;
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+
+/* Empty stars */
+.star-rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.2em;
+  font-size: 1.2em;
+  color: #ccc; /* empty star color */
+}
+
+/* Filled stars overlay */
+.star-rating > span.filled {
+  color: #f5c518; /* gold filled stars */
+}
+
 
 /* Discover Button */
 .discover-container {
@@ -171,7 +214,7 @@ body {
 }
 
 .auth-card input:focus {
-  background-color: #d0f0d0;
+  background-color: rgb(232, 232, 232);
   box-shadow: 0 0 4px rgba(34,204,34,0.4);
   outline: none;
 }

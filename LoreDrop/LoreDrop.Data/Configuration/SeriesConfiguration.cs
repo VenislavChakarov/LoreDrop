@@ -1,56 +1,56 @@
 using LoreDrop.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using static LoreDrop.GCommon.ValidationConstants.Content;
+using static LoreDrop.GCommon.ValidationConstants.Series;
 
 namespace LoreDrop.Data.Configuration;
 
-public class ContentConfiguration : IEntityTypeConfiguration<Content>
+public class SeriesConfiguration : IEntityTypeConfiguration<Series>
 {
-    public void Configure(EntityTypeBuilder<Content> entity)
+    public void Configure(EntityTypeBuilder<Series> entity)
     {
         entity
-            .HasKey(c => c.Id);
+            .HasKey(s => s.Id);
         
         entity
-            .Property(c => c.Tittle)
+            .Property(s => s.Tittle)
             .IsRequired()
             .HasMaxLength(TitleMaxLength);
         
         entity
-            .Property(c => c.Description)
+            .Property(s => s.Description)
             .IsRequired()
             .HasMaxLength(DescriptionMaxLength);
 
         entity
-            .Property(c => c.Author)
+            .Property(s => s.Author)
             .IsRequired()
             .HasMaxLength(AuthorNameMaxLength);
         
         entity
-            .Property(c => c.Rating)
+            .Property(s => s.Rating)
             .IsRequired(false);
         
         entity
-            .Property(c => c.ImageUrl)
+            .Property(s => s.ImageUrl)
             .IsRequired(false);
         
         entity
-            .Property(c => c.CreatedOn)
+            .Property(s => s.CreatedOn)
             .IsRequired()
             .HasDefaultValue(DateTime.UtcNow);
         
         entity
-            .Property(c => c.IsDeleted)
+            .Property(s => s.IsDeleted)
             .HasDefaultValue(false);
         
         entity
-            .HasQueryFilter(c => c.IsDeleted == false);
+            .HasQueryFilter(s => s.IsDeleted == false);
 
 
         entity
-            .HasOne(c => c.Genre)
-            .WithMany(g => g.Contents)
-            .HasForeignKey(c => c.GenreId);
+            .HasOne(s => s.Genre)
+            .WithMany(g => g.Series)
+            .HasForeignKey(s => s.GenreId);
     }
 }

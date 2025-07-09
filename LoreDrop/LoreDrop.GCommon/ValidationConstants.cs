@@ -2,7 +2,7 @@ namespace LoreDrop.GCommon;
 
 public class ValidationConstants
 {
-    public static class Content
+    public static class Series
     {
         public const int TitleMinLength = 3;
         public const int TitleMaxLength = 100;

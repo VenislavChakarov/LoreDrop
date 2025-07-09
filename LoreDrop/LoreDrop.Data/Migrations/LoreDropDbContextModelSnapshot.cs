@@ -30,13 +30,13 @@ namespace LoreDrop.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ContentId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 9, 15, 42, 13, 134, DateTimeKind.Utc).AddTicks(190));
+                        .HasDefaultValue(new DateTime(2025, 7, 9, 16, 19, 45, 240, DateTimeKind.Utc).AddTicks(8760));
+
+                    b.Property<int?>("SeriesId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -49,14 +49,32 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContentId");
+                    b.HasIndex("SeriesId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.Content", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genres");
+                });
+
+            modelBuilder.Entity("LoreDrop.Data.Models.Series", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -72,7 +90,7 @@ namespace LoreDrop.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 9, 15, 42, 13, 133, DateTimeKind.Utc).AddTicks(5980));
+                        .HasDefaultValue(new DateTime(2025, 7, 9, 16, 19, 45, 240, DateTimeKind.Utc).AddTicks(3730));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -102,25 +120,7 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("Contents");
-                });
-
-            modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Genres");
+                    b.ToTable("Series");
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.UserFavorites", b =>
@@ -128,12 +128,12 @@ namespace LoreDrop.Data.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ContentId")
+                    b.Property<int>("SeriesId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "ContentId");
+                    b.HasKey("UserId", "SeriesId");
 
-                    b.HasIndex("ContentId");
+                    b.HasIndex("SeriesId");
 
                     b.ToTable("UserFavorites");
                 });
@@ -143,12 +143,12 @@ namespace LoreDrop.Data.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ContentId")
+                    b.Property<int>("SeriesId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "ContentId");
+                    b.HasKey("UserId", "SeriesId");
 
-                    b.HasIndex("ContentId");
+                    b.HasIndex("SeriesId");
 
                     b.ToTable("UserSaved");
                 });
@@ -357,9 +357,9 @@ namespace LoreDrop.Data.Migrations
 
             modelBuilder.Entity("LoreDrop.Data.Models.Comments", b =>
                 {
-                    b.HasOne("LoreDrop.Data.Models.Content", "Content")
+                    b.HasOne("LoreDrop.Data.Models.Series", "Series")
                         .WithMany("Comments")
-                        .HasForeignKey("ContentId")
+                        .HasForeignKey("SeriesId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
@@ -368,15 +368,15 @@ namespace LoreDrop.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Content");
+                    b.Navigation("Series");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.Content", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.Series", b =>
                 {
                     b.HasOne("LoreDrop.Data.Models.Genre", "Genre")
-                        .WithMany("Contents")
+                        .WithMany("Series")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -386,9 +386,9 @@ namespace LoreDrop.Data.Migrations
 
             modelBuilder.Entity("LoreDrop.Data.Models.UserFavorites", b =>
                 {
-                    b.HasOne("LoreDrop.Data.Models.Content", "Content")
+                    b.HasOne("LoreDrop.Data.Models.Series", "Series")
                         .WithMany("UserFavorites")
-                        .HasForeignKey("ContentId")
+                        .HasForeignKey("SeriesId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -398,16 +398,16 @@ namespace LoreDrop.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Content");
+                    b.Navigation("Series");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.UserSaved", b =>
                 {
-                    b.HasOne("LoreDrop.Data.Models.Content", "Content")
+                    b.HasOne("LoreDrop.Data.Models.Series", "Series")
                         .WithMany("UserSaved")
-                        .HasForeignKey("ContentId")
+                        .HasForeignKey("SeriesId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -417,7 +417,7 @@ namespace LoreDrop.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Content");
+                    b.Navigation("Series");
 
                     b.Navigation("User");
                 });
@@ -473,18 +473,18 @@ namespace LoreDrop.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.Content", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
+                {
+                    b.Navigation("Series");
+                });
+
+            modelBuilder.Entity("LoreDrop.Data.Models.Series", b =>
                 {
                     b.Navigation("Comments");
 
                     b.Navigation("UserFavorites");
 
                     b.Navigation("UserSaved");
-                });
-
-            modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
-                {
-                    b.Navigation("Contents");
                 });
 #pragma warning restore 612, 618
         }

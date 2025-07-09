@@ -9,10 +9,10 @@ public class UserSavedConfiguration : IEntityTypeConfiguration<UserSaved>
     public void Configure(EntityTypeBuilder<UserSaved> entity)
     {
         entity
-            .HasKey(us => new { us.UserId, us.ContentId });
+            .HasKey(us => new { us.UserId, us.SeriesId });
         
         entity
-            .HasQueryFilter(us => us.Content.IsDeleted == false);
+            .HasQueryFilter(us => us.Series.IsDeleted == false);
 
         entity
             .HasOne(us => us.User)
@@ -21,9 +21,9 @@ public class UserSavedConfiguration : IEntityTypeConfiguration<UserSaved>
             .OnDelete(DeleteBehavior.Restrict);
 
         entity
-            .HasOne(us => us.Content)
+            .HasOne(us => us.Series)
             .WithMany(c => c.UserSaved)
-            .HasForeignKey(us => us.ContentId)
+            .HasForeignKey(us => us.SeriesId)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

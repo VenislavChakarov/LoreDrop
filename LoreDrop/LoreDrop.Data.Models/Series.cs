@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace LoreDrop.Data.Models;
 
-public class Content
+public class Series
 {
     public int Id { get; set; }
 

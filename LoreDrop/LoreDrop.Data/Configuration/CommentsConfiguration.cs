@@ -19,9 +19,9 @@ public class CommentsConfiguration : IEntityTypeConfiguration<Comments>
             .IsRequired()
             .HasDefaultValue(DateTime.UtcNow);
 
-        entity.HasOne(c => c.Content)
-            .WithMany(content => content.Comments)
-            .HasForeignKey(c => c.ContentId)
+        entity.HasOne(c => c.Series)
+            .WithMany(s => s.Comments)
+            .HasForeignKey(c => c.SeriesId)
             .OnDelete(DeleteBehavior.Cascade);
 
         entity.HasOne(c => c.User)

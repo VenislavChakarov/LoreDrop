@@ -1,0 +1,55 @@
+@*@model IEnumerable<LoreDrop.Models.Series>*@
+@{
+    ViewData["Title"] = "All Series";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/series.css" asp-append-version="true" />
+}
+
+<h1 class="page-title">All Series</h1>
+
+@* Show only for admins later *@
+<div class="admin-actions">
+    <a asp-action="Create" class="btn-create">+ Add New Series</a>
+</div>
+
+<section class="series-grid">
+    @foreach (var series in Model)
+    {
+        <div class="series-card">
+            <a asp-action="Details" asp-route-id="@series.Id" class="card-link">
+                <div class="card-image">
+                    <img src="@(string.IsNullOrEmpty(series.ImageUrl) 
+                                  ? Url.Content("~/images/default-series.jpg") 
+                                  : series.ImageUrl)"
+                         alt="@series.Title" />
+                </div>
+                <div class="card-content">
+                    <h3>@series.Title</h3>
+                    <div class="star-rating">
+                        @{
+                            int fullStars = (int)System.Math.Floor(series.Rating);
+                            bool halfStar = (series.Rating - fullStars) >= 0.5;
+                            int emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+                            for (int i = 0; i < fullStars; i++)
+                            {
+                                <span class="filled">&#9733;</span>
+                            }
+                            if (halfStar)
+                            {
+                                <span class="half">&#9733;</span>
+                            }
+                            for (int i = 0; i < emptyStars; i++)
+                            {
+                                <span>&#9733;</span>
+                            }
+                        }
+                    </div>
+                    <p class="author">By @series.Author</p>
+                </div>
+            </a>
+            <a asp-action="Details" asp-route-id="@series.Id" class="btn-details">Details</a>
+        </div>
+    }
+</section>

@@ -1,33 +1,49 @@
-﻿@*@model IEnumerable<YourNamespace.Models.Series>*@
+﻿@using LoreDrop.Web.ViewModels.Home;
+@model IEnumerable<TopRatedSeries>
 @{
     ViewData["Title"] = "Home";
 }
 
-<section class="series-grid container">
-    @*@foreach (var series in Model.OrderByDescending(s => s.Rating).Take(3))
+<div class="series-grid">
+    @*@foreach (var series in Model)
     {
-        <a class="series-card"
-           asp-area=""
-           asp-controller="Series"
-           asp-action="Details"
-           asp-route-id="@series.Id">
+        <a class="series-card" href="/Series/Details/@series.Id">
             <div class="card-image">
-                <img src="@(string.IsNullOrEmpty(series.ImageUrl)
-                              ? Url.Content("~/images/default-series.jpg")
-                              : series.ImageUrl)"
-                     alt="@series.Title" />
+                <img src="@(series.ImageUrl ?? "/images/default.jpg")" alt="@series.Tittle" />
             </div>
             <div class="card-content">
-                <h3>@series.Title</h3>
-                <p>Rating: @series.Rating.ToString("0.0")</p>
+                <h3>@series.Tittle</h3>
+                
+                <div class="rating">
+                    <div class="star-rating">
+                        @{
+                            int fullStars = (int)Math.Floor((double)series.Rating);
+                            bool halfStar = (series.Rating - fullStars) >= 0.5;
+                            int emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+                            for (int i = 0; i < fullStars; i++)
+                            {
+                                <span class="filled">&#9733;</span> <!-- filled star -->
+                            }
+                            if (halfStar)
+                            {
+                                <span class="half">&#x2BEA;</span> <!-- Unicode half-star -->
+                            }
+                            for (int i = 0; i < emptyStars; i++)
+                            {
+                                <span>&#9733;</span> <!-- empty star -->
+                            }
+                        }
+                    </div>
+                </div>
+
+                <div class="author">Author: @series.Author</div>
             </div>
         </a>
     }*@
-</section>
-
+</div>
 <section class="discover-container container">
     <a class="discover-button"
-       asp-area=""
        asp-controller="Series"
        asp-action="Discover">
         &larr; Discover New Series

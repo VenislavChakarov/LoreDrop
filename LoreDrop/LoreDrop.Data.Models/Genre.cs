@@ -6,5 +6,5 @@ public class Genre
 
     public string Name { get; set; } = null!;
     
-    public virtual ICollection<Content> Contents { get; set; } = new HashSet<Content>();
+    public virtual ICollection<Series> Series { get; set; } = new HashSet<Series>();
 }

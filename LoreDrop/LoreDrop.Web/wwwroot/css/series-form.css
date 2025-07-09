@@ -1,0 +1,94 @@
+/* series-form.css */
+
+/* Page & Card */
+.series-form-page {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: #f9fff4;
+}
+.series-form-card {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    width: 100%;
+    max-width: 600px;
+}
+.series-form-card h2 {
+    margin-bottom: 24px;
+    font-size: 1.8em;
+    color: #22cc22;
+    text-align: center;
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 16px;
+}
+.form-group.small {
+    flex: 1;
+    min-width: 45%;
+}
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    background-color: #e6f5e6;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+    background-color: #d0f0d0;
+    box-shadow: 0 0 4px rgba(34,204,34,0.4);
+    outline: none;
+}
+.text-error {
+    color: #e00;
+    font-size: 0.9em;
+}
+
+/* Actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+}
+.btn-cancel,
+.btn-submit {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn-cancel {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    transition: background-color 0.2s;
+}
+.btn-cancel:hover {
+    background-color: #d32f2f;
+}
+.btn-submit {
+    background-color: #22cc22;
+    color: #000;
+    border: none;
+    transition: background-color 0.2s;
+}
+.btn-submit:hover {
+    background-color: #1bb21b;
+}

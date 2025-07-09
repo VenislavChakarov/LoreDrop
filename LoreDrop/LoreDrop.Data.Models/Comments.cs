@@ -6,7 +6,7 @@ public class Comments
 {
     public int Id { get; set; }
     
-    public int? ContentId { get; set; }
+    public int? SeriesId { get; set; }
     
     public string UserId { get; set; } = null!;
     
@@ -14,7 +14,7 @@ public class Comments
     
     public virtual DateTime CreatedOn { get; set; }
 
-    public virtual Content? Content { get; set; } = null!;
+    public virtual Series? Series { get; set; } = null!;
     
     public virtual IdentityUser User { get; set; } = null!;
 }
