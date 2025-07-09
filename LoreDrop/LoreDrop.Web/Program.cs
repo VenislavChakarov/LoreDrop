@@ -21,7 +21,8 @@ namespace LoreDrop
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<LoreDropDbContext>();
+                    .AddEntityFrameworkStores<LoreDropDbContext>()
+                    .AddDefaultUI();
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
@@ -43,6 +44,7 @@ namespace LoreDrop
 
             app.UseRouting();
 
+            app.UseAuthentication(); 
             app.UseAuthorization();
 
             app.MapControllerRoute(

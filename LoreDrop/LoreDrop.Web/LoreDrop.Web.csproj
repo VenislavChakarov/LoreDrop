@@ -25,11 +25,16 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\LoreDrop.Data\LoreDrop.Data.csproj" />
       <ProjectReference Include="..\LoreDrop.Web.ViewModels\LoreDrop.Web.ViewModels.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Areas\Identity\" />
     </ItemGroup>
 
 </Project>

@@ -1,8 +1,35 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@*@model IEnumerable<YourNamespace.Models.Series>*@
+@{
+    ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="series-grid container">
+    @*@foreach (var series in Model.OrderByDescending(s => s.Rating).Take(3))
+    {
+        <a class="series-card"
+           asp-area=""
+           asp-controller="Series"
+           asp-action="Details"
+           asp-route-id="@series.Id">
+            <div class="card-image">
+                <img src="@(string.IsNullOrEmpty(series.ImageUrl)
+                              ? Url.Content("~/images/default-series.jpg")
+                              : series.ImageUrl)"
+                     alt="@series.Title" />
+            </div>
+            <div class="card-content">
+                <h3>@series.Title</h3>
+                <p>Rating: @series.Rating.ToString("0.0")</p>
+            </div>
+        </a>
+    }*@
+</section>
+
+<section class="discover-container container">
+    <a class="discover-button"
+       asp-area=""
+       asp-controller="Series"
+       asp-action="Discover">
+        &larr; Discover New Series
+    </a>
+</section>
