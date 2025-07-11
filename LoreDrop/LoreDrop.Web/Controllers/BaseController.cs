@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LoreDrop.Controllers;
 
-public class BaseController :Controller
+public class BaseController : Controller
 {
     protected bool IsUserAuthenticated()
     {
@@ -22,7 +22,8 @@ public class BaseController :Controller
 
     protected string GetUserId()
     {
-        return User.FindFirstValue(ClaimTypes.NameIdentifier);
+        return User.FindFirstValue(ClaimTypes.NameIdentifier)
+            ?? throw new InvalidOperationException("User ID not found in claims.");;
     }
 
 }

@@ -1,4 +1,5 @@
 using LoreDrop.Data;
+using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -6,34 +7,28 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace LoreDrop.Controllers
 {
-    public class SeriesController : Controller
+    public class SeriesController : BaseController
     {
         
-        private readonly LoreDropDbContext _context;
+        private readonly ISeriesService seriesService;
 
-        public SeriesController(LoreDropDbContext context)
+        public SeriesController(ISeriesService seriesService)
         {
-            _context = context;
+            this.seriesService = seriesService;
         }
 
         // GET: /Series/
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             // you can add pagination here later
-            var allSeries = _context.Series
-                .OrderByDescending(s => s.Rating)
-                .ToList();
+            var allSeries = await this.seriesService
+                .GetAllSeriesAsync();
             
             return View(allSeries);
         }
 
         // GET: /Series/Details/5
-        public IActionResult Details(int id)
-        {
-            var series = _context.Series.Find(id);
-            if (series == null) return NotFound();
-            return View(series);
-        }
+        
         
         public IActionResult Create()
         {

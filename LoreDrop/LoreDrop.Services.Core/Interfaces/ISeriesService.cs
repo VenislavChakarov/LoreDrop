@@ -4,7 +4,7 @@ using Web.ViewModels.Series;
 
 public interface ISeriesService
 {
-    Task<IEnumerable<AllSeriesIndexViewModel>> GetAllSeriesAsync(string? userId);
+    Task<IEnumerable<AllSeriesIndexViewModel>> GetAllSeriesAsync();
     
     Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(int? id, string? userId);
     

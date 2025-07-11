@@ -1,9 +1,13 @@
+@using LoreDrop.GCommon
 @using LoreDrop.Web.ViewModels.Series
-@model List<LoreDrop.Data.Models.Series>
+@using Microsoft.VisualBasic
+@using static LoreDrop.GCommon.ValidationConstants.Series
+@model IEnumerable<AllSeriesIndexViewModel>
 
 @{
     ViewData["Title"] = "All Series";
     Layout = "_Layout";
+    const string DateFormat = ValidationConstants.Series.DateFormat;// Define the date format directly in the Razor view
 }
 
 @section Styles {
@@ -33,10 +37,10 @@
                     <a asp-action="Details" asp-route-id="@series.Id" class="card-link">
                         <div class="card-image">
                             <img src="@(series.ImageUrl ?? "/images/placeholder.jpg")"
-                                 alt="@series.Tittle" />
+                                 alt="@series.Title" />
                         </div>
                         <div class="card-content">
-                            <h3>@series.Tittle</h3>
+                            <h3>@series.Title</h3>
 
                             <p class="genre">@series.Genre</p>
 
@@ -59,7 +63,7 @@
                                 <span class="visually-hidden">Rating: @series.Rating out of 5</span>
                             </p>
 
-                            <p class="date">Created on @series.CreatedOn.ToString("dd MMM yyyy")</p>
+                            <p class="date">Created on @DateTime.Parse(series.CreatedOn).ToString(DateFormat)</p>
                         </div>
                     </a>
                     <a asp-action="Details" asp-route-id="@series.Id" class="btn-details">

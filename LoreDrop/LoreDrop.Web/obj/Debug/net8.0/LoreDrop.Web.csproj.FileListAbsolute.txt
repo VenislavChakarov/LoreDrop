@@ -275,3 +275,5 @@
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/obj/Debug/net8.0/LoreDrop.Web.pdb
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/obj/Debug/net8.0/LoreDrop.Web.genruntimeconfig.cache
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/obj/Debug/net8.0/ref/LoreDrop.Web.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Services.Core.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Services.Core.pdb

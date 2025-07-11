@@ -13,7 +13,7 @@ public class ValidationConstants
         public const int AuthorNameMinLength = 3;
         public const int AuthorNameMaxLength = 100;
         
-        public const string DateFrmat = "yyyy-MM-dd";
+        public const string DateFormat = "yyyy-MM-dd";
         
     }
 

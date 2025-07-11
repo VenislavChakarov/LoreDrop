@@ -8,7 +8,7 @@ public class CreateSeriesFormViewModel
 {
     public CreateSeriesFormViewModel()
     {
-        this.CreatedOn = DateTime.UtcNow.ToString(DateFrmat);
+        this.CreatedOn = DateTime.UtcNow.ToString(DateFormat);
     }
 
     public string Id { get; set; } = string.Empty;

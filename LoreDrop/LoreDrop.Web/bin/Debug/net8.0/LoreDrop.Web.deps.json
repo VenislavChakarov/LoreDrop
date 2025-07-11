@@ -9,6 +9,7 @@
       "LoreDrop.Web/1.0.0": {
         "dependencies": {
           "LoreDrop.Data": "1.0.0",
+          "LoreDrop.Services.Core": "1.0.0",
           "LoreDrop.Web.ViewModels": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "8.0.17",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.17",
@@ -2054,6 +2055,19 @@
           }
         }
       },
+      "LoreDrop.Services.Core/1.0.0": {
+        "dependencies": {
+          "LoreDrop.Data": "1.0.0",
+          "LoreDrop.GCommon": "1.0.0",
+          "LoreDrop.Web.ViewModels": "1.0.0"
+        },
+        "runtime": {
+          "LoreDrop.Services.Core.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "LoreDrop.Web.ViewModels/1.0.0": {
         "dependencies": {
           "LoreDrop.Data": "1.0.0",
@@ -3255,6 +3269,11 @@
       "sha512": ""
     },
     "LoreDrop.GCommon/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "LoreDrop.Services.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

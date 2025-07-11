@@ -1,4 +1,6 @@
 using LoreDrop.Data;
+using LoreDrop.Services.Core;
+using LoreDrop.Services.Core.Contracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +32,8 @@ namespace LoreDrop
                 }).AddEntityFrameworkStores<LoreDropDbContext>()
                     .AddDefaultUI();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddScoped<ISeriesService, SeriesService>();
 
             var app = builder.Build();
 
