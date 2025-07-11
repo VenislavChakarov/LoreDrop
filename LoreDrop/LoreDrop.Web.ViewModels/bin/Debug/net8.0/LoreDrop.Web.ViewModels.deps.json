@@ -10,8 +10,7 @@
         "dependencies": {
           "LoreDrop.Data": "1.0.0",
           "LoreDrop.Data.Models": "1.0.0",
-          "LoreDrop.GCommon": "1.0.0",
-          "LoreDrop.Services.Core": "1.0.0"
+          "LoreDrop.GCommon": "1.0.0"
         },
         "runtime": {
           "LoreDrop.Web.ViewModels.dll": {}
@@ -692,14 +691,6 @@
             "fileVersion": "1.0.0.0"
           }
         }
-      },
-      "LoreDrop.Services.Core/1.0.0": {
-        "runtime": {
-          "LoreDrop.Services.Core.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
-        }
       }
     }
   },
@@ -1168,11 +1159,6 @@
       "sha512": ""
     },
     "LoreDrop.GCommon/1.0.0": {
-      "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "LoreDrop.Services.Core/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

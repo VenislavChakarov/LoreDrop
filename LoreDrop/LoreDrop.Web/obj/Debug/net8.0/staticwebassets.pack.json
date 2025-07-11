@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/LoreDrop.Web.bundle.scp.css"
     },
     {
+      "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/series-detailes.css",
+      "PackagePath": "staticwebassets/css/series-detailes.css"
+    },
+    {
       "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/series-form.css",
       "PackagePath": "staticwebassets/css/series-form.css"
     },

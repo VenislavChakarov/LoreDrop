@@ -8,7 +8,11 @@ public class AllSeriesIndexViewModel
     
     public double? Rating { get; set; }
     
+    public string Genre { get; set; } = null!;
+    
     public string Author { get; set; } = null!;
     
     public string? ImageUrl { get; set; }
+    
+    public string CreatedOn { get; set; }
 }

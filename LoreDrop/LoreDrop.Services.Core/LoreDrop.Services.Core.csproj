@@ -6,4 +6,10 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LoreDrop.Data\LoreDrop.Data.csproj" />
+      <ProjectReference Include="..\LoreDrop.GCommon\LoreDrop.GCommon.csproj" />
+      <ProjectReference Include="..\LoreDrop.Web.ViewModels\LoreDrop.Web.ViewModels.csproj" />
+    </ItemGroup>
+
 </Project>

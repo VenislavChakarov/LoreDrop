@@ -7,23 +7,29 @@
 <div class="auth-page">
     <div class="auth-card">
         <h2>Login</h2>
-        <form method="post">
+        <form id="account" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-error" role="alert"></div>
+            
             <div class="form-group">
                 <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" />
+                <input asp-for="Input.Email" autocomplete="username" aria-required="true" placeholder="name@example.com" />
                 <span asp-validation-for="Input.Email" class="text-error"></span>
             </div>
+            
             <div class="form-group">
                 <label asp-for="Input.Password"></label>
-                <input asp-for="Input.Password" type="password" />
+                <input asp-for="Input.Password" type="password" autocomplete="current-password" aria-required="true" placeholder="password" />
                 <span asp-validation-for="Input.Password" class="text-error"></span>
             </div>
+            
             <div class="form-group checkbox">
                 <input asp-for="Input.RememberMe" />
                 <label asp-for="Input.RememberMe"></label>
             </div>
-            <button type="submit" class="btn-primary">Log in</button>
+            
+            <button id="login-submit" type="submit" class="btn-primary">Log in</button>
         </form>
+        
         <div class="auth-footer">
             <p>Don't have an account? 
                 <a asp-area="Identity" asp-page="/Account/Register">Register</a>

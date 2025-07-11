@@ -1205,16 +1205,6 @@
         "runtime": {
           "bin/placeholder/LoreDrop.GCommon.dll": {}
         }
-      },
-      "LoreDrop.Services.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/LoreDrop.Services.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/LoreDrop.Services.Core.dll": {}
-        }
       }
     }
   },
@@ -3226,19 +3216,13 @@
       "type": "project",
       "path": "../LoreDrop.GCommon/LoreDrop.GCommon.csproj",
       "msbuildProject": "../LoreDrop.GCommon/LoreDrop.GCommon.csproj"
-    },
-    "LoreDrop.Services.Core/1.0.0": {
-      "type": "project",
-      "path": "../LoreDrop.Services.Core/LoreDrop.Services.Core.csproj",
-      "msbuildProject": "../LoreDrop.Services.Core/LoreDrop.Services.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "LoreDrop.Data >= 1.0.0",
       "LoreDrop.Data.Models >= 1.0.0",
-      "LoreDrop.GCommon >= 1.0.0",
-      "LoreDrop.Services.Core >= 1.0.0"
+      "LoreDrop.GCommon >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3274,9 +3258,6 @@
             },
             "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/LoreDrop.GCommon.csproj": {
               "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.GCommon/LoreDrop.GCommon.csproj"
-            },
-            "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/LoreDrop.Services.Core.csproj": {
-              "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/LoreDrop.Services.Core.csproj"
             }
           }
         }

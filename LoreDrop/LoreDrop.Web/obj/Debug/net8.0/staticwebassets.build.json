@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cTEuYDUIWSip5efYIradAv5k6ufdlMtb5G9BiREU0GA=",
+  "Hash": "60LxEujmeF5tV3+vSVZBZ2GbYLq9QvXzrARZAMeqils=",
   "Source": "LoreDrop.Web",
   "BasePath": "_content/LoreDrop.Web",
   "Mode": "Default",
@@ -1193,6 +1193,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/obj/Debug/net8.0/scopedcss/projectbundle/LoreDrop.Web.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/series-detailes.css",
+      "SourceId": "LoreDrop.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/",
+      "BasePath": "_content/LoreDrop.Web",
+      "RelativePath": "css/series-detailes.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/series-detailes.css"
     },
     {
       "Identity": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/series-form.css",

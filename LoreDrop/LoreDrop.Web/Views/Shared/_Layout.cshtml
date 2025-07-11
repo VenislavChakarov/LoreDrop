@@ -1,24 +1,22 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LoreDrop.Web</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    @RenderSection("Styles", required: false)
 </head>
 <body>
 <!-- Navbar -->
 <header>
     <nav class="custom-navbar">
         <!-- Brand flush‑left -->
-        <a class="brand"
-           asp-area=""
-           asp-controller="Home"
-           asp-action="Index">
-            LoreDrop
-        </a>
+        <a class="brand" asp-area="" asp-controller="Home" asp-action="Index">LoreDrop</a>
 
         <!-- Centered container for main + auth links -->
         <div class="container nav-content">
@@ -33,13 +31,22 @@
 
             <!-- Auth links -->
             <div class="navbar-right">
-                <a asp-area="Identity" asp-page="/Account/Login">Login</a>
-                <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <span class="nav-user-email">@UserManager.GetUserName(User)</span>
+                    <form asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm" class="nav-item">
+                        <button type="submit" class="logout-button">Logout</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/Account/Login">Login</a>
+                    <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+                }
             </div>
         </div>
     </nav>
 </header>
-
 
 <div class="main-content container">
     <main role="main">
@@ -52,8 +59,6 @@
         &copy; @DateTime.Now.Year - LoreDrop.Web
     </div>
 </footer>
-
-@RenderSection("Scripts", required: false)
-@RenderSection("Styles", required: false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

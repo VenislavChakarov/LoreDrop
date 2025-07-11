@@ -37,7 +37,7 @@ namespace LoreDrop.Controllers
         
         public IActionResult Create()
         {
-            return View(new SeriesFromViewModel());
+            return View(new CreateSeriesFormViewModel());
         }
     }
 }

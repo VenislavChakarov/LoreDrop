@@ -33,7 +33,7 @@ namespace LoreDrop.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 9, 16, 19, 45, 240, DateTimeKind.Utc).AddTicks(8760));
+                        .HasDefaultValue(new DateTime(2025, 7, 11, 13, 35, 36, 993, DateTimeKind.Utc).AddTicks(1290));
 
                     b.Property<int?>("SeriesId")
                         .HasColumnType("int");
@@ -72,6 +72,33 @@ namespace LoreDrop.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Fantasy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Science Fiction"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Mystery"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Romance"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Horror"
+                        });
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.Series", b =>
@@ -90,7 +117,7 @@ namespace LoreDrop.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 9, 16, 19, 45, 240, DateTimeKind.Utc).AddTicks(3730));
+                        .HasDefaultValue(new DateTime(2025, 7, 11, 13, 35, 36, 992, DateTimeKind.Utc).AddTicks(5430));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -121,6 +148,56 @@ namespace LoreDrop.Data.Migrations
                     b.HasIndex("GenreId");
 
                     b.ToTable("Series");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Author = "J.R.R. Tolkien",
+                            CreatedOn = new DateTime(2025, 7, 11, 13, 35, 36, 992, DateTimeKind.Utc).AddTicks(6690),
+                            Description = "A fantasy novel by J.R.R. Tolkien.",
+                            GenreId = 1,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/4/4a/TheHobbit_FirstEdition.jpg",
+                            IsDeleted = false,
+                            Rating = 4.7999999999999998,
+                            Tittle = "The Hobbit"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Author = "Frank Herbert",
+                            CreatedOn = new DateTime(2025, 7, 11, 13, 35, 36, 992, DateTimeKind.Utc).AddTicks(6690),
+                            Description = "A science fiction novel by Frank Herbert.",
+                            GenreId = 2,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/a/a8/Dune_First_Edition.jpg",
+                            IsDeleted = false,
+                            Rating = 4.7000000000000002,
+                            Tittle = "Dune"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Author = "Bram Stoker",
+                            CreatedOn = new DateTime(2025, 7, 11, 13, 35, 36, 992, DateTimeKind.Utc).AddTicks(6690),
+                            Description = "A gothic horror novel by Bram Stoker.",
+                            GenreId = 5,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/3/35/Dracula1st.jpeg",
+                            IsDeleted = false,
+                            Rating = 4.5,
+                            Tittle = "Dracula"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Author = "Jim Theis",
+                            CreatedOn = new DateTime(2025, 7, 11, 13, 35, 36, 992, DateTimeKind.Utc).AddTicks(6690),
+                            Description = "A science fiction novella often cited as one of the worst works of literature ever published.",
+                            GenreId = 3,
+                            ImageUrl = "https://upload.wikimedia.org/wikipedia/en/3/3f/Eye_of_Argon.jpg",
+                            IsDeleted = false,
+                            Rating = 1.5,
+                            Tittle = "The Eye of Argon"
+                        });
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.UserFavorites", b =>

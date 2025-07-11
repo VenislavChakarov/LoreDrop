@@ -10,7 +10,8 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
-/* full‑width green bar */
+
+/* Navbar */
 .custom-navbar {
   display: flex;
   align-items: center;
@@ -24,7 +25,7 @@ body {
   font-weight: bold;
   color: #000;
   text-decoration: none;
-  padding: 0 20px; /* some horizontal breathing room */
+  padding: 0 20px;
 }
 
 /* Inner flex container splits main vs auth */
@@ -36,11 +37,11 @@ body {
   padding-right: 20px;
 }
 
-/* Main nav links: bold, no wrap */
+/* Main nav links */
 .navbar-links {
   display: flex;
   gap: 15px;
-  white-space: nowrap; /* prevent wrapping */
+  white-space: nowrap;
 }
 .navbar-links a {
   font-weight: bold;
@@ -55,12 +56,13 @@ body {
   color: #fff;
 }
 
-/* Auth links flush‑right */
+/* Auth links */
 .navbar-right {
   display: flex;
   gap: 10px;
 }
-.navbar-right a {
+.navbar-right a,
+.navbar-right .logout-button {
   font-weight: bold;
   text-decoration: none;
   color: #000;
@@ -68,11 +70,29 @@ body {
   border-radius: 4px;
   transition: background-color 0.2s, color 0.2s;
 }
-.navbar-right a:hover {
+
+/* Logout button styling */
+.navbar-right .logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.navbar-right .logout-button:hover {
   background-color: rgba(255, 255, 255, 0.3);
   color: #fff;
 }
-/* Series Grid */
+
+/* User email styling */
+.nav-user-email {
+  margin-right: 10px;
+  font-weight: bold;
+  color: black;
+  padding: 8px 12px;
+  cursor: default;
+}
+
 /* Series Grid */
 .series-grid {
   display: grid;
@@ -81,7 +101,7 @@ body {
   margin: 40px 0;
 }
 
-/* Each Series Card */
+/* Series Card */
 .series-card {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -92,67 +112,58 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .series-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 12px rgba(0,0,0,0.1);
 }
 
-/* Image on top */
+/* Card Image */
 .card-image img {
   width: 100%;
   height: 180px;
   object-fit: cover;
 }
 
-/* Card Content layout */
+/* Card Content */
 .card-content {
   padding: 16px;
   text-align: center;
 }
-
 .card-content h3 {
   margin: 0 0 8px;
   font-size: 1.2em;
   font-weight: bold;
 }
-
 .card-content .rating {
   margin: 4px 0;
   font-size: 1em;
-  color: #22cc22; /* highlight rating with your theme green */
+  color: #22cc22;
   font-weight: bold;
 }
-
 .card-content .author {
   margin: 4px 0;
   font-size: 0.95em;
   color: #666;
 }
 
-/* Star rating container */
+/* Star Rating */
 .star-rating {
   display: inline-block;
-  font-size: 0; /* remove spacing */
+  font-size: 0;
   position: relative;
   unicode-bidi: bidi-override;
   direction: rtl;
 }
-
-/* Empty stars */
 .star-rating > span {
   display: inline-block;
   position: relative;
   width: 1.2em;
   font-size: 1.2em;
-  color: #ccc; /* empty star color */
+  color: #ccc;
 }
-
-/* Filled stars overlay */
 .star-rating > span.filled {
-  color: #f5c518; /* gold filled stars */
+  color: #f5c518;
 }
-
 
 /* Discover Button */
 .discover-container {
@@ -189,7 +200,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 140px); /* account for navbar and footer */
+  min-height: calc(100vh - 140px);
   background-color: #fafafa;
   padding: 20px;
 }
@@ -198,7 +209,7 @@ body {
   background: #b1f5b1;
   padding: 40px;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);  /* lighter shadow */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   max-width: 400px;
   width: 100%;
 }
@@ -209,7 +220,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1em;
-  background-color: white;               
+  background-color: white;
   transition: background-color 0.2s, box-shadow 0.2s;
 }
 
@@ -229,13 +240,11 @@ body {
   margin-bottom: 16px;
   text-align: left;
 }
-
 .form-group label {
   display: block;
   margin-bottom: 6px;
   font-weight: bold;
 }
-
 .form-group input {
   width: 100%;
   padding: 10px 12px;
@@ -243,23 +252,19 @@ body {
   border-radius: 4px;
   font-size: 1em;
 }
-
 .form-group.checkbox {
   display: flex;
   align-items: center;
   gap: 6px;
 }
-
 .form-group.checkbox input {
-  width: 16px;          
+  width: 16px;
   height: 16px;
 }
-
 .form-group.checkbox label {
   margin: 0;
   font-size: 0.95em;
 }
-
 .text-error {
   color: #e00;
   font-size: 0.9em;
@@ -277,7 +282,6 @@ body {
   cursor: pointer;
   transition: background-color 0.2s;
 }
-
 .btn-primary:hover {
   background-color: #1bb21b;
 }
@@ -286,14 +290,11 @@ body {
   margin-top: 20px;
   font-size: 0.9em;
 }
-
 .auth-footer a {
   color: #22cc22;
   text-decoration: none;
   font-weight: bold;
 }
-
 .auth-footer a:hover {
   text-decoration: underline;
 }
-

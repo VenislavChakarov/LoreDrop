@@ -1,0 +1,53 @@
+@*@model LoreDrop.Web.ViewModels.Series.SeriesDetailsViewModel*@
+
+@{
+    ViewData["Title"] = "Series Details";
+}
+
+<link rel="stylesheet" href="~/css/series-details.css" asp-append-version="true" />
+
+<div class="series-details-page">
+    <div class="series-header">
+        <h2>@Model.Title</h2>
+    </div>
+
+    <div class="series-content">
+        <div class="image-section">
+            <img src="@Model.ImageUrl" alt="@Model.Title Cover Image" />
+        </div>
+
+        <div class="rating-section">
+            <span class="star-rating">⭐⭐⭐⭐☆</span> @* Replace with actual rating logic *@
+        </div>
+
+        <div class="description-section">
+            <p>@Model.Description</p>
+        </div>
+
+        <div class="actions-section">
+            <form asp-action="Favorite" method="post" class="inline-form">
+                <button type="submit" class="btn btn-favorite">Favorite</button>
+            </form>
+
+            <form asp-action="Save" method="post" class="inline-form">
+                <button type="submit" class="btn btn-save">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="comments-section">
+        <h3>Comments</h3>
+        @foreach (var comment in Model.Comments)
+        {
+            <div class="comment-card">
+                <div class="comment-header">
+                    <span class="comment-name">@comment.AuthorName</span>
+                    <span class="comment-date">@comment.DateAdded.ToString("dd MMM yyyy")</span>
+                </div>
+                <div class="comment-body">
+                    <p>@comment.Content</p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

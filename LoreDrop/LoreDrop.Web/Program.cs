@@ -20,8 +20,14 @@ namespace LoreDrop
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<LoreDropDbContext>()
+            builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+                {
+                    options.SignIn.RequireConfirmedAccount = false;
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireUppercase = false;
+                }).AddEntityFrameworkStores<LoreDropDbContext>()
                     .AddDefaultUI();
             builder.Services.AddControllersWithViews();
 
