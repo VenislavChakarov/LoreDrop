@@ -1,4 +1,5 @@
 @model LoreDrop.Web.ViewModels.Series.CreateSeriesFormViewModel
+
 @section Styles {
     <link rel="stylesheet" href="~/css/series-form.css" asp-append-version="true" />
 }
@@ -10,13 +11,19 @@
       
             <div class="form-group">
                 <label asp-for="Title"></label>
-                <input asp-for="Title" />
+                <input asp-for="Title" class="form-input" />
                 <span asp-validation-for="Title" class="text-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageUrl">Cover Image URL</label>
+                <input asp-for="ImageUrl" class="form-input" placeholder="https://..." />
+                <span asp-validation-for="ImageUrl" class="text-error"></span>
             </div>
             
             <div class="form-group">
-                <label asp-for="GenreId"></label>
-                <select asp-for="GenreId" class="form-control" asp-items="@(new SelectList(Model.Genres, "Id", "Name"))">
+                <label asp-for="GenreId">Genre</label>
+                <select asp-for="GenreId" class="form-input" asp-items="@(new SelectList(Model.Genres, "Id", "Name"))">
                     <option value="">-- Select Genre --</option>
                 </select>
                 <span asp-validation-for="GenreId" class="text-error"></span>
@@ -24,26 +31,26 @@
       
             <div class="form-group">
                 <label asp-for="Description"></label>
-                <textarea asp-for="Description" rows="4"></textarea>
+                <textarea asp-for="Description" rows="4" class="form-input"></textarea>
                 <span asp-validation-for="Description" class="text-error"></span>
             </div>
       
             <div class="form-row">
                 <div class="form-group small">
                     <label asp-for="Author"></label>
-                    <input asp-for="Author" />
+                    <input asp-for="Author" class="form-input" />
                     <span asp-validation-for="Author" class="text-error"></span>
                 </div>
                 <div class="form-group small">
                     <label asp-for="CreatedOn"></label>
-                    <input asp-for="CreatedOn" type="date" />
+                    <input asp-for="CreatedOn" type="date" class="form-input" />
                     <span asp-validation-for="CreatedOn" class="text-error"></span>
                 </div>
             </div>
       
             <div class="form-actions">
                 <a asp-action="Index" class="btn-cancel">Cancel</a>
-                <button type="submit" class="btn-submit">Create</button>
+                <button type="submit" class="btn-submit">Create Series</button>
             </div>
         </form>
     </div>

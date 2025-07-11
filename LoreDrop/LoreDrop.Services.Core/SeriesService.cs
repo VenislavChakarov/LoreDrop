@@ -1,4 +1,6 @@
+using System.Globalization;
 using LoreDrop.Data;
+using LoreDrop.Data.Models;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.EntityFrameworkCore;
@@ -34,13 +36,38 @@ public SeriesService(LoreDropDbContext context)
         return series;
     }
 
-    public Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(int? id, string? userId)
+    public async Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(int? id, string? userId)
     {
         throw new NotImplementedException();
     }
 
-    public Task<bool> CreateSeriesAsync(CreateSeriesFormViewModel model, string? userId)
+    public async Task<bool> CreateSeriesAsync(CreateSeriesFormViewModel? model, string? userId)
     {
-        throw new NotImplementedException();
+        bool optResult = false;
+        
+        Genre? genre = await _context.Genres.FindAsync(model.GenreId);
+        
+        bool IsPublishedOnValid = DateTime.TryParseExact(model.CreatedOn, DateFormat, CultureInfo.InvariantCulture, 
+            DateTimeStyles.None, out DateTime createdOn);
+        
+        if (genre != null && IsPublishedOnValid)
+        {
+            Series series = new Series
+            {
+                Tittle = model.Title,
+                Description = model.Description,
+                Author = model.Author,
+                GenreId = model.GenreId,
+                CreatedOn = createdOn,
+                ImageUrl = model.ImageUrl,
+            };
+
+            await _context.Series.AddAsync(series);
+            int result = await _context.SaveChangesAsync();
+            
+            optResult = result > 0;
+        }
+        
+        return optResult;
     }
 }
