@@ -1,51 +1,88 @@
-﻿@using LoreDrop.Web.ViewModels.Home;
+﻿@using LoreDrop.GCommon
+@using LoreDrop.Web.ViewModels.Home
 @model IEnumerable<TopRatedSeries>
+
 @{
     ViewData["Title"] = "Home";
+    Layout = "_Layout";
+    const string DateFormat = ValidationConstants.Series.DateFormat;
 }
 
-<div class="series-grid">
-    @*@foreach (var series in Model)
+@section Styles {
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+}
+
+<div class="series-page">
+
+    <h1 class="page-title">Top 3 Series</h1>
+
+    @if (!Model.Any())
     {
-        <a class="series-card" href="/Series/Details/@series.Id">
-            <div class="card-image">
-                <img src="@(series.ImageUrl ?? "/images/default.jpg")" alt="@series.Tittle" />
-            </div>
-            <div class="card-content">
-                <h3>@series.Tittle</h3>
-                
-                <div class="rating">
-                    <div class="star-rating">
-                        @{
-                            int fullStars = (int)Math.Floor((double)series.Rating);
-                            bool halfStar = (series.Rating - fullStars) >= 0.5;
-                            int emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+        <p class="no-series">No series available.</p>
+    }
+    else
+    {
+        <div class="series-grid">
+            @foreach (var s in Model)
+            {
+                <div class="series-card">
+                    <a asp-controller="Series"
+                       asp-action="Details"
+                       asp-route-id="@s.Id"
+                       class="card-link">
+                        <div class="card-image">
+                            <img src="@(s.ImageUrl ?? "/images/placeholder.jpg")"
+                                 alt="@s.Tittle" />
+                        </div>
+                        <div class="card-content">
+                            <h3>@s.Tittle</h3>
 
-                            for (int i = 0; i < fullStars; i++)
-                            {
-                                <span class="filled">&#9733;</span> <!-- filled star -->
+                            <p class="genre">@s.Genre</p>
+
+                            <p class="star-rating" aria-label="Rating: @s.Rating out of 5">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    if (s.Rating >= i)
+                                    {
+                                        <i class="fas fa-star"></i>
+                                    }
+                                    else if (s.Rating >= i - 0.5)
+                                    {
+                                        <i class="fas fa-star-half-alt"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="far fa-star"></i>
+                                    }
+                                }
+                            </p>
+
+                            <p class="author">Author: @s.Author</p>
+
+                            @{
+                                DateTime createdDate;
+                                var isValidDate = DateTime.TryParse(s.CreatedOn, out createdDate);
+                                var displayDate = isValidDate
+                                    ? createdDate.ToString(DateFormat)
+                                    : s.CreatedOn;
                             }
-                            if (halfStar)
-                            {
-                                <span class="half">&#x2BEA;</span> <!-- Unicode half-star -->
-                            }
-                            for (int i = 0; i < emptyStars; i++)
-                            {
-                                <span>&#9733;</span> <!-- empty star -->
-                            }
-                        }
-                    </div>
+                            <p class="date">Created on: @displayDate</p>
+                        </div>
+                    </a>
                 </div>
+            }
+        </div>
+    }
 
-                <div class="author">Author: @series.Author</div>
-            </div>
+    <div class="discover-container">
+        <a asp-controller="Series"
+           asp-action="Index"
+           class="discover-button">
+            &larr; Discover New Series
         </a>
-    }*@
+    </div>
 </div>
-<section class="discover-container container">
-    <a class="discover-button"
-       asp-controller="Series"
-       asp-action="Index">
-        &larr; Discover New Series
-    </a>
-</section>
+
+@section Scripts {
+    <!-- page-specific JS if needed -->
+}

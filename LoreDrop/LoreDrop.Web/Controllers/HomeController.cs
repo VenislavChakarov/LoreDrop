@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using LoreDrop.Services.Core.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LoreDrop.Controllers;
@@ -6,15 +7,19 @@ namespace LoreDrop.Controllers;
 public class HomeController : BaseController
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly IHomeService homeService;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, IHomeService homeService)
     {
+        this.homeService = homeService;
         _logger = logger;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var topSeries = await this.homeService.GetTopRatedSeriesAsync();
+        
+        return View(topSeries);
     }
 
     public IActionResult Privacy()

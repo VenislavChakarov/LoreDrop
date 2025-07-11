@@ -34,6 +34,7 @@ namespace LoreDrop
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<ISeriesService, SeriesService>();
+            builder.Services.AddScoped<IHomeService, HomeServiece>();
 
             var app = builder.Build();
 
