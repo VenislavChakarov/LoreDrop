@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoreDrop.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16862ae18e4849954b55c2410168d2763b50115a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ffa53fee4c87aa5dcc95ab4c9f411af58469d473")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoreDrop.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoreDrop.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "60LxEujmeF5tV3+vSVZBZ2GbYLq9QvXzrARZAMeqils=",
+  "Hash": "8S1ARJ8aRI202GFcAFnPZPK9l3Gq01DDs5WeMBCZ/YY=",
   "Source": "LoreDrop.Web",
   "BasePath": "_content/LoreDrop.Web",
   "Mode": "Default",
@@ -1288,6 +1288,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/js/series-detailes.js",
+      "SourceId": "LoreDrop.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/",
+      "BasePath": "_content/LoreDrop.Web",
+      "RelativePath": "js/series-detailes.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/series-detailes.js"
     },
     {
       "Identity": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/js/site.js",

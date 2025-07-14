@@ -36,11 +36,6 @@ public SeriesService(LoreDropDbContext context)
         return series;
     }
 
-    public async Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(int? id, string? userId)
-    {
-        throw new NotImplementedException();
-    }
-
     public async Task<bool> CreateSeriesAsync(CreateSeriesFormViewModel? model, string? userId)
     {
         bool optResult = false;

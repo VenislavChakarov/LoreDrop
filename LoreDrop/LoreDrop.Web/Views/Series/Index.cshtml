@@ -34,7 +34,7 @@
             @foreach (var series in Model)
             {
                 <div class="series-card">
-                    <a asp-action="Details" asp-route-id="@series.Id" class="card-link">
+                    <a asp-controller="Details" asp-action="Details" asp-route-id="@series.Id" class="card-link">
                         <div class="card-image">
                             <img src="@(series.ImageUrl ?? "/images/placeholder.jpg")"
                                  alt="@series.Title" />
@@ -66,7 +66,7 @@
                             <p class="date">Created on @DateTime.Parse(series.CreatedOn).ToString(DateFormat)</p>
                         </div>
                     </a>
-                    <a asp-action="Details" asp-route-id="@series.Id" class="btn-details">
+                    <a asp-controller="Details" asp-action="Details" asp-route-id="@series.Id" class="btn-details">
                         View Details
                     </a>
                 </div>

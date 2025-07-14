@@ -1,0 +1,84 @@
+@using LoreDrop.Web.ViewModels.Series
+@model SeriesDetailesViewModel
+@Html.AntiForgeryToken()
+
+@section Styles {
+  <link rel="stylesheet" href="~/css/series-detailes.css" asp-append-version="true" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+}
+
+<div class="series-details-page">
+  <div class="series-details-card">
+    <h2>@Model.Tittle</h2>
+
+    <div class="image-container">
+      <img src="@(Model.ImageUrl ?? "/images/placeholder.jpg")" alt="@Model.Tittle" />
+    </div>
+
+    <div class="info-section">
+      <div class="rating-favorite">
+        <div class="star-rating" aria-label="Rating: @Model.Rating out of 5">
+          @for (int i = 1; i <= 5; i++)
+          {
+            var fullStar = i <= Math.Floor((double)Model.Rating);
+            var halfStar = i - 0.5 == Model.Rating;
+
+            var icon = fullStar
+              ? "fas fa-star"
+              : halfStar
+                ? "fas fa-star-half-alt"
+                : "far fa-star";
+
+            <span class="star-container" data-rating="@i">
+              <i class="@icon"></i>
+              <i class="fas fa-star-half-alt half-star" data-rating="@((i * 2) - 1)"></i>
+            </span>
+          }
+        </div>
+        <button id="favorite-button" data-series-id="@Model.Id" class="icon-button">
+          <i id="favorite-icon" class="@(Model.IsFavorite ? "fas" : "far") fa-heart"></i>
+        </button>
+      </div>
+
+      <p><strong>Genre:</strong> @Model.Genre</p>
+      <p><strong>Author:</strong> @Model.Author</p>
+      <p><strong>Created On:</strong> @Model.CreatedOn.ToString("dd-MM-yyyy")</p>
+
+      <div class="description">
+        <p>@Model.Description</p>
+      </div>
+
+      <button id="save-button" data-series-id="@Model.Id" class="btn-primary">
+        <i class="fas fa-bookmark"></i> Watch Later
+      </button>
+    </div>
+
+    <div class="comments-section">
+      <h3>Comments (<span id="comment-count">@Model.Comments.Count</span>)</h3>
+
+      <div class="inline-comment">
+        <input id="new-comment-input" type="text" placeholder="Add a comment…" maxlength="250" />
+        <button id="post-comment-btn" class="btn-secondary">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+
+      <div id="comments-list">
+        @foreach (var c in Model.Comments)
+        {
+          <div class="comment-item">
+            <div class="comment-header">
+              <span class="comment-author">@c.AuthorName</span>
+              <time class="comment-date">@c.CreatedOn.ToString("dd-MM-yyyy")</time>
+            </div>
+            <div class="comment-body">@c.Text</div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  <script src="~/js/series-detailes.js" asp-append-version="true"></script>
+}

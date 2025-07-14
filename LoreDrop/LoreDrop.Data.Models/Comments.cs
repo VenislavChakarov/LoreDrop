@@ -14,7 +14,7 @@ public class Comments
     
     public virtual DateTime CreatedOn { get; set; }
 
-    public virtual Series? Series { get; set; } = null!;
+    public virtual Series? Series { get; set; } 
     
     public virtual IdentityUser User { get; set; } = null!;
 }

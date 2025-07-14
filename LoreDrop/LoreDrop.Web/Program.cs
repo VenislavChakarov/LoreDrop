@@ -36,6 +36,8 @@ namespace LoreDrop
             builder.Services.AddScoped<ISeriesService, SeriesService>();
             builder.Services.AddScoped<IHomeService, HomeServiece>();
             builder.Services.AddScoped<IGenreService, GenreService>();
+            builder.Services.AddScoped<IDetailsService, DetailsService>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
 
             var app = builder.Build();
 
