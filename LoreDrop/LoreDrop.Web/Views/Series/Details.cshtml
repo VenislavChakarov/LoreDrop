@@ -18,9 +18,12 @@
     <div class="info-section">
       <div class="rating-favorite">
         <div class="star-rating" aria-label="Rating: @Model.Rating out of 5">
-          @for (int i = 1; i <= 5; i++)
+          @{
+            var rating = Model.Rating ?? 0; // Use 0 (or any sensible default) if Rating is null
+          }
+          @for (var i = 1; i <= 5; i++)
           {
-            var fullStar = i <= Math.Floor((double)Model.Rating);
+            var fullStar = i <= Math.Floor(rating);
             var halfStar = i - 0.5 == Model.Rating;
 
             var icon = fullStar

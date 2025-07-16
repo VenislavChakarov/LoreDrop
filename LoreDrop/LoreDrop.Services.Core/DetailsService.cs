@@ -15,7 +15,7 @@ public class DetailsService : IDetailsService
         _context = context;
     }
     
-    public async Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(Guid? id, string? userId)
+    public async Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(Guid? id)
     {
         SeriesDetailesViewModel? detailsVm = null;
         if (id.HasValue)

@@ -27,9 +27,8 @@ public class DetailsController : BaseController
         try
         {
             if (id == null || id == Guid.Empty) return RedirectToAction(nameof(Index));
-
-            var userId = this.GetUserId();
-            var seriesDetails = await detailsService.GetSeriesDetailsAsync(id, userId);
+            
+            var seriesDetails = await detailsService.GetSeriesDetailsAsync(id);
             if (seriesDetails == null) return RedirectToAction(nameof(Index));
 
             seriesDetails.Comments = await commentService.GetCommentsBySeriesIdAsync(id.Value);
