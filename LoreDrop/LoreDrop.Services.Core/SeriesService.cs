@@ -20,6 +20,7 @@ public SeriesService(LoreDropDbContext context)
     public async Task<IEnumerable<AllSeriesIndexViewModel>> GetAllSeriesAsync()
     {
         var series = await _context.Series
+            .Include(s => s.Ratings)
             .AsNoTracking()
             .Select(s => new AllSeriesIndexViewModel
             {
@@ -27,7 +28,7 @@ public SeriesService(LoreDropDbContext context)
                 Title = s.Tittle,
                 Author = s.Author,
                 Genre = s.Genre.Name,
-                Rating = s.Rating,
+                Rating = s.Ratings.Any() ? (double?)s.Ratings.Average(r => r.Rating) : null,
                 CreatedOn = s.CreatedOn.ToString(DateFormat),
                 ImageUrl = s.ImageUrl
             })

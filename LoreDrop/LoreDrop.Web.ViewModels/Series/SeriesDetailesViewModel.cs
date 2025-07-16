@@ -14,13 +14,17 @@ public class SeriesDetailesViewModel
     
     public double? Rating { get; set; }
     
+    public double? AverageRating { get; set; } 
+    public double? UserRating { get; set; } 
+    
     public string? ImageUrl { get; set; }
     
     public DateTime CreatedOn { get; set; }
     
     public bool IsFavorite { get; set; }
     
-    public bool IsSaved { get; set; }
+    public bool IsUserWatchList { get; set; }
     
     public List<CommentViewModel> Comments { get; set; } = new List<CommentViewModel>();
+       // The current user's rating for this series, if any
 }

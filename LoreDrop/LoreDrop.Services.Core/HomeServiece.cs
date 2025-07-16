@@ -17,19 +17,23 @@ public class HomeServiece : IHomeService
 
     public async Task<IEnumerable<TopRatedSeries>> GetTopRatedSeriesAsync()
     {
-        return await _context.Series
-            .OrderByDescending(s => s.Rating)
+        var top3 = await _context.Series
+            .Include(s => s.Genre)
+            .Include(s => s.Ratings)
+            .OrderByDescending(s => s.Ratings.Any() ? s.Ratings.Average(r => r.Rating) : 0)
             .Take(3)
             .Select(s => new TopRatedSeries
             {
                 Id = s.Id.ToString(),
                 Tittle = s.Tittle,
-                Rating = s.Rating,
+                Rating = s.Ratings.Any() ? (double?)s.Ratings.Average(r => r.Rating) : null,
                 Author = s.Author,
                 Genre = s.Genre.Name,
                 CreatedOn = s.CreatedOn.ToString(DateFormat),
                 ImageUrl = s.ImageUrl
             })
             .ToListAsync();
+
+        return top3;
     }
 }

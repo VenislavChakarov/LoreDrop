@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.AspNetCore.Mvc;
@@ -28,9 +29,9 @@ public class DetailsController : BaseController
         {
             if (id == null || id == Guid.Empty) return RedirectToAction(nameof(Index));
             
-            var seriesDetails = await detailsService.GetSeriesDetailsAsync(id);
-            if (seriesDetails == null) return RedirectToAction(nameof(Index));
-
+            var userId = User.Identity.IsAuthenticated ? User.FindFirstValue(ClaimTypes.NameIdentifier) : null;
+            var seriesDetails = await detailsService.GetSeriesDetailsAsync(id, userId);
+            if (seriesDetails == null) return NotFound();
             seriesDetails.Comments = await commentService.GetCommentsBySeriesIdAsync(id.Value);
             return View("../Series/Details", seriesDetails);
         }
