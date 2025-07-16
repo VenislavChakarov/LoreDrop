@@ -1,0 +1,131 @@
+/* File: wwwroot/css/favorites.css */
+
+/* Page Container */
+.favorites-page {
+    padding: 2rem 1rem;
+    background: #fafafa;
+    min-height: calc(100vh - 64px); /* account for header height */
+}
+
+.favorites-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.favorites-header h1 {
+    font-size: 2.5rem;
+    color: #138613;
+    margin: 0;
+}
+
+/* Search / Filter Bar */
+.fav-filter {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.fav-filter input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.fav-filter button {
+    padding: 0.6rem 1rem;
+    background: #138613;
+    color: #fff;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.fav-filter button:hover {
+    background: #0f6f0f;
+}
+
+/* Grid of Cards */
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.fav-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.fav-card img {
+    width: 100%;
+    height: 0;
+    padding-bottom: 140%; /* 7:10 aspect ratio */
+    object-fit: cover;
+}
+
+.fav-card .card-body {
+    padding: 1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.fav-card .card-body h3 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+    flex: 1;
+    color: #1a1a1a;
+}
+
+.fav-card .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.fav-card .btn-detail,
+.fav-card .btn-remove {
+    flex: 1;
+    padding: 0.5rem;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.fav-card .btn-detail {
+    background: #138613;
+}
+
+.fav-card .btn-detail:hover {
+    background: #0f6f0f;
+}
+
+.fav-card .btn-remove {
+    background: #e63946;
+}
+
+.fav-card .btn-remove:hover {
+    background: #c92a3d;
+}
+
+/* Empty State */
+.fav-empty {
+    text-align: center;
+    color: #555;
+    margin-top: 3rem;
+}
+
+.fav-empty p {
+    font-size: 1.25rem;
+}

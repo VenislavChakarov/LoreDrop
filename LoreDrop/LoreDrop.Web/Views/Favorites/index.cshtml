@@ -1,0 +1,54 @@
+@using LoreDrop.Web.ViewModels.Favorites
+@model IEnumerable<FavoriteSereisViewModel>
+
+@{
+    ViewData["Title"] = "Your Favorites";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/favorites.css" asp-append-version="true" />
+}
+
+<div class="favorites-page">
+    <div class="favorites-header">
+        <h1>Your Favorites</h1>
+    </div>
+
+    <div class="fav-filter">
+        <input id="filter-input" type="text" placeholder="Search favorites..." />
+        <button id="filter-btn"><i class="fas fa-search"></i></button>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="fav-empty">
+            <p>You haven’t added any favorites yet.</p>
+            <p><a href="@Url.Action("Index", "Series")" class="btn-detail">Browse Series</a></p>
+        </div>
+    }
+    else
+    {
+        <div class="favorites-grid" id="favorites-grid">
+            @foreach (var item in Model)
+            {
+                <div class="fav-card" data-title="@item.Title.ToLower()">
+                    <img src="@(item.ImageUrl ?? "/images/placeholder.jpg")" alt="@item.Title" />
+                    <div class="card-body">
+                        <h3>@item.Title</h3>
+                        <p class="meta"><strong>Genre:</strong> @item.Genre</p>
+                        <p class="meta"><strong>Author:</strong> @item.Author</p>
+                        <div class="card-actions">
+                            <a href="@Url.Action("Details", "Series", new { id = item.SeriesId })" 
+                               class="btn-detail">Details</a>
+                            <button class="btn-remove" data-series-id="@item.SeriesId">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/favorites.js" asp-append-version="true"></script>
+}
