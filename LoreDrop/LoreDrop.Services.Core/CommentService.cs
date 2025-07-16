@@ -18,7 +18,7 @@ public class CommentService : ICommentService
         _userManager = userManager;
     }
 
-    public async Task<bool> AddCommentAsync(CommentInputViewModel? commentInput, string? userId, int seriesId)
+    public async Task<bool> AddCommentAsync(CommentInputViewModel? commentInput, string? userId, Guid seriesId)
     {
         bool optResult = false;
 
@@ -29,7 +29,7 @@ public class CommentService : ICommentService
             {
                 User = user,
                 Text = commentInput.Text,
-                SeriesId = commentInput.SeriesId,
+                SeriesId = seriesId,
                 CreatedOn = DateTime.UtcNow
             };
 
@@ -41,7 +41,7 @@ public class CommentService : ICommentService
         return optResult;
     }
 
-    public async Task<List<CommentViewModel>> GetCommentsBySeriesIdAsync(int seriesId)
+    public async Task<List<CommentViewModel>> GetCommentsBySeriesIdAsync(Guid seriesId)
     {
         return await _context.Comments
             .Where(c => c.SeriesId == seriesId)
@@ -55,7 +55,7 @@ public class CommentService : ICommentService
             .ToListAsync();
     }
 
-    public async Task<CommentViewModel> AddCommentAndReturnAsync(int seriesId, string userId, string text)
+    public async Task<CommentViewModel> AddCommentAndReturnAsync(Guid seriesId, string userId, string text)
     {
         IdentityUser? user = await _userManager.FindByIdAsync(userId);
         if (user == null)

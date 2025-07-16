@@ -1,6 +1,7 @@
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace LoreDrop.Controllers;
 
@@ -21,48 +22,75 @@ public class DetailsController : BaseController
     }
     
     [HttpGet]
-    public async Task<IActionResult> Details(int? id)
+    public async Task<IActionResult> Details(Guid? id)
     {
-        if (id == null || id <= 0) return RedirectToAction(nameof(Index));
+        try
+        {
+            if (id == null || id == Guid.Empty) return RedirectToAction(nameof(Index));
 
-        var userId = this.GetUserId();
-        var seriesDetails = await detailsService.GetSeriesDetailsAsync(id.Value, userId);
-        if (seriesDetails == null) return RedirectToAction(nameof(Index));
+            var userId = this.GetUserId();
+            var seriesDetails = await detailsService.GetSeriesDetailsAsync(id, userId);
+            if (seriesDetails == null) return RedirectToAction(nameof(Index));
 
-        seriesDetails.Comments = await commentService.GetCommentsBySeriesIdAsync(id.Value);
-        return View("../Series/Details", seriesDetails);
+            seriesDetails.Comments = await commentService.GetCommentsBySeriesIdAsync(id.Value);
+            return View("../Series/Details", seriesDetails);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return RedirectToAction(nameof(Index));
+        }
+        
     }
     
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> AddComment(int seriesId, CommentInputViewModel commentInput)
+    public async Task<IActionResult> AddComment(Guid seriesId, CommentInputViewModel commentInput)
     {
-        if (!ModelState.IsValid)
-            return RedirectToAction(nameof(Details), new { id = seriesId });
-
-        var added = await commentService.AddCommentAsync(commentInput, GetUserId(), seriesId);
-        if (!added)
+        try
         {
-            ModelState.AddModelError("", "Failed to add comment. Please try again.");
+            if (!ModelState.IsValid)
+                return RedirectToAction(nameof(Details), new { id = seriesId });
+
+            var added = await commentService.AddCommentAsync(commentInput, GetUserId(), seriesId);
+            if (!added)
+            {
+                ModelState.AddModelError("", "Failed to add comment. Please try again.");
+            }
+            return RedirectToAction(nameof(Details), new { id = seriesId });
         }
-        return RedirectToAction(nameof(Details), new { id = seriesId });
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            ModelState.AddModelError("", "An error occurred while adding the comment. Please try again.");
+            return RedirectToAction(nameof(Details), new { id = seriesId });
+        }
+        
     }
     
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> AddCommentAjax([FromBody] CommentAjaxReqestViewModel req)
     {
-        if (string.IsNullOrWhiteSpace(req.Text))
-            return BadRequest("Comment text is required.");
+        try
+        {
+            if (string.IsNullOrWhiteSpace(req.Text))
+                return BadRequest("Comment text is required.");
 
-        var comment = await commentService
-            .AddCommentAndReturnAsync(req.SeriesId, GetUserId(), req.Text);
+            var comment = await commentService
+                .AddCommentAndReturnAsync(req.SeriesId, GetUserId(), req.Text);
 
-        return Json(new {
-            authorName = comment.AuthorName,
-            text       = comment.Text,
-            createdOn  = comment.CreatedOn.ToString("yyyy-MM-dd")
-        });
+            return Json(new {
+                authorName = comment.AuthorName,
+                text       = comment.Text,
+                createdOn  = comment.CreatedOn.ToString("yyyy-MM-dd")
+            });
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return RedirectToAction(nameof(Details), new { id = req.SeriesId });
+        }
     }
     
     [HttpPost]

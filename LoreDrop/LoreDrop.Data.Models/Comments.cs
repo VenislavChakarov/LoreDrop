@@ -6,7 +6,7 @@ public class Comments
 {
     public int Id { get; set; }
     
-    public int? SeriesId { get; set; }
+    public Guid SeriesId { get; set; }
     
     public string UserId { get; set; } = null!;
     

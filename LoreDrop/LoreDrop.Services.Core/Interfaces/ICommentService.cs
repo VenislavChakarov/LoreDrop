@@ -4,7 +4,7 @@ namespace LoreDrop.Services.Core.Contracts;
 
 public interface ICommentService
 {
-    Task<bool> AddCommentAsync(CommentInputViewModel commentInput, string? userId, int seriesId);
-    Task<List<CommentViewModel>> GetCommentsBySeriesIdAsync(int seriesId);
-    Task<CommentViewModel> AddCommentAndReturnAsync(int seriesId, string userId, string text);
+    Task<bool> AddCommentAsync(CommentInputViewModel commentInput, string? userId, Guid seriesId);
+    Task<List<CommentViewModel>> GetCommentsBySeriesIdAsync(Guid seriesId);
+    Task<CommentViewModel> AddCommentAndReturnAsync(Guid seriesId, string userId, string text);
 }

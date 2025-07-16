@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LoreDrop.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitalMigration : Migration
+    public partial class MakeingTheDbAgain : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -61,6 +61,19 @@ namespace LoreDrop.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Genres", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SeriesStates",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SeriesStates", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -170,28 +183,34 @@ namespace LoreDrop.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contents",
+                name: "Series",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Tittle = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", maxLength: 10000, nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Rating = table.Column<double>(type: "float", nullable: true),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 6, 29, 12, 20, 25, 820, DateTimeKind.Utc).AddTicks(2190)),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 7, 16, 11, 21, 42, 117, DateTimeKind.Utc).AddTicks(5880)),
                     GenreId = table.Column<int>(type: "int", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    SeriesStateId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contents", x => x.Id);
+                    table.PrimaryKey("PK_Series", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Contents_Genres_GenreId",
+                        name: "FK_Series_Genres_GenreId",
                         column: x => x.GenreId,
                         principalTable: "Genres",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Series_SeriesStates_SeriesStateId",
+                        column: x => x.SeriesStateId,
+                        principalTable: "SeriesStates",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -200,10 +219,10 @@ namespace LoreDrop.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ContentId = table.Column<int>(type: "int", nullable: true),
+                    SeriesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Text = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 6, 29, 12, 20, 25, 820, DateTimeKind.Utc).AddTicks(6360))
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2025, 7, 16, 11, 21, 42, 117, DateTimeKind.Utc).AddTicks(3240))
                 },
                 constraints: table =>
                 {
@@ -215,9 +234,30 @@ namespace LoreDrop.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Comments_Contents_ContentId",
-                        column: x => x.ContentId,
-                        principalTable: "Contents",
+                        name: "FK_Comments_Series_SeriesId",
+                        column: x => x.SeriesId,
+                        principalTable: "Series",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SeriesRatings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SeriesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rating = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SeriesRatings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SeriesRatings_Series_SeriesId",
+                        column: x => x.SeriesId,
+                        principalTable: "Series",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -227,11 +267,11 @@ namespace LoreDrop.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ContentId = table.Column<int>(type: "int", nullable: false)
+                    SeriesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserFavorites", x => new { x.UserId, x.ContentId });
+                    table.PrimaryKey("PK_UserFavorites", x => new { x.UserId, x.SeriesId });
                     table.ForeignKey(
                         name: "FK_UserFavorites_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -239,33 +279,40 @@ namespace LoreDrop.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_UserFavorites_Contents_ContentId",
-                        column: x => x.ContentId,
-                        principalTable: "Contents",
+                        name: "FK_UserFavorites_Series_SeriesId",
+                        column: x => x.SeriesId,
+                        principalTable: "Series",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserSaved",
+                name: "UserWatchLists",
                 columns: table => new
                 {
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ContentId = table.Column<int>(type: "int", nullable: false)
+                    SeriesId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SeriesStateId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserSaved", x => new { x.UserId, x.ContentId });
+                    table.PrimaryKey("PK_UserWatchLists", x => new { x.UserId, x.SeriesId });
                     table.ForeignKey(
-                        name: "FK_UserSaved_AspNetUsers_UserId",
+                        name: "FK_UserWatchLists_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_UserSaved_Contents_ContentId",
-                        column: x => x.ContentId,
-                        principalTable: "Contents",
+                        name: "FK_UserWatchLists_SeriesStates_SeriesStateId",
+                        column: x => x.SeriesStateId,
+                        principalTable: "SeriesStates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserWatchLists_Series_SeriesId",
+                        column: x => x.SeriesId,
+                        principalTable: "Series",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -310,9 +357,9 @@ namespace LoreDrop.Data.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_ContentId",
+                name: "IX_Comments_SeriesId",
                 table: "Comments",
-                column: "ContentId");
+                column: "SeriesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_UserId",
@@ -320,19 +367,34 @@ namespace LoreDrop.Data.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Contents_GenreId",
-                table: "Contents",
+                name: "IX_Series_GenreId",
+                table: "Series",
                 column: "GenreId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserFavorites_ContentId",
-                table: "UserFavorites",
-                column: "ContentId");
+                name: "IX_Series_SeriesStateId",
+                table: "Series",
+                column: "SeriesStateId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserSaved_ContentId",
-                table: "UserSaved",
-                column: "ContentId");
+                name: "IX_SeriesRatings_SeriesId",
+                table: "SeriesRatings",
+                column: "SeriesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserFavorites_SeriesId",
+                table: "UserFavorites",
+                column: "SeriesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserWatchLists_SeriesId",
+                table: "UserWatchLists",
+                column: "SeriesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserWatchLists_SeriesStateId",
+                table: "UserWatchLists",
+                column: "SeriesStateId");
         }
 
         /// <inheritdoc />
@@ -357,10 +419,13 @@ namespace LoreDrop.Data.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
+                name: "SeriesRatings");
+
+            migrationBuilder.DropTable(
                 name: "UserFavorites");
 
             migrationBuilder.DropTable(
-                name: "UserSaved");
+                name: "UserWatchLists");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -369,10 +434,13 @@ namespace LoreDrop.Data.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Contents");
+                name: "Series");
 
             migrationBuilder.DropTable(
                 name: "Genres");
+
+            migrationBuilder.DropTable(
+                name: "SeriesStates");
         }
     }
 }

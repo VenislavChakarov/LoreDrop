@@ -52,9 +52,9 @@ public class SeriesConfiguration : IEntityTypeConfiguration<Series>
             .HasOne(s => s.Genre)
             .WithMany(g => g.Series)
             .HasForeignKey(s => s.GenreId);
-
+        
         entity
-            .HasData(this.GetPredefinedSeries());
+          .HasData(this.GetPredefinedSeries());
     }
 
     private List<Series> GetPredefinedSeries()
@@ -63,49 +63,49 @@ public class SeriesConfiguration : IEntityTypeConfiguration<Series>
         {
             new Series
             {
-                Id = 1,
-                Tittle = "The Hobbit",
-                Description = "A fantasy novel by J.R.R. Tolkien.",
-                Author = "J.R.R. Tolkien",
+                Id = Guid.NewGuid(),
+                Tittle = "The Chronicles of LoreDrop",
+                Description = "An epic fantasy series exploring the mysteries of the LoreDrop universe.",
+                Author = "Jane Doe",
                 Rating = 4.8,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/en/4/4a/TheHobbit_FirstEdition.jpg",
-                CreatedOn = DateTime.UtcNow,
+                ImageUrl = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+                CreatedOn = new DateTime(2024, 7, 16),
                 GenreId = 1,
                 IsDeleted = false
             },
             new Series
             {
-                Id = 2,
-                Tittle = "Dune",
-                Description = "A science fiction novel by Frank Herbert.",
-                Author = "Frank Herbert",
-                Rating = 4.7,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/en/a/a8/Dune_First_Edition.jpg",
-                CreatedOn = DateTime.UtcNow,
+                Id = Guid.NewGuid(),
+                Tittle = "Spacebound: The Last Frontier",
+                Description = "Follow the crew of the starship Horizon as they journey through uncharted galaxies, facing cosmic threats and unraveling the secrets of ancient civilizations. This sci-fi saga blends hard science with thrilling adventure and deep philosophical questions about humanity's place in the universe.",
+                Author = "John Smith",
+                Rating = 4.6,
+                ImageUrl = "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+                CreatedOn = new DateTime(2023, 11, 2),
                 GenreId = 2,
                 IsDeleted = false
             },
             new Series
             {
-                Id = 3,
-                Tittle = "Dracula",
-                Description = "A gothic horror novel by Bram Stoker.",
-                Author = "Bram Stoker",
-                Rating = 4.5,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/3/35/Dracula1st.jpeg",
-                CreatedOn = DateTime.UtcNow,
-                GenreId = 5,
+                Id =Guid.NewGuid(),
+                Tittle = "Mysteries of the Forgotten Realms",
+                Description = "Dive into a world where magic is real, kingdoms rise and fall, and ancient secrets wait to be discovered. Each season uncovers new lands, legendary heroes, and dark forces threatening the balance of the realms. Richly detailed lore and character-driven storytelling make this fantasy series a must-watch for genre fans.",
+                Author = "Emily Carter",
+                Rating = 4.9,
+                ImageUrl = "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80",
+                CreatedOn = new DateTime(2022, 5, 20),
+                GenreId = 1,
                 IsDeleted = false
             },
             new Series
             {
-                Id = 4,
-                Tittle = "The Eye of Argon",
-                Description = "A science fiction novella often cited as one of the worst works of literature ever published.",
-                Author = "Jim Theis",
-                Rating = 1.5,
-                ImageUrl = "https://upload.wikimedia.org/wikipedia/en/3/3f/Eye_of_Argon.jpg",
-                CreatedOn = DateTime.UtcNow,
+                Id = Guid.NewGuid(),
+                Tittle = "Echoes of Tomorrow",
+                Description = "A gripping dystopian drama set in a future where memories can be traded, stolen, and rewritten. The story follows rebels fighting against a totalitarian regime that controls the past and the future. Complex characters, moral dilemmas, and a haunting vision of technology gone awry define this series.",
+                Author = "Michael Lee",
+                Rating = 4.7,
+                ImageUrl = "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80",
+                CreatedOn = new DateTime(2025, 1, 10),
                 GenreId = 3,
                 IsDeleted = false
             }

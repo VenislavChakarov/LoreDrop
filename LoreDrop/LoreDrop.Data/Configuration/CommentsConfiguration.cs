@@ -22,11 +22,15 @@ public class CommentsConfiguration : IEntityTypeConfiguration<Comments>
         entity.HasOne(c => c.Series)
             .WithMany(s => s.Comments)
             .HasForeignKey(c => c.SeriesId)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Cascade);
 
         entity.HasOne(c => c.User)
             .WithMany()
             .HasForeignKey(c => c.UserId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        entity
+            .HasQueryFilter(c => !c.Series.IsDeleted);
     }
 }

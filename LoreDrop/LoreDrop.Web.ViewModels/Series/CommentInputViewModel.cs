@@ -9,7 +9,7 @@ public class CommentInputViewModel
         this.CreatedOn = DateTime.UtcNow.ToString(DateFormat);
     }
     
-    public int SeriesId { get; set; }
+    public Guid SeriesId { get; set; }
     
     public string Text { get; set; } = null!;
     

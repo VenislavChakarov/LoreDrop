@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LoreDrop.Data.Configuration;
 
-public class UserSavedConfiguration : IEntityTypeConfiguration<UserSaved>
+public class UserWatchListConfiguration : IEntityTypeConfiguration<UserWatchList>
 {
-    public void Configure(EntityTypeBuilder<UserSaved> entity)
+    public void Configure(EntityTypeBuilder<UserWatchList> entity)
     {
         entity
             .HasKey(us => new { us.UserId, us.SeriesId });
@@ -25,5 +25,10 @@ public class UserSavedConfiguration : IEntityTypeConfiguration<UserSaved>
             .WithMany(c => c.UserSaved)
             .HasForeignKey(us => us.SeriesId)
             .OnDelete(DeleteBehavior.Restrict);
+        
+        entity
+            .HasOne(us => us.SeriesState)
+            .WithMany()
+            .HasForeignKey(us => us.SeriesStateId);
     }
 }

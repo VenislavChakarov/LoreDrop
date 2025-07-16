@@ -4,13 +4,15 @@ namespace LoreDrop.Data.Models;
 
 public class Series
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     public string Tittle { get; set; } = null!;
     
     public string Description { get; set; } = null!;
     
     public string Author { get; set; } = null!;
+    
+    public virtual ICollection<SeriesRating> Ratings { get; set; } = new HashSet<SeriesRating>();
     
     public double? Rating { get; set; }
     
@@ -21,12 +23,11 @@ public class Series
     public int GenreId { get; set; }
     
     public virtual Genre Genre { get; set; } = null!;   
-    
     public bool IsDeleted { get; set; }
     
     public virtual ICollection<UserFavorites> UserFavorites { get; set; } = new HashSet<UserFavorites>();
     
-    public virtual ICollection<UserSaved> UserSaved { get; set; } = new HashSet<UserSaved>();
+    public virtual ICollection<UserWatchList> UserSaved { get; set; } = new HashSet<UserWatchList>();
 
     public virtual ICollection<Comments> Comments { get; set; } = new HashSet<Comments>();
 }

@@ -15,7 +15,7 @@ public class DetailsService : IDetailsService
         _context = context;
     }
     
-    public async Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(int? id, string? userId)
+    public async Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(Guid? id, string? userId)
     {
         SeriesDetailesViewModel? detailsVm = null;
         if (id.HasValue)
@@ -44,7 +44,7 @@ public class DetailsService : IDetailsService
         return detailsVm;
     }
 
-    public async Task SetRatingAsync(int seriesId, double rating, string? userId)
+    public async Task SetRatingAsync(Guid seriesId, double rating, string? userId)
     {
         if (rating < 1 || rating > 5)
         {

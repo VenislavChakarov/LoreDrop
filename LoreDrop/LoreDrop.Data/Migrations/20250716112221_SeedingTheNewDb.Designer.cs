@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoreDrop.Data.Migrations
 {
     [DbContext(typeof(LoreDropDbContext))]
-    [Migration("20250709153933_UpdateingModel")]
-    partial class UpdateingModel
+    [Migration("20250716112221_SeedingTheNewDb")]
+    partial class SeedingTheNewDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,13 +33,13 @@ namespace LoreDrop.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("ContentId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 9, 15, 39, 33, 343, DateTimeKind.Utc).AddTicks(7750));
+                        .HasDefaultValue(new DateTime(2025, 7, 16, 11, 22, 21, 616, DateTimeKind.Utc).AddTicks(320));
+
+                    b.Property<Guid>("SeriesId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -52,14 +52,14 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ContentId");
+                    b.HasIndex("SeriesId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.Content", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,14 +67,58 @@ namespace LoreDrop.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Genres");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Fantasy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Science Fiction"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Mystery"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Romance"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Horror"
+                        });
+                });
+
+            modelBuilder.Entity("LoreDrop.Data.Models.Series", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Author")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 9, 15, 39, 33, 343, DateTimeKind.Utc).AddTicks(2590));
+                        .HasDefaultValue(new DateTime(2025, 7, 16, 11, 22, 21, 616, DateTimeKind.Utc).AddTicks(2350));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -95,6 +139,9 @@ namespace LoreDrop.Data.Migrations
                     b.Property<double?>("Rating")
                         .HasColumnType("float");
 
+                    b.Property<int?>("SeriesStateId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Tittle")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -104,10 +151,87 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("Contents");
+                    b.HasIndex("SeriesStateId");
+
+                    b.ToTable("Series");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("36f817c5-0567-4518-9bb3-e528a1d2f89a"),
+                            Author = "Jane Doe",
+                            CreatedOn = new DateTime(2024, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "An epic fantasy series exploring the mysteries of the LoreDrop universe.",
+                            GenreId = 1,
+                            ImageUrl = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+                            IsDeleted = false,
+                            Rating = 4.7999999999999998,
+                            Tittle = "The Chronicles of LoreDrop"
+                        },
+                        new
+                        {
+                            Id = new Guid("714c8eb9-c91a-45be-909d-cfa70d5c922e"),
+                            Author = "John Smith",
+                            CreatedOn = new DateTime(2023, 11, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Follow the crew of the starship Horizon as they journey through uncharted galaxies, facing cosmic threats and unraveling the secrets of ancient civilizations. This sci-fi saga blends hard science with thrilling adventure and deep philosophical questions about humanity's place in the universe.",
+                            GenreId = 2,
+                            ImageUrl = "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
+                            IsDeleted = false,
+                            Rating = 4.5999999999999996,
+                            Tittle = "Spacebound: The Last Frontier"
+                        },
+                        new
+                        {
+                            Id = new Guid("3e662cb1-59bf-4928-8450-d906f67b502c"),
+                            Author = "Emily Carter",
+                            CreatedOn = new DateTime(2022, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Dive into a world where magic is real, kingdoms rise and fall, and ancient secrets wait to be discovered. Each season uncovers new lands, legendary heroes, and dark forces threatening the balance of the realms. Richly detailed lore and character-driven storytelling make this fantasy series a must-watch for genre fans.",
+                            GenreId = 1,
+                            ImageUrl = "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80",
+                            IsDeleted = false,
+                            Rating = 4.9000000000000004,
+                            Tittle = "Mysteries of the Forgotten Realms"
+                        },
+                        new
+                        {
+                            Id = new Guid("8c78f4bd-b968-4ab9-a58e-4748da1b8af7"),
+                            Author = "Michael Lee",
+                            CreatedOn = new DateTime(2025, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "A gripping dystopian drama set in a future where memories can be traded, stolen, and rewritten. The story follows rebels fighting against a totalitarian regime that controls the past and the future. Complex characters, moral dilemmas, and a haunting vision of technology gone awry define this series.",
+                            GenreId = 3,
+                            ImageUrl = "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80",
+                            IsDeleted = false,
+                            Rating = 4.7000000000000002,
+                            Tittle = "Echoes of Tomorrow"
+                        });
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.SeriesRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Rating")
+                        .HasColumnType("float");
+
+                    b.Property<Guid>("SeriesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SeriesId");
+
+                    b.ToTable("SeriesRatings");
+                });
+
+            modelBuilder.Entity("LoreDrop.Data.Models.SeriesState", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,7 +246,24 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("SeriesStates");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Ongoing"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Completed"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Cancelled"
+                        });
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.UserFavorites", b =>
@@ -130,29 +271,34 @@ namespace LoreDrop.Data.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ContentId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("SeriesId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("UserId", "ContentId");
+                    b.HasKey("UserId", "SeriesId");
 
-                    b.HasIndex("ContentId");
+                    b.HasIndex("SeriesId");
 
                     b.ToTable("UserFavorites");
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.UserSaved", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.UserWatchList", b =>
                 {
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ContentId")
+                    b.Property<Guid>("SeriesId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SeriesStateId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "ContentId");
+                    b.HasKey("UserId", "SeriesId");
 
-                    b.HasIndex("ContentId");
+                    b.HasIndex("SeriesId");
 
-                    b.ToTable("UserSaved");
+                    b.HasIndex("SeriesStateId");
+
+                    b.ToTable("UserWatchLists");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -359,9 +505,9 @@ namespace LoreDrop.Data.Migrations
 
             modelBuilder.Entity("LoreDrop.Data.Models.Comments", b =>
                 {
-                    b.HasOne("LoreDrop.Data.Models.Content", "Content")
+                    b.HasOne("LoreDrop.Data.Models.Series", "Series")
                         .WithMany("Comments")
-                        .HasForeignKey("ContentId")
+                        .HasForeignKey("SeriesId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
@@ -370,27 +516,42 @@ namespace LoreDrop.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Content");
+                    b.Navigation("Series");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.Content", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.Series", b =>
                 {
                     b.HasOne("LoreDrop.Data.Models.Genre", "Genre")
-                        .WithMany("Contents")
+                        .WithMany("Series")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("LoreDrop.Data.Models.SeriesState", null)
+                        .WithMany("Series")
+                        .HasForeignKey("SeriesStateId");
+
                     b.Navigation("Genre");
+                });
+
+            modelBuilder.Entity("LoreDrop.Data.Models.SeriesRating", b =>
+                {
+                    b.HasOne("LoreDrop.Data.Models.Series", "Series")
+                        .WithMany("Ratings")
+                        .HasForeignKey("SeriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Series");
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.UserFavorites", b =>
                 {
-                    b.HasOne("LoreDrop.Data.Models.Content", "Content")
+                    b.HasOne("LoreDrop.Data.Models.Series", "Series")
                         .WithMany("UserFavorites")
-                        .HasForeignKey("ContentId")
+                        .HasForeignKey("SeriesId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -400,17 +561,23 @@ namespace LoreDrop.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Content");
+                    b.Navigation("Series");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.UserSaved", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.UserWatchList", b =>
                 {
-                    b.HasOne("LoreDrop.Data.Models.Content", "Content")
+                    b.HasOne("LoreDrop.Data.Models.Series", "Series")
                         .WithMany("UserSaved")
-                        .HasForeignKey("ContentId")
+                        .HasForeignKey("SeriesId")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("LoreDrop.Data.Models.SeriesState", "SeriesState")
+                        .WithMany()
+                        .HasForeignKey("SeriesStateId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
@@ -419,7 +586,9 @@ namespace LoreDrop.Data.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("Content");
+                    b.Navigation("Series");
+
+                    b.Navigation("SeriesState");
 
                     b.Navigation("User");
                 });
@@ -475,18 +644,25 @@ namespace LoreDrop.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.Content", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
+                {
+                    b.Navigation("Series");
+                });
+
+            modelBuilder.Entity("LoreDrop.Data.Models.Series", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("Ratings");
 
                     b.Navigation("UserFavorites");
 
                     b.Navigation("UserSaved");
                 });
 
-            modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
+            modelBuilder.Entity("LoreDrop.Data.Models.SeriesState", b =>
                 {
-                    b.Navigation("Contents");
+                    b.Navigation("Series");
                 });
 #pragma warning restore 612, 618
         }
