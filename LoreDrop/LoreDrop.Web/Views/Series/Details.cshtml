@@ -17,24 +17,19 @@
 
     <div class="info-section">
       <div class="rating-favorite">
-        <div class="star-rating" aria-label="Rating: @Model.Rating out of 5">
-          @{
-            var rating = Model.Rating ?? 0; // Use 0 (or any sensible default) if Rating is null
-          }
+        <div class="star-rating"
+             aria-label="Rating: @Model.UserRating out of 5"
+             data-current-rating="@(Model.UserRating )">
+          @{ var rating = Model.Rating ?? 0; }
           @for (var i = 1; i <= 5; i++)
           {
             var fullStar = i <= Math.Floor(rating);
-            var halfStar = i - 0.5 == Model.Rating;
-
-            var icon = fullStar
-              ? "fas fa-star"
-              : halfStar
-                ? "fas fa-star-half-alt"
-                : "far fa-star";
+            var halfStar = i - 0.5 == rating;
+            var icon = fullStar ? "fas fa-star" : "far fa-star";
 
             <span class="star-container" data-rating="@i">
               <i class="@icon"></i>
-              <i class="fas fa-star-half-alt half-star" data-rating="@((i * 2) - 1)"></i>
+              <i class="fas fa-star half-star"></i>
             </span>
           }
         </div>

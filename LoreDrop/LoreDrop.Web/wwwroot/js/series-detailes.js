@@ -1,19 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
     const starContainers = document.querySelectorAll('.star-container');
+    const starRatingEl = document.querySelector('.star-rating');
     const seriesId = document.getElementById('save-button').dataset.seriesId;
 
-    // Star rating with half-star support
+    // Read and store initial rating for persistence
+    let currentRating = parseFloat(starRatingEl.getAttribute('data-current-rating')) || 0;
+    updateStars(currentRating);
+
+    // Hover preview: half/full star on left/right
+    starRatingEl.addEventListener('mousemove', function (e) {
+        const rect = starRatingEl.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        let hoverRating = Math.ceil((x / rect.width) * 5 * 2) / 2;
+        updateStars(hoverRating);
+    });
+    starRatingEl.addEventListener('mouseleave', function () {
+        updateStars(currentRating);
+    });
+
+    // Click handlers
     starContainers.forEach(container => {
         const fullStar = container.querySelector('i:first-child');
         const halfStar = container.querySelector('.half-star');
 
-        // Full star click
         fullStar.addEventListener('click', function () {
             const rating = parseInt(container.dataset.rating);
             submitRating(rating);
         });
-
-        // Half star click
         halfStar.addEventListener('click', function (e) {
             e.stopPropagation();
             const rating = parseInt(container.dataset.rating) - 0.5;
@@ -32,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => {
                 if (!response.ok) throw new Error("Rating failed");
+                currentRating = rating;
                 updateStars(rating);
                 animateStars();
             })
@@ -63,7 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => container.classList.remove('star-animate'), 500);
         });
     }
-
     // Add comment
     const commentInput = document.getElementById("new-comment-input");
     const postCommentBtn = document.getElementById("post-comment-btn");
