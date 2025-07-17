@@ -1,4 +1,5 @@
 using LoreDrop.Data;
+using LoreDrop.Data.Models;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Favorites;
 using Microsoft.EntityFrameworkCore;
@@ -7,15 +8,15 @@ namespace LoreDrop.Services.Core;
 
 public class FavoriteService : IFavoriteService
 {
-    private readonly LoreDropDbContext context;
+    private readonly LoreDropDbContext _context;
     public FavoriteService(LoreDropDbContext context)
     {
-        context = context;
+        _context = context;
     }
     
     public async  Task<IEnumerable<FavoriteSereisViewModel>> GetUserFavoritesAsync(string userId)
     {
-        var favorites = await context.UserFavorites
+        var favorites = await _context.UserFavorites
             .Where(us => us.UserId == userId)
             .Select(us => new FavoriteSereisViewModel
             {
@@ -33,12 +34,20 @@ public class FavoriteService : IFavoriteService
 
     public Task<bool> IsSeriesInFavoritesAsync(string userId, string seriesId)
     {
-        throw new NotImplementedException();
+        return _context.UserFavorites
+            .AnyAsync(us => us.UserId == userId && us.SeriesId.ToString() == seriesId);
     }
 
     public Task AddToFavoritesAsync(string userId, string seriesId)
     {
-        throw new NotImplementedException();
+        var userFavorite = new UserFavorites()
+        {
+            UserId = userId,
+            SeriesId = Guid.Parse(seriesId)
+        };
+
+        _context.UserFavorites.Add(userFavorite);
+        return _context.SaveChangesAsync();
     }
 
     public Task RemoveFromFavoritesAsync(string userId, string seriesId)

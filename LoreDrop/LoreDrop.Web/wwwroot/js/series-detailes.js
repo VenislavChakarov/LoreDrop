@@ -117,17 +117,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(error => console.error("Error adding comment:", error));
         });
     }
-
-    // Favorite button
-    const favoriteButton = document.getElementById("favorite-button");
-    const favoriteIcon = document.getElementById("favorite-icon");
-
-    if (favoriteButton) {
-        favoriteButton.addEventListener("click", function () {
-            favoriteIcon.classList.toggle("fas");
-            favoriteIcon.classList.toggle("far");
-            favoriteIcon.classList.add("heart-animate");
-            setTimeout(() => favoriteIcon.classList.remove("heart-animate"), 500);
-        });
-    }
+    
 });

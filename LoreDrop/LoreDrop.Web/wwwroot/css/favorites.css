@@ -129,3 +129,22 @@
 .fav-empty p {
     font-size: 1.25rem;
 }
+/* Browse Button in Empty State */
+.fav-empty .btn-detail {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #138613, #0f6f0f);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.fav-empty .btn-detail:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    background: linear-gradient(135deg, #0f6f0f, #138613);
+}

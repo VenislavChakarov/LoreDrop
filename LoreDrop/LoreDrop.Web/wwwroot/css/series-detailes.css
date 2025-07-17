@@ -111,6 +111,20 @@
     font-size: 1.4rem;
     cursor: pointer;
 }
+
+.favorite-btn i.fas.fa-heart {
+    color: #138613;
+}
+.favorite-btn i.far.fa-heart {
+    color: #333;
+}
+.favorite-btn i {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+.favorite-btn i:active {
+    transform: scale(1.2);
+}
+
 /* Description */
 .description p {
     margin: 0.5rem 0 1rem;

@@ -2,7 +2,8 @@
 @model IEnumerable<FavoriteSereisViewModel>
 
 @{
-    ViewData["Title"] = "Your Favorites";
+    ViewData["Title"] = "Your Favorite";
+    Layout = "_Layout";
 }
 
 @section Styles {
@@ -11,7 +12,7 @@
 
 <div class="favorites-page">
     <div class="favorites-header">
-        <h1>Your Favorites</h1>
+        <h1>Your Favorite</h1>
     </div>
 
     <div class="fav-filter">
@@ -50,5 +51,4 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/favorites.js" asp-append-version="true"></script>
 }

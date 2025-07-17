@@ -16,7 +16,7 @@
     </div>
 
     <div class="info-section">
-      <div class="rating-favorite">
+      <<div class="rating-favorite">
         <div class="star-rating"
              aria-label="Rating: @Model.UserRating out of 5"
              data-current-rating="@(Model.UserRating )">
@@ -33,9 +33,14 @@
             </span>
           }
         </div>
-        <button id="favorite-button" data-series-id="@Model.Id" class="icon-button">
-          <i id="favorite-icon" class="@(Model.IsFavorite ? "fas" : "far") fa-heart"></i>
-        </button>
+
+        <form asp-action="AddToFavorites" asp-controller="Favorite" method="post" class="favorite-form">
+          @Html.AntiForgeryToken()
+          <input type="hidden" name="seriesId" value="@Model.Id" />
+          <button type="submit" class="icon-button favorite-btn" aria-label="Add to Favorites">
+            <i class="@(Model.IsFavorite ? "fas" : "far") fa-heart"></i>
+          </button>
+        </form>
       </div>
 
       <p><strong>Genre:</strong> @Model.Genre</p>
