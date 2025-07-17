@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using static LoreDrop.GCommon.ValidationConstants.Series;
 
 namespace LoreDrop.Controllers;
-[ApiController]
-[Route("[controller]/[action]")]
+
 public class FavoriteController : BaseController
 {
     private readonly IFavoriteService favoritesService;
@@ -67,6 +66,35 @@ public class FavoriteController : BaseController
         {
             Console.WriteLine(e);
             return RedirectToAction("Details", "Details", new { id = seriesId });
+        }
+    }
+    
+    
+    [HttpPost]
+    public async Task<IActionResult> RemoveFromFavorites(Guid seriesId)
+    {
+        try
+        {
+            if (seriesId == Guid.Empty)
+            {
+                ModelState.AddModelError("seriesId", "Couldn't be removed, try again later");
+                return RedirectToAction(nameof(Index), "Favorite"); 
+            }
+
+            var userId = this.GetUserId();
+                
+            bool isInFavorite = await this.favoritesService.IsSeriesInFavoritesAsync(userId, seriesId.ToString());
+            
+            if (isInFavorite)
+            {
+                await this.favoritesService.RemoveFromFavoritesAsync(userId, seriesId.ToString());
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return RedirectToAction(nameof(Index), "Favorite");
         }
     }
 }

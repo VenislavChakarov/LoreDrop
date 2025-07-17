@@ -32,13 +32,13 @@ public class FavoriteService : IFavoriteService
         return favorites;
     }
 
-    public Task<bool> IsSeriesInFavoritesAsync(string userId, string seriesId)
+    public async Task<bool> IsSeriesInFavoritesAsync(string userId, string seriesId)
     {
-        return _context.UserFavorites
+        return await _context.UserFavorites
             .AnyAsync(us => us.UserId == userId && us.SeriesId.ToString() == seriesId);
     }
 
-    public Task AddToFavoritesAsync(string userId, string seriesId)
+    public async Task AddToFavoritesAsync(string userId, string seriesId)
     {
         var userFavorite = new UserFavorites()
         {
@@ -46,12 +46,19 @@ public class FavoriteService : IFavoriteService
             SeriesId = Guid.Parse(seriesId)
         };
 
-        _context.UserFavorites.Add(userFavorite);
-        return _context.SaveChangesAsync();
+        await _context.UserFavorites.AddAsync(userFavorite);
+        await _context.SaveChangesAsync();
     }
 
-    public Task RemoveFromFavoritesAsync(string userId, string seriesId)
+    public async Task RemoveFromFavoritesAsync (string userId, string seriesId)
     {
-        throw new NotImplementedException();
+        var userFavorite = _context.UserFavorites
+            .FirstOrDefaultAsync(us => us.UserId == userId && us.SeriesId.ToString() == seriesId);
+
+        if (userFavorite != null)
+        {
+            _context.UserFavorites.Remove(userFavorite.Result);
+            await _context.SaveChangesAsync();
+        }
     }
 }

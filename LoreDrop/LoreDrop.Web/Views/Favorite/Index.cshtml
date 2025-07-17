@@ -36,12 +36,16 @@
                     <img src="@(item.ImageUrl ?? "/images/placeholder.jpg")" alt="@item.Title" />
                     <div class="card-body">
                         <h3>@item.Title</h3>
-                        <p class="meta"><strong>Genre:</strong> @item.Genre</p>
-                        <p class="meta"><strong>Author:</strong> @item.Author</p>
+                        <p class="meta genre"><strong>Genre:</strong> @item.Genre</p>
+                        <p class="meta author"><strong>Author:</strong> @item.Author</p>
+                        <p class="meta created-on"><strong>Created On:</strong> @item.CreatedOn</p>
                         <div class="card-actions">
-                            <a href="@Url.Action("Details", "Series", new { id = item.SeriesId })" 
+                            <a href="@Url.Action("Details", "Details", new { id = item.SeriesId })" 
                                class="btn-detail">Details</a>
-                            <button class="btn-remove" data-series-id="@item.SeriesId">Remove</button>
+                            <form asp-action="RemoveFromFavorites" asp-controller="Favorite" method="post" class="d-inline btn-remove">
+                                <input type="hidden" name="seriesId" value="@item.SeriesId" />
+                                <button class="btn-remove" data-series-id="@item.SeriesId">Remove</button>
+                            </form>
                         </div>
                     </div>
                 </div>

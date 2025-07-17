@@ -9,9 +9,11 @@ namespace LoreDrop.Services.Core;
 public class DetailsService : IDetailsService
 {
     private readonly LoreDropDbContext _context;
+    private readonly IFavoriteService _favoritesService;
     
-    public DetailsService(LoreDropDbContext context)
+    public DetailsService(LoreDropDbContext context, IFavoriteService favoritesService)
     {
+        _favoritesService = favoritesService;
         _context = context;
     }
     
@@ -36,6 +38,13 @@ public class DetailsService : IDetailsService
             if (userRatingEntity != null)
                 userRating = userRatingEntity.Rating;
         }
+        
+        bool isFavorite = false;
+        if (!string.IsNullOrWhiteSpace(userId))
+        {
+            isFavorite = await _favoritesService
+                .IsSeriesInFavoritesAsync(userId, series.Id.ToString());
+        }
 
         var viewModel = new SeriesDetailesViewModel
         {
@@ -47,7 +56,8 @@ public class DetailsService : IDetailsService
             ImageUrl = series.ImageUrl,
             CreatedOn = series.CreatedOn,
             AverageRating = averageRating,
-            UserRating = userRating
+            UserRating = userRating,
+            IsFavorite = isFavorite,
             
         };
         return viewModel;

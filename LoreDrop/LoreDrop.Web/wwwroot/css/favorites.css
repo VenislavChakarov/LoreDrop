@@ -1,47 +1,58 @@
-/* File: wwwroot/css/favorites.css */
-
 /* Page Container */
 .favorites-page {
     padding: 2rem 1rem;
     background: #fafafa;
     min-height: calc(100vh - 64px); /* account for header height */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
 }
 
+/* Header */
 .favorites-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .favorites-header h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #138613;
+    font-weight: 700;
     margin: 0;
+    letter-spacing: 0.05em;
 }
 
 /* Search / Filter Bar */
 .fav-filter {
     max-width: 600px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 2.5rem;
     display: flex;
     gap: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 .fav-filter input {
     flex: 1;
-    padding: 0.6rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-    outline: none;
+    padding: 0.75rem 1rem;
+    border: none;
+    font-size: 1rem;
+    outline-offset: 2px;
+}
+
+.fav-filter input:focus {
+    outline: 2px solid #138613;
 }
 
 .fav-filter button {
-    padding: 0.6rem 1rem;
+    padding: 0 1.5rem;
     background: #138613;
     color: #fff;
     border: none;
-    border-radius: 0 4px 4px 0;
     cursor: pointer;
-    transition: background 0.2s;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.3s ease;
 }
 
 .fav-filter button:hover {
@@ -51,100 +62,163 @@
 /* Grid of Cards */
 .favorites-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 1.75rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
+/* Card */
 .fav-card {
     background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fav-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
 }
 
 .fav-card img {
     width: 100%;
-    height: 0;
-    padding-bottom: 140%; /* 7:10 aspect ratio */
+    aspect-ratio: 16 / 9; /* Landscape aspect ratio */
     object-fit: cover;
+    border-bottom: 2px solid #138613;
 }
-
+/* Card Body */
 .fav-card .card-body {
-    padding: 1rem;
-    flex: 1;
+    padding: 1.25rem 1.5rem;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
 .fav-card .card-body h3 {
-    font-size: 1.1rem;
-    margin: 0 0 0.5rem;
-    flex: 1;
+    font-size: 1.25rem;
+    margin: 0 0 0.6rem 0;
     color: #1a1a1a;
+    font-weight: 700;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
+/* Meta Info */
+.fav-card .card-meta {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* clean and readable */
+    font-style: italic;
+    color: #555;
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+/* Meta Info */
+.fav-card .card-meta {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* clean and readable */
+    font-style: italic;
+    color: #555;
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+.fav-card .meta strong {
+    color: #138613; /* green accent for labels */
+}
+
+.fav-card .genre {
+    font-weight: 600;
+}
+
+.fav-card .author {
+    font-weight: 500;
+}
+
+.fav-card .created-on {
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+
+/* Card Actions */
 .fav-card .card-actions {
-    display: flex;
-    gap: 0.5rem;
     margin-top: auto;
+    display: flex;
+    gap: 0.75rem;
 }
 
 .fav-card .btn-detail,
 .fav-card .btn-remove {
+    background: #138613;
+    text-decoration: none; /* Remove underline */
+    font-size: 1rem;
+    display: flex;          /* Make button a flex container */
+    align-items: center;    /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    color: #fff;
     flex: 1;
     padding: 0.5rem;
-    color: #fff;
     border: none;
     border-radius: 4px;
-    text-align: center;
     cursor: pointer;
     transition: background 0.2s;
 }
 
 .fav-card .btn-detail {
     background: #138613;
+    box-shadow: 0 4px 10px rgba(19, 134, 19, 0.6);
 }
 
 .fav-card .btn-detail:hover {
     background: #0f6f0f;
+    box-shadow: 0 6px 14px rgba(15, 111, 15, 0.8);
 }
 
 .fav-card .btn-remove {
     background: #e63946;
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.6);
 }
 
 .fav-card .btn-remove:hover {
     background: #c92a3d;
+    box-shadow: 0 6px 14px rgba(201, 42, 61, 0.8);
 }
 
 /* Empty State */
 .fav-empty {
     text-align: center;
-    color: #555;
-    margin-top: 3rem;
+    color: #666;
+    margin-top: 4rem;
 }
 
 .fav-empty p {
-    font-size: 1.25rem;
+    font-size: 1.35rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
 }
+
 /* Browse Button in Empty State */
 .fav-empty .btn-detail {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: 0.85rem 2rem;
     background: linear-gradient(135deg, #138613, #0f6f0f);
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
     text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    color: #fff;
 }
 
 .fav-empty .btn-detail:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
     background: linear-gradient(135deg, #0f6f0f, #138613);
 }

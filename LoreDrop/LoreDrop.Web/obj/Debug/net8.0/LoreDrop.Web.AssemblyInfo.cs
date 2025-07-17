@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoreDrop.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e30514d99bcf15d4b220074af9ce29f405cbdc1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+015e7fe5d1b99f340b8dd0cc0de5b1fb2dfde213")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoreDrop.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoreDrop.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -105,24 +105,24 @@
     transform: scale(1.2);
     color: #22cc22; /* Brighter green on hover */
 }
-
-.icon-button i {
-    color: #22aa22;
-    font-size: 1.4rem;
-    cursor: pointer;
+.favorite-btn i.fa-heart {
+    font-size: 1.6rem;               /* slightly smaller */
+    transition: transform 0.2s, color 0.2s;
 }
 
 .favorite-btn i.fas.fa-heart {
-    color: #138613;
+    color: #138613;                  /* your green */
+    transform: scale(1.1);
 }
+
 .favorite-btn i.far.fa-heart {
-    color: #333;
+    color: #888;
 }
-.favorite-btn i {
-    transition: transform 0.2s ease, color 0.2s ease;
-}
-.favorite-btn i:active {
-    transform: scale(1.2);
+
+.favorite-btn:hover i.fa-heart {
+    transform: scale(1.3);
+    color: #0f6f0f;                  /* darker green on hover */
+    cursor: pointer;
 }
 
 /* Description */
@@ -191,13 +191,32 @@
 .inline-comment input::placeholder {
     color: #aaa;
 }
-.inline-comment input:focus {
-    border-bottom-color: #22aa22;      /* bright green on focus */
-    color: #2b2b2b;
+.inline-comment button:focus {
+    outline: 2px solid #0f6f0f;
+    outline-offset: 2px;
 }
+
 .inline-comment button {
-    background: none;
+    background: #22aa22;          /* brighter green */
+    color: #fff;
     border: none;
+    border-radius: 4px;
+    padding: 0.5rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.inline-comment button i {
+    color: #fff;                  /* ensure the icon stays white */
+}
+
+.inline-comment button:hover {
+    background: #138613;          /* your brand green */
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 /* Comment Items */
