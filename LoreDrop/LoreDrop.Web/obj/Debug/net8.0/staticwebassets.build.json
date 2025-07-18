@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xLdmruE8PTpOkclr28B8Hwe9jZI5trRhgHiVujShajI=",
+  "Hash": "QIsfxotG3vmO3G3zbkovJCrRYshfpJOiAvC7rRPbapE=",
   "Source": "LoreDrop.Web",
   "BasePath": "_content/LoreDrop.Web",
   "Mode": "Default",
@@ -1288,6 +1288,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/site.css"
+    },
+    {
+      "Identity": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/watchlist.css",
+      "SourceId": "LoreDrop.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/",
+      "BasePath": "_content/LoreDrop.Web",
+      "RelativePath": "css/watchlist.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/watchlist.css"
     },
     {
       "Identity": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/favicon.ico",

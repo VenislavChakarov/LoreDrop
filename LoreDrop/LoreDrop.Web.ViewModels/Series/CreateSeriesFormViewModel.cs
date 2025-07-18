@@ -22,7 +22,7 @@ public class CreateSeriesFormViewModel
     [Display(Name = "Genre")]
     public int GenreId { get; set; }
 
-    public IEnumerable<AddSeriesGenreDropDownMenu> Genres { get; set; } = new HashSet<AddSeriesGenreDropDownMenu>(); // ⭐ The list of genres
+    public IEnumerable<AddSeriesGenreDropDownMenu> Genres { get; set; } = new HashSet<AddSeriesGenreDropDownMenu>(); 
 
     [Required(ErrorMessage = DescriptionRequiredMessage)]
     [MinLength(DescriptionMinLength, ErrorMessage = DescriptionMinLengthMessage)]

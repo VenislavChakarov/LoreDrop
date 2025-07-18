@@ -1,0 +1,236 @@
+/* watchlist.css */
+
+/* Container */
+.watchlist-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Page Title */
+.watchlist-container > h2 {
+    text-align: center;
+    color: #138613;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Empty Watchlist State */
+.empty-watchlist {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #f9fdf9;
+    border: 1px dashed #138613;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+.empty-watchlist p {
+    font-size: 1.3rem;
+    color: #2b2b2b;
+    margin-bottom: 1.5rem;
+}
+.btn-discover {
+    background: #138613;
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+.btn-discover:hover {
+    background: #0f6f0f;
+    transform: translateY(-2px);
+}
+
+/* Watchlist Item */
+.watchlist-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #ccc;
+    padding: 1rem;
+    border-radius: 6px;
+    background: #fff;
+    position: relative;
+    /* default card shadow + transition */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.watchlist-item:hover {
+    /* deeper shadow on hover */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Status-specific borders */
+.watchlist-item.status-ongoing {
+    border-color: #138613;
+}
+.watchlist-item.status-cancelled {
+    border-color: #e63946;
+}
+
+/* —————————————————————————————
+   FINISHED STATE – EVERYTHING GREYED + STRIKE
+   ————————————————————————————— */
+.watchlist-item.status-finished {
+    /* solid grey border & light grey background */
+    border: 2px solid #666 !important;
+    background: #eee !important;
+
+    /* allow the ::before strike to show */
+    position: relative !important;
+    overflow: visible !important;
+}
+
+/* heavy grey strike‑through line */
+.watchlist-item.status-finished::before {
+    content: "" !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 4px !important;
+    background: #666 !important;
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+}
+
+/* stack content underneath the line */
+.watchlist-item.status-finished .image-container,
+.watchlist-item.status-finished .series-info,
+.watchlist-item.status-finished .actions {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* poster image */
+.image-container img {
+    width: 150px;
+    height: auto;
+    border-radius: 4px;
+    object-fit: cover;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.watchlist-item.status-finished .image-container img {
+    filter: grayscale(100%) !important;
+    opacity: 0.4 !important;
+}
+
+/* title */
+.series-info {
+    flex: 1;
+    text-align: center;
+    padding: 0 1rem;
+}
+.series-title {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #1a1a1a;
+    font-weight: 600;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+.watchlist-item.status-finished .series-title {
+    color: #666 !important;
+    text-decoration: line-through !important;
+}
+
+/* actions */
+.actions {
+    position: relative;
+}
+
+/* status button */
+.btn-status {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* add a little bounce animation on hover */
+@keyframes btn-bounce {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-3px); }
+    100% { transform: translateY(0); }
+}
+.btn-status:hover {
+    animation: btn-bounce 0.3s ease;
+}
+
+/* ongoing & cancelled colors unchanged */
+.watchlist-item.status-ongoing .btn-status {
+    background: #138613;
+}
+.watchlist-item.status-ongoing .btn-status:hover {
+    background: #0f6f0f;
+}
+.watchlist-item.status-cancelled .btn-status {
+    background: #e63946;
+}
+.watchlist-item.status-cancelled .btn-status:hover {
+    background: #c92a3d;
+}
+
+/* grey + disable the button when finished */
+.watchlist-item.status-finished .btn-status {
+    background: #666 !important;
+    color: #ccc !important;
+    pointer-events: none !important;
+}
+.watchlist-item.status-finished .btn-status:hover {
+    background: #666 !important;
+    animation: none; /* disable bounce on a disabled button */
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fff;
+    min-width: 140px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 3;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.dropdown-content button {
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.dropdown-content button:hover {
+    background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .watchlist-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    .image-container img {
+        width: 100%;
+        max-width: 200px;
+        margin-bottom: 0.75rem;
+    }
+}

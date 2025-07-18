@@ -19,7 +19,7 @@
       <div class="rating-favorite">
         <div class="star-rating"
              aria-label="Rating: @Model.UserRating out of 5"
-             data-current-rating="@(Model.UserRating )">
+             data-current-rating="@(Model.UserRating)">
           @{ var rating = Model.Rating ?? 0; }
           @for (var i = 1; i <= 5; i++)
           {
@@ -51,9 +51,15 @@
         <p>@Model.Description</p>
       </div>
 
-      <button id="save-button" data-series-id="@Model.Id" class="btn-primary">
-        <i class="fas fa-bookmark"></i> Watch Later
-      </button>
+      <div class="watch-actions">
+        <form asp-action="AddToWatchList" asp-controller="WatchList" method="post" class="watchlist-form">
+          @Html.AntiForgeryToken()
+          <input type="hidden" name="seriesId" value="@Model.Id" />
+          <button type="submit" id="save-button" data-series-id="@Model.Id" class="btn-primary">
+            <i class="fas fa-bookmark"></i> Watch Later
+          </button>
+        </form>
+      </div>
     </div>
 
     <div class="comments-section">

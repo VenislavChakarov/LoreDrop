@@ -39,6 +39,7 @@ namespace LoreDrop
             builder.Services.AddScoped<IDetailsService, DetailsService>();
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<IFavoriteService, FavoriteService>();
+            builder.Services.AddScoped<IWatchListService, WatchListService>();
 
             var app = builder.Build();
 

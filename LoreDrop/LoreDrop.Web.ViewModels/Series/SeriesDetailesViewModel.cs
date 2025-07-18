@@ -25,6 +25,8 @@ public class SeriesDetailesViewModel
     
     public bool IsUserWatchList { get; set; }
     
+    public string WatchStateName { get; set; } = string.Empty;
+    
     public List<CommentViewModel> Comments { get; set; } = new List<CommentViewModel>();
-       // The current user's rating for this series, if any
+    
 }

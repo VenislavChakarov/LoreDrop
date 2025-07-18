@@ -1,0 +1,68 @@
+@using LoreDrop.Web.ViewModels.WatchList
+@model IEnumerable<WatchListViewModel>
+
+@{
+    ViewData["Title"] = "My Watch List";
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/watchlist.css" asp-append-version="true" />
+}
+
+<div class="watchlist-container">
+    <h2>My Watchlist</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-watchlist">
+            <p>Your watchlist is empty. Start exploring and add some series!</p>
+            <form asp-controller="Series" asp-action="Index" method="get">
+                <button type="submit" class="btn-discover">Discover Series</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            var current = item.StateDropDownMenu?.FirstOrDefault(s => s.Id == item.StateId);
+            var statusName = current?.Name ?? "Unknown";
+            
+            string statusClass = statusName switch
+            {
+                "Completed" => "status-finished",
+                "Cancelled" => "status-cancelled",
+                "Ongoing" => "status-ongoing",
+                _ => "status-default"
+            };
+        <div class="watchlist-item @statusClass">
+            <div class="image-container">
+                <img src="@item.ImageUrl" alt="@item.Title Cover" />
+            </div>
+
+            <div class="series-info">
+                <h3 class="series-title">@item.Title</h3>
+            </div>
+
+            <div class="actions">
+                <form asp-action="ChangeState" method="post">
+                    <input type="hidden" name="seriesId" value="@item.SeriesId" />
+
+                    <div class="dropdown">
+                        <button type="button" class="btn-status">@statusName</button>
+                        <div class="dropdown-content">
+                            @foreach (var status in item.StateDropDownMenu)
+                            {
+                                <button type="submit" name="stateId" value="@status.Id">
+                                    @status.Name
+                                </button>
+                            }
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        }
+    }
+</div>

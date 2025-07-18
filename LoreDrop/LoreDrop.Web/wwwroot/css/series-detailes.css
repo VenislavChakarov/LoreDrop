@@ -71,8 +71,8 @@
     opacity: 0;
     pointer-events: auto;
     transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
-    z-index: 1; /* Ensure proper layering */
-    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%); /* Clip to left half */
+    z-index: 1;
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
     transform-origin: left center;
 }
 
@@ -82,7 +82,7 @@
 
 .star-container:hover .half-star:hover {
     transform: scale(1.2);
-    color: #22cc22; /* Brighter green on hover */
+    color: #22cc22;              /* brighter green on hover */
 }
 
 .star-container:hover i:first-child {
@@ -95,7 +95,7 @@
     gap: 0.5rem;
 }
 .star-rating i {
-    color: #22aa22;                /* mid‑green stars */
+    color: #22aa22;               /* mid‑green stars */
     font-size: 1.5rem;
     cursor: pointer;
     transition: transform 0.2s ease, color 0.2s ease;
@@ -103,15 +103,16 @@
 
 .star-rating i:hover {
     transform: scale(1.2);
-    color: #22cc22; /* Brighter green on hover */
+    color: #22cc22;
 }
+
 .favorite-btn i.fa-heart {
-    font-size: 1.6rem;               /* slightly smaller */
+    font-size: 1.6rem;            /* slightly smaller */
     transition: transform 0.2s, color 0.2s;
 }
 
 .favorite-btn i.fas.fa-heart {
-    color: #138613;                  /* your green */
+    color: #138613;               /* your green */
     transform: scale(1.1);
 }
 
@@ -121,7 +122,7 @@
 
 .favorite-btn:hover i.fa-heart {
     transform: scale(1.3);
-    color: #0f6f0f;                  /* darker green on hover */
+    color: #0f6f0f;               /* darker green on hover */
     cursor: pointer;
 }
 
@@ -151,6 +152,7 @@
 }
 .btn-primary:hover {
     background: #0f6f0f;
+    transform: translateY(-2px);
 }
 .btn-secondary {
     background: #fff;
@@ -159,6 +161,47 @@
 }
 .btn-secondary:hover {
     background: #f0fff4;
+}
+
+/* Watch List Button (Details Page) */
+.watch-actions {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.watchlist-form .btn-primary,
+.btn-in-list {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* “Watch Later” button */
+.watchlist-form .btn-primary {
+    background: #138613;
+    color: #fff;
+}
+
+.watchlist-form .btn-primary:hover {
+    background: #0f6f0f;
+    transform: translateY(-2px);
+}
+
+/* “In Watch List (State)” disabled look */
+.btn-in-list {
+    background: #138613;
+    color: #fff;
+    opacity: 0.85;
+    cursor: default;
+}
+
+.btn-in-list:disabled {
+    opacity: 0.7;
 }
 
 /* Comments Section */
@@ -171,7 +214,7 @@
     color: #2b2b2b;
 }
 
-/* Inline Comment Input (single‑line, not resizable) */
+/* Inline Comment Input */
 .inline-comment {
     display: flex;
     gap: 0.5rem;
@@ -181,7 +224,7 @@
 .inline-comment input {
     flex: 1;
     border: none;
-    border-bottom: 2px solid #aaa;    /* neutral until focus */
+    border-bottom: 2px solid #aaa;
     background: transparent;
     padding: 0.5rem;
     font-size: 1rem;
@@ -195,9 +238,8 @@
     outline: 2px solid #0f6f0f;
     outline-offset: 2px;
 }
-
 .inline-comment button {
-    background: #22aa22;          /* brighter green */
+    background: #22aa22;
     color: #fff;
     border: none;
     border-radius: 4px;
@@ -208,13 +250,11 @@
     font-size: 1.1rem;
     transition: background 0.2s ease, transform 0.2s ease;
 }
-
 .inline-comment button i {
-    color: #fff;                  /* ensure the icon stays white */
+    color: #fff;
 }
-
 .inline-comment button:hover {
-    background: #138613;          /* your brand green */
+    background: #138613;
     transform: scale(1.05);
     cursor: pointer;
 }
@@ -227,8 +267,8 @@
 }
 .comment-item {
     padding: 1rem;
-    background: #f0fff4;               /* very light mint */
-    border-left: 4px solid #22aa22;    /* consistent accent */
+    background: #f0fff4;           /* very light mint */
+    border-left: 4px solid #22aa22;
     border-radius: 4px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
@@ -239,11 +279,11 @@
 }
 .comment-author {
     font-weight: 600;
-    color: #116611;                    /* dark forest green */
+    color: #116611;                /* dark forest green */
 }
 .comment-date {
     font-size: 0.85rem;
-    color: #555;                       /* medium gray */
+    color: #555;                   /* medium gray */
 }
 .comment-body {
     color: #333;

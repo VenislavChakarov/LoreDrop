@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
+      "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/watchlist.css",
+      "PackagePath": "staticwebassets/css/watchlist.css"
+    },
+    {
       "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/favicon.ico",
       "PackagePath": "staticwebassets/favicon.ico"
     },
