@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoreDrop.Web.ViewModels")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2db7323eebb8abd9e282401f97b0f6c7a68e2363")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+953159a6851d7f666f567999e6316a82b0877e47")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoreDrop.Web.ViewModels")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoreDrop.Web.ViewModels")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

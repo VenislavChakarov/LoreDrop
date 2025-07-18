@@ -22,7 +22,7 @@ public class UserWatchListConfiguration : IEntityTypeConfiguration<UserWatchList
 
         entity
             .HasOne(us => us.Series)
-            .WithMany(c => c.UserSaved)
+            .WithMany(c => c.UserWathList)
             .HasForeignKey(us => us.SeriesId)
             .OnDelete(DeleteBehavior.Restrict);
         

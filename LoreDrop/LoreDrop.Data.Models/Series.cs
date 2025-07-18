@@ -27,7 +27,7 @@ public class Series
     
     public virtual ICollection<UserFavorites> UserFavorites { get; set; } = new HashSet<UserFavorites>();
     
-    public virtual ICollection<UserWatchList> UserSaved { get; set; } = new HashSet<UserWatchList>();
+    public virtual ICollection<UserWatchList> UserWathList { get; set; } = new HashSet<UserWatchList>();
 
     public virtual ICollection<Comments> Comments { get; set; } = new HashSet<Comments>();
 }

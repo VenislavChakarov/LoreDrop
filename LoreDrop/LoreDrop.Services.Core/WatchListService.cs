@@ -47,6 +47,21 @@ public class WatchListService : IWatchListService
             .AnyAsync(us => us.UserId == userId && us.SeriesId.ToString() == seriesId);
     }
 
+    public async Task<SeriesState?> GetSeriesStateAsync(string userId, string seriesId)
+    {
+        if (!Guid.TryParse(seriesId, out var seriesGuid))
+        {
+            throw new ArgumentException("Invalid series", nameof(seriesId));
+        }
+
+        var state = await  _context.UserWatchLists
+            .Where(us => us.UserId == userId && us.SeriesId == seriesGuid)
+            .Select(us => us.SeriesState)
+            .FirstOrDefaultAsync();
+        
+        return state;
+    }
+
     public async Task AddToWatchListAsync(string userId, string seriesId)
     {
         var UserWatchList = new UserWatchList()

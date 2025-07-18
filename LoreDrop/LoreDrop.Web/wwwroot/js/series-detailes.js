@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const starContainers = document.querySelectorAll('.star-container');
     const starRatingEl = document.querySelector('.star-rating');
-    const seriesId = document.getElementById('save-button').dataset.seriesId;
-
+    const seriesIdEl = document.getElementById('watchlist-btn');
+    const seriesId = seriesIdEl
+        ? seriesIdEl.dataset.seriesId
+        : starRatingEl.getAttribute('data-series-id');
     // Read and store initial rating for persistence
     let currentRating = parseFloat(starRatingEl.getAttribute('data-current-rating')) || 0;
     updateStars(currentRating);

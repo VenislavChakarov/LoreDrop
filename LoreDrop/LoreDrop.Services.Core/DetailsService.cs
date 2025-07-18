@@ -10,11 +10,13 @@ public class DetailsService : IDetailsService
 {
     private readonly LoreDropDbContext _context;
     private readonly IFavoriteService _favoritesService;
+   private readonly IWatchListService watchListService;
     
-    public DetailsService(LoreDropDbContext context, IFavoriteService favoritesService)
+    public DetailsService(LoreDropDbContext context, IFavoriteService favoritesService, IWatchListService watchListService )
     {
         _favoritesService = favoritesService;
         _context = context;
+        this.watchListService = watchListService;
     }
     
     public async Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(Guid? id, string? userId)
@@ -39,11 +41,20 @@ public class DetailsService : IDetailsService
                 userRating = userRatingEntity.Rating;
         }
         
+        var seriesState = await watchListService.GetSeriesStateAsync(userId, series.Id.ToString());
+        
+        bool isInWatchList = false;
         bool isFavorite = false;
         if (!string.IsNullOrWhiteSpace(userId))
         {
             isFavorite = await _favoritesService
                 .IsSeriesInFavoritesAsync(userId, series.Id.ToString());
+        }
+        
+        if (!string.IsNullOrWhiteSpace(userId))
+        {
+            isInWatchList = await watchListService
+                .IsSeriesInWatchListAsync(userId, series.Id.ToString());
         }
 
         var viewModel = new SeriesDetailesViewModel
@@ -58,7 +69,8 @@ public class DetailsService : IDetailsService
             AverageRating = averageRating,
             UserRating = userRating,
             IsFavorite = isFavorite,
-            
+            IsUserWatchList = isInWatchList,
+            WatchStateName = seriesState?.Name ?? string.Empty,
         };
         return viewModel;
     }
