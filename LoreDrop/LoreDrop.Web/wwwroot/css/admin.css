@@ -1,0 +1,85 @@
+.admin-actions {
+    margin-bottom: 1.5rem;
+}
+
+.btn-create {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #28a745;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.series-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.series-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.75rem;
+    background: #fff;
+}
+
+.series-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.series-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.series-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.series-title {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.series-author {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.series-right {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-edit,
+.btn-delete {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.btn-edit {
+    background: #007bff;
+}
+
+.btn-delete {
+    background: #dc3545;
+}
+
+.delete-form {
+    display: inline;
+}

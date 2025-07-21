@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/Areas/Admin/Views/Dashboard/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRGFzaGJvYXJkL2luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

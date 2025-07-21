@@ -53,8 +53,8 @@ public class SeriesConfiguration : IEntityTypeConfiguration<Series>
             .WithMany(g => g.Series)
             .HasForeignKey(s => s.GenreId);
         
-        entity
-          .HasData(this.GetPredefinedSeries());
+       // entity
+         // .HasData(this.GetPredefinedSeries());
     }
 
     private List<Series> GetPredefinedSeries()

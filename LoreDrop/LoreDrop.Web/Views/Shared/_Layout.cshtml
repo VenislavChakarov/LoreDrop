@@ -12,6 +12,11 @@
     @RenderSection("Styles", required: false)
 </head>
 <body>
+
+@{
+    var fullEmail = UserManager.GetUserName(User);
+    var namePart = fullEmail?.Split('@')[0];
+}
 <!-- Navbar -->
 <header>
     <nav class="custom-navbar">
@@ -33,7 +38,7 @@
             <div class="navbar-right">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <span class="nav-user-email">@UserManager.GetUserName(User)</span>
+                    <span class="nav-user-email">@namePart</span>
                     <form asp-area="Identity" asp-page="/Account/Logout" method="post" id="logoutForm" class="nav-item">
                         <button type="submit" class="logout-button">Logout</button>
                     </form>
@@ -44,6 +49,16 @@
                     <a asp-area="Identity" asp-page="/Account/Register">Register</a>
                 }
             </div>
+
+            @*@if (SignInManager.IsSignedIn(User))
+            {
+                var currentUser = await UserManager.GetUserAsync(User);
+                if (await UserManager.IsInRoleAsync(currentUser, "Admin"))
+                {
+                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                }
+            }*@
+
         </div>
     </nav>
 </header>
@@ -59,6 +74,6 @@
         &copy; @DateTime.Now.Year - LoreDrop.Web
     </div>
 </footer>
-    @RenderSection("Scripts", required: false)
+@RenderSection("Scripts", required: false)
 </body>
 </html>

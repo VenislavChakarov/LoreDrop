@@ -1,6 +1,7 @@
 using LoreDrop.Data;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -21,6 +22,7 @@ namespace LoreDrop.Controllers
             this.genreService = genreService;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Index()
         {

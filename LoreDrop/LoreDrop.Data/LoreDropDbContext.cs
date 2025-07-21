@@ -3,10 +3,11 @@ using LoreDrop.Data.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using LoreDrop.Data.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace LoreDrop.Data;
 
-public class LoreDropDbContext : IdentityDbContext
+public class LoreDropDbContext : IdentityDbContext<IdentityUser>
 {
     public LoreDropDbContext(DbContextOptions<LoreDropDbContext> options)
         : base(options)

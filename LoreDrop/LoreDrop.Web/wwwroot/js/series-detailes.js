@@ -103,19 +103,21 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then(res => res.json())
                 .then(data => {
-                    const newComment = document.createElement("div");
-                    newComment.classList.add("comment-item");
-                    newComment.innerHTML = `
-          <div class="comment-header">
-            <span class="comment-author">${data.authorName}</span>
-            <time class="comment-date">${data.createdOn}</time>
-          </div>
-          <div class="comment-body">${data.text}</div>
-        `;
-                    commentsList.prepend(newComment);
-                    commentInput.value = "";
-                    commentCount.textContent = parseInt(commentCount.textContent) + 1;
-                })
+                // data.authorName is already "az" (no "@domain")
+                const newComment = document.createElement("div");
+                newComment.classList.add("comment-item");
+                newComment.innerHTML = `
+        <div class="comment-header">
+          <span class="comment-author">${data.authorName}</span>
+          <time class="comment-date">${data.createdOn}</time>
+        </div>
+        <div class="comment-body">${data.text}</div>
+      `;
+                commentsList.prepend(newComment);
+                commentInput.value = "";
+                commentCount.textContent =
+                    (parseInt(commentCount.textContent, 10) + 1).toString();
+            })
                 .catch(error => console.error("Error adding comment:", error));
         });
     }

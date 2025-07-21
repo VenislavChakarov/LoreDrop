@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -22,6 +23,8 @@ public class DetailsController : BaseController
         this.commentService = commentService;
     }
     
+    
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> Details(Guid? id)
     {
@@ -79,9 +82,11 @@ public class DetailsController : BaseController
 
             var comment = await commentService
                 .AddCommentAndReturnAsync(req.SeriesId, GetUserId(), req.Text);
+            var usernameOnly = User.Identity.Name.Split('@')[0];
 
             return Json(new {
-                authorName = comment.AuthorName,
+                success    = true,
+                authorName = usernameOnly, 
                 text       = comment.Text,
                 createdOn  = comment.CreatedOn.ToString("yyyy-MM-dd")
             });

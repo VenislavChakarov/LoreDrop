@@ -53,7 +53,7 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
@@ -71,7 +71,7 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
 
                     b.HasData(
                         new
@@ -150,7 +150,7 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasIndex("SeriesStateId");
 
-                    b.ToTable("Series");
+                    b.ToTable("Series", (string)null);
 
                     b.HasData(
                         new
@@ -225,7 +225,7 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasIndex("SeriesId");
 
-                    b.ToTable("SeriesRatings");
+                    b.ToTable("SeriesRatings", (string)null);
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.SeriesState", b =>
@@ -243,7 +243,7 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SeriesStates");
+                    b.ToTable("SeriesStates", (string)null);
 
                     b.HasData(
                         new
@@ -275,7 +275,7 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasIndex("SeriesId");
 
-                    b.ToTable("UserFavorites");
+                    b.ToTable("UserFavorites", (string)null);
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.UserWatchList", b =>
@@ -295,7 +295,7 @@ namespace LoreDrop.Data.Migrations
 
                     b.HasIndex("SeriesStateId");
 
-                    b.ToTable("UserWatchLists");
+                    b.ToTable("UserWatchLists", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

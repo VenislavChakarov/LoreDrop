@@ -23,6 +23,7 @@ public class CommentService : ICommentService
         bool optResult = false;
 
         IdentityUser? user = await _userManager.FindByIdAsync(userId);
+        
         if (user != null && commentInput != null)
         {
             var comment = new Comments
@@ -43,16 +44,25 @@ public class CommentService : ICommentService
 
     public async Task<List<CommentViewModel>> GetCommentsBySeriesIdAsync(Guid seriesId)
     {
-        return await _context.Comments
+        var raw = await _context.Comments
             .Where(c => c.SeriesId == seriesId)
             .OrderByDescending(c => c.CreatedOn)
-            .Select(c => new CommentViewModel
+            .Select(c => new
             {
-                AuthorName = c.User.UserName,
-                Text = c.Text,
-                CreatedOn = c.CreatedOn
+                c.Text,
+                c.CreatedOn,
+                UserName = c.User.UserName
             })
             .ToListAsync();
+
+        // Now split each username client‐side
+        return raw.Select(x => new CommentViewModel
+            {
+                AuthorName = x.UserName.Split('@')[0],
+                Text       = x.Text,
+                CreatedOn  = x.CreatedOn
+            })
+            .ToList();
     }
 
     public async Task<CommentViewModel> AddCommentAndReturnAsync(Guid seriesId, string userId, string text)

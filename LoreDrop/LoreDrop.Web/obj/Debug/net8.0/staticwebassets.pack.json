@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/LoreDrop.Web.bundle.scp.css"
     },
     {
+      "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/admin.css",
+      "PackagePath": "staticwebassets/css/admin.css"
+    },
+    {
       "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/favorites.css",
       "PackagePath": "staticwebassets/css/favorites.css"
     },

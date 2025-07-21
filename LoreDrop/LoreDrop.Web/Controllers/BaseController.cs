@@ -1,8 +1,11 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LoreDrop.Controllers;
 
+
+[Authorize]
 public class BaseController : Controller
 {
     protected bool IsUserAuthenticated()

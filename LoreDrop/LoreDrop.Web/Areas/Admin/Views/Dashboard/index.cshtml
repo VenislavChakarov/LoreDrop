@@ -1,0 +1,42 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model IEnumerable<LoreDrop.Web.ViewModels.Series.AllSeriesIndexViewModel>
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "_Layout";
+    <link rel="stylesheet" href="~/css/admin.css" />
+}
+
+<div class="admin-actions">
+    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Create" class="btn-create">
+        <i class="fa fa-plus"></i> New Series
+    </a>
+</div>
+
+<div class="series-list">
+    @foreach (var series in Model)
+    {
+        <div class="series-card">
+            <div class="series-left">
+                <img src="@series.ImageUrl" alt="@series.Title" class="series-image" />
+                <div class="series-info">
+                    <h3 class="series-title">@series.Title</h3>
+                    <p class="series-author">by @series.Author</p>
+                </div>
+            </div>
+            <div class="series-right">
+                <a asp-area="Admin" asp-controller="Dashboard" asp-action="Edit" asp-route-id="@series.Id" class="btn-edit">
+                    <i class="fa fa-edit"></i> Edit
+                </a>
+                <form asp-area="Admin" asp-controller="Dashboard" asp-action="Delete" asp-route-id="@series.Id" method="post" class="delete-form" onsubmit="return confirm('Delete this series?');">
+                    <button type="submit" class="btn-delete">
+                        <i class="fa fa-trash"></i> Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    }
+</div>

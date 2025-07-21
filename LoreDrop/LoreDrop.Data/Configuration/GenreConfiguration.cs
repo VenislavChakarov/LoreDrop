@@ -17,8 +17,8 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
             .IsRequired()
             .HasMaxLength(NameMaxLength);
         
-        entity
-          .HasData(this.GetPredefinedGenres());
+        //entity
+         // .HasData(this.GetPredefinedGenres());
     }
 
     private List<Genre> GetPredefinedGenres()
