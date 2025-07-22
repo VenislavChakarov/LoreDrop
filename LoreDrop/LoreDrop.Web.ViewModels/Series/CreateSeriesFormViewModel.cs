@@ -20,7 +20,7 @@ public class CreateSeriesFormViewModel
 
     [Required(ErrorMessage = GenreRequiredMessage)]
     [Display(Name = "Genre")]
-    public int GenreId { get; set; }
+    public Guid GenreId { get; set; }
 
     public IEnumerable<AddSeriesGenreDropDownMenu> Genres { get; set; } = new HashSet<AddSeriesGenreDropDownMenu>(); 
 

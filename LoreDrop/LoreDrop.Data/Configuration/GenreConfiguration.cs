@@ -17,19 +17,19 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
             .IsRequired()
             .HasMaxLength(NameMaxLength);
         
-        //entity
-         // .HasData(this.GetPredefinedGenres());
+        entity
+          .HasData(this.GetPredefinedGenres());
     }
 
     private List<Genre> GetPredefinedGenres()
     {
         return new List<Genre>
         {
-            new Genre { Id = new Guid(), Name = "Fantasy" },
-            new Genre { Id = new Guid(), Name = "Science Fiction" },
-            new Genre { Id = new Guid(), Name = "Mystery" },
-            new Genre { Id = new Guid(), Name = "Romance" },
-            new Genre { Id = new Guid(), Name = "Horror" }
+            new Genre { Id = Guid.NewGuid(), Name = "Fantasy" },
+            new Genre { Id = Guid.NewGuid(), Name = "Science Fiction" },
+            new Genre { Id = Guid.NewGuid(), Name = "Mystery" },
+            new Genre { Id = Guid.NewGuid(), Name = "Romance" },
+            new Genre { Id = Guid.NewGuid(), Name = "Horror" }
         };
     }
 }

@@ -1,9 +1,11 @@
 using System.Diagnostics;
 using LoreDrop.Services.Core.Contracts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LoreDrop.Controllers;
 
+[AllowAnonymous]
 public class HomeController : BaseController
 {
     private readonly ILogger<HomeController> _logger;

@@ -70,7 +70,7 @@ public class SeriesConfiguration : IEntityTypeConfiguration<Series>
                 Rating = 4.8,
                 ImageUrl = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
                 CreatedOn = new DateTime(2024, 7, 16),
-                GenreId = 1,
+                GenreId = Guid.NewGuid(),
                 IsDeleted = false
             },
             new Series
@@ -82,7 +82,7 @@ public class SeriesConfiguration : IEntityTypeConfiguration<Series>
                 Rating = 4.6,
                 ImageUrl = "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80",
                 CreatedOn = new DateTime(2023, 11, 2),
-                GenreId = 2,
+                GenreId = Guid.NewGuid(),
                 IsDeleted = false
             },
             new Series
@@ -94,7 +94,7 @@ public class SeriesConfiguration : IEntityTypeConfiguration<Series>
                 Rating = 4.9,
                 ImageUrl = "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=800&q=80",
                 CreatedOn = new DateTime(2022, 5, 20),
-                GenreId = 1,
+                GenreId = Guid.NewGuid(),
                 IsDeleted = false
             },
             new Series
@@ -106,7 +106,7 @@ public class SeriesConfiguration : IEntityTypeConfiguration<Series>
                 Rating = 4.7,
                 ImageUrl = "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80",
                 CreatedOn = new DateTime(2025, 1, 10),
-                GenreId = 3,
+                GenreId = Guid.NewGuid(),
                 IsDeleted = false
             }
         };

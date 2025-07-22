@@ -20,7 +20,7 @@ public class Series
     
     public virtual DateTime CreatedOn { get; set; }
     
-    public int GenreId { get; set; }
+    public Guid GenreId { get; set; }
     
     public virtual Genre Genre { get; set; } = null!;   
     public bool IsDeleted { get; set; }

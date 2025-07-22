@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoreDrop.Data.Migrations
 {
     [DbContext(typeof(LoreDropDbContext))]
-    [Migration("20250716112142_MakeingTheDbAgain")]
-    partial class MakeingTheDbAgain
+    [Migration("20250722103321_FixingTheDb")]
+    partial class FixingTheDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,16 +27,14 @@ namespace LoreDrop.Data.Migrations
 
             modelBuilder.Entity("LoreDrop.Data.Models.Comments", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 16, 11, 21, 42, 117, DateTimeKind.Utc).AddTicks(3240));
+                        .HasDefaultValue(new DateTime(2025, 7, 22, 10, 33, 21, 533, DateTimeKind.Utc).AddTicks(5690));
 
                     b.Property<Guid>("SeriesId")
                         .HasColumnType("uniqueidentifier");
@@ -61,11 +59,9 @@ namespace LoreDrop.Data.Migrations
 
             modelBuilder.Entity("LoreDrop.Data.Models.Genre", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -91,15 +87,15 @@ namespace LoreDrop.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2025, 7, 16, 11, 21, 42, 117, DateTimeKind.Utc).AddTicks(5880));
+                        .HasDefaultValue(new DateTime(2025, 7, 22, 10, 33, 21, 533, DateTimeKind.Utc).AddTicks(7670));
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(10000)
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("GenreId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("GenreId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
@@ -112,8 +108,8 @@ namespace LoreDrop.Data.Migrations
                     b.Property<double?>("Rating")
                         .HasColumnType("float");
 
-                    b.Property<int?>("SeriesStateId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SeriesStateId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Tittle")
                         .IsRequired()
@@ -131,11 +127,9 @@ namespace LoreDrop.Data.Migrations
 
             modelBuilder.Entity("LoreDrop.Data.Models.SeriesRating", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("Rating")
                         .HasColumnType("float");
@@ -156,11 +150,9 @@ namespace LoreDrop.Data.Migrations
 
             modelBuilder.Entity("LoreDrop.Data.Models.SeriesState", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -195,8 +187,8 @@ namespace LoreDrop.Data.Migrations
                     b.Property<Guid>("SeriesId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("SeriesStateId")
-                        .HasColumnType("int");
+                    b.Property<Guid>("SeriesStateId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserId", "SeriesId");
 
@@ -475,7 +467,7 @@ namespace LoreDrop.Data.Migrations
             modelBuilder.Entity("LoreDrop.Data.Models.UserWatchList", b =>
                 {
                     b.HasOne("LoreDrop.Data.Models.Series", "Series")
-                        .WithMany("UserSaved")
+                        .WithMany("UserWathList")
                         .HasForeignKey("SeriesId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -563,7 +555,7 @@ namespace LoreDrop.Data.Migrations
 
                     b.Navigation("UserFavorites");
 
-                    b.Navigation("UserSaved");
+                    b.Navigation("UserWathList");
                 });
 
             modelBuilder.Entity("LoreDrop.Data.Models.SeriesState", b =>

@@ -24,9 +24,9 @@ public class SeriesStateConfiguration : IEntityTypeConfiguration<SeriesState>
     {
         return new List<SeriesState>
         {
-            new SeriesState { Id = new Guid(), Name = "Ongoing" },
-            new SeriesState { Id = new Guid(), Name = "Completed" },
-            new SeriesState { Id = new Guid(), Name = "Cancelled" }
+            new SeriesState { Id = Guid.NewGuid(), Name = "Ongoing" },
+            new SeriesState { Id = Guid.NewGuid(), Name = "Completed" },
+            new SeriesState { Id = Guid.NewGuid(), Name = "Cancelled" }
         };
     }
 }
