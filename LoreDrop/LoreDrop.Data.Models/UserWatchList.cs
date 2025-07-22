@@ -12,7 +12,7 @@ public class UserWatchList
     
     public virtual Series Series { get; set; } = null!;
     
-    public int SeriesStateId { get; set; }
+    public Guid SeriesStateId { get; set; }
     
     public virtual SeriesState SeriesState { get; set; } = null!;
 

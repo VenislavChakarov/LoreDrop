@@ -4,7 +4,7 @@ namespace LoreDrop.Data.Models;
 
 public class Comments
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
     
     public Guid SeriesId { get; set; }
     

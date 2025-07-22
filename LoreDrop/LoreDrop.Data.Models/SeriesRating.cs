@@ -4,7 +4,7 @@ namespace LoreDrop.Data.Models
 {
     public class SeriesRating
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Guid SeriesId { get; set; }
         public Series Series { get; set; } = null!;
         public string UserId { get; set; } = null!;

@@ -76,7 +76,7 @@ public class WatchListService : IWatchListService
         await _context.SaveChangesAsync();
     }
 
-    public async Task ChageSateAsync(string seriesId, string userId, int stateId)
+    public async Task ChageSateAsync(string seriesId, string userId, Guid stateId)
     {
         if (!Guid.TryParse(seriesId, out var seriesGuid))
         {

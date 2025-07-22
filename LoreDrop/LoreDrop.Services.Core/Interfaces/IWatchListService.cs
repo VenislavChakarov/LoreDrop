@@ -13,5 +13,5 @@ public interface IWatchListService
 
     Task AddToWatchListAsync(string userId, string seriesId);
 
-    Task ChageSateAsync(string seriesId, string userId, int stateId);
+    Task ChageSateAsync(string seriesId, string userId, Guid stateId);
 }

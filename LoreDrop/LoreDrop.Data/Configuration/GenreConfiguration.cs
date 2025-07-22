@@ -25,11 +25,11 @@ public class GenreConfiguration : IEntityTypeConfiguration<Genre>
     {
         return new List<Genre>
         {
-            new Genre { Id = 1, Name = "Fantasy" },
-            new Genre { Id = 2, Name = "Science Fiction" },
-            new Genre { Id = 3, Name = "Mystery" },
-            new Genre { Id = 4, Name = "Romance" },
-            new Genre { Id = 5, Name = "Horror" }
+            new Genre { Id = new Guid(), Name = "Fantasy" },
+            new Genre { Id = new Guid(), Name = "Science Fiction" },
+            new Genre { Id = new Guid(), Name = "Mystery" },
+            new Genre { Id = new Guid(), Name = "Romance" },
+            new Genre { Id = new Guid(), Name = "Horror" }
         };
     }
 }

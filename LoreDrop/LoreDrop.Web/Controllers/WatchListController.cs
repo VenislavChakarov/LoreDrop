@@ -53,7 +53,7 @@ public class WatchListController : BaseController
     }
     
     [HttpPost]
-    public async Task<IActionResult> ChangeState(string seriesId, int stateId)
+    public async Task<IActionResult> ChangeState(string seriesId, Guid stateId)
     {
         try
         {
