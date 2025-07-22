@@ -1,5 +1,6 @@
 using LoreDrop.Data;
 using LoreDrop.Data.Models;
+using LoreDrop.Data.Repository;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Favorites;
 using Microsoft.EntityFrameworkCore;
@@ -8,15 +9,15 @@ namespace LoreDrop.Services.Core;
 
 public class FavoriteService : IFavoriteService
 {
-    private readonly LoreDropDbContext _context;
-    public FavoriteService(LoreDropDbContext context)
+    private readonly UserFavoriteRepository favRepository;
+    public FavoriteService(UserFavoriteRepository context)
     {
-        _context = context;
+        favRepository = context;
     }
     
     public async  Task<IEnumerable<FavoriteSereisViewModel>> GetUserFavoritesAsync(string userId)
     {
-        var favorites = await _context.UserFavorites
+        var favorites = await favRepository.GetAllAttached()
             .Where(us => us.UserId == userId)
             .Select(us => new FavoriteSereisViewModel
             {
@@ -34,7 +35,7 @@ public class FavoriteService : IFavoriteService
 
     public async Task<bool> IsSeriesInFavoritesAsync(string userId, string seriesId)
     {
-        return await _context.UserFavorites
+        return await favRepository.GetAllAttached()
             .AnyAsync(us => us.UserId == userId && us.SeriesId.ToString() == seriesId);
     }
 
@@ -46,19 +47,18 @@ public class FavoriteService : IFavoriteService
             SeriesId = Guid.Parse(seriesId)
         };
 
-        await _context.UserFavorites.AddAsync(userFavorite);
-        await _context.SaveChangesAsync();
+        await favRepository.AddAsync(userFavorite);
     }
 
     public async Task RemoveFromFavoritesAsync (string userId, string seriesId)
     {
-        var userFavorite = _context.UserFavorites
+        var userFavorite = favRepository
             .FirstOrDefaultAsync(us => us.UserId == userId && us.SeriesId.ToString() == seriesId);
 
         if (userFavorite != null)
         {
-            _context.UserFavorites.Remove(userFavorite.Result);
-            await _context.SaveChangesAsync();
+            await favRepository.HardDeleteAsync(userFavorite.Result);
+            await favRepository.SaveChangesAsync();
         }
     }
 }

@@ -1,4 +1,5 @@
 using LoreDrop.Data;
+using LoreDrop.Data.Repository;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.EntityFrameworkCore;
@@ -7,17 +8,16 @@ namespace LoreDrop.Services.Core;
 
 public class GenreService : IGenreService
 {
-    private readonly LoreDropDbContext _context;
+    private readonly GenreRepository genreRepository;
     
-    public GenreService(LoreDropDbContext context)
+    public GenreService(GenreRepository context)
     {
-        _context = context;
+        genreRepository = context;
     }
     
     public async Task<IEnumerable<AddSeriesGenreDropDownMenu>> GetAllGenresAsync()
     {
-        var gernesDropDownMenu = await _context
-            .Genres
+        var gernesDropDownMenu = await genreRepository.GetAllAttached()
             .AsNoTracking()
             .Select(g => new AddSeriesGenreDropDownMenu
             {

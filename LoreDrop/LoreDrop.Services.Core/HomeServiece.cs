@@ -1,4 +1,5 @@
 using LoreDrop.Data;
+using LoreDrop.Data.Repository;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Home;
 using static LoreDrop.GCommon.ValidationConstants.Series;
@@ -8,16 +9,16 @@ namespace LoreDrop.Services.Core;
 
 public class HomeServiece : IHomeService
 {
-    private readonly LoreDropDbContext _context;
+    private readonly SeriesRepsitory seriesRepsitory;
 
-    public HomeServiece(LoreDropDbContext context)
+    public HomeServiece(SeriesRepsitory context)
     {
-        _context = context;
+        seriesRepsitory = context;
     }
 
     public async Task<IEnumerable<TopRatedSeries>> GetTopRatedSeriesAsync()
     {
-        var top3 = await _context.Series
+        var top3 = await seriesRepsitory.GetAllAttached()
             .Include(s => s.Genre)
             .Include(s => s.Ratings)
             .OrderByDescending(s => s.Ratings.Any() ? s.Ratings.Average(r => r.Rating) : 0)

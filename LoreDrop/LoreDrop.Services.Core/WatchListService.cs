@@ -1,5 +1,6 @@
 using LoreDrop.Data;
 using LoreDrop.Data.Models;
+using LoreDrop.Data.Repository;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.WatchList;
 using Microsoft.EntityFrameworkCore;
@@ -8,16 +9,18 @@ namespace LoreDrop.Services.Core;
 
 public class WatchListService : IWatchListService
 {
-    private readonly LoreDropDbContext _context;
+    private readonly UserWatchListRepository watchListRepository;
+    private readonly SeriesStateRepository stateRepository;
     
-    public WatchListService(LoreDropDbContext context)
+    public WatchListService(UserWatchListRepository context, SeriesStateRepository stateRepository)
     {
-        _context = context;
+        watchListRepository = context;
+        this.stateRepository = stateRepository;
     }
     
     public async  Task<IEnumerable<WatchListViewModel>> GetAllAsync(string userId)
     {
-        var states = await _context.SeriesStates
+        var states = await stateRepository.GetAllAttached()
             .Select(s => new AddSeriesStateDropDownMenu
             {
                 Id = s.Id,
@@ -25,8 +28,7 @@ public class WatchListService : IWatchListService
             })
             .ToListAsync();
     
-        var watchList = await _context
-            .UserWatchLists
+        var watchList = await watchListRepository.GetAllAttached()
             .Where(w => w.UserId == userId)
             .Select(us => new WatchListViewModel
             {
@@ -43,7 +45,7 @@ public class WatchListService : IWatchListService
 
     public Task<bool> IsSeriesInWatchListAsync(string userId, string seriesId)
     {
-        return _context.UserWatchLists
+        return watchListRepository.GetAllAttached()
             .AnyAsync(us => us.UserId == userId && us.SeriesId.ToString() == seriesId);
     }
 
@@ -54,7 +56,7 @@ public class WatchListService : IWatchListService
             throw new ArgumentException("Invalid series", nameof(seriesId));
         }
 
-        var state = await  _context.UserWatchLists
+        var state = await watchListRepository.GetAllAttached()
             .Where(us => us.UserId == userId && us.SeriesId == seriesGuid)
             .Select(us => us.SeriesState)
             .FirstOrDefaultAsync();
@@ -68,12 +70,11 @@ public class WatchListService : IWatchListService
         {
             UserId = userId,
             SeriesId = Guid.Parse(seriesId),
-            SeriesState = await _context.SeriesStates
+            SeriesState = await stateRepository
                 .FirstOrDefaultAsync(s => s.Name == "Ongoing") // Default state when adding to watchlist
         };
         
-        await _context.UserWatchLists.AddAsync(UserWatchList);
-        await _context.SaveChangesAsync();
+        await watchListRepository.AddAsync(UserWatchList);
     }
 
     public async Task ChageSateAsync(string seriesId, string userId, Guid stateId)
@@ -83,7 +84,7 @@ public class WatchListService : IWatchListService
             throw new ArgumentException("Invalid series", nameof(seriesId));
         }
         
-        var entry = await _context.UserWatchLists
+        var entry = await watchListRepository
             .FirstOrDefaultAsync(w =>
                 w.UserId == userId &&
                 w.SeriesId == seriesGuid);
@@ -93,13 +94,14 @@ public class WatchListService : IWatchListService
             throw new InvalidOperationException("Watchlist entry not found.");
         }
         
-        var stateExists = await _context.SeriesStates.AnyAsync(s => s.Id == stateId);
+        var stateExists = await stateRepository.GetAllAttached()
+            .AnyAsync(s => s.Id == stateId);
         if (!stateExists)
         {
             throw new ArgumentException("Invalid state", nameof(stateId));
         }
         
         entry.SeriesStateId = stateId;
-        await _context.SaveChangesAsync();
+        await watchListRepository.SaveChangesAsync();
     }
 }

@@ -1,4 +1,7 @@
 using LoreDrop.Data;
+using LoreDrop.Data.Models;
+using LoreDrop.Data.Repository;
+using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core;
 using LoreDrop.Services.Core.Contracts;
 using Microsoft.AspNetCore.Identity;
@@ -40,6 +43,14 @@ namespace LoreDrop
             builder.Services.AddScoped<ICommentService, CommentService>();
             builder.Services.AddScoped<IFavoriteService, FavoriteService>();
             builder.Services.AddScoped<IWatchListService, WatchListService>();
+            
+            builder.Services.AddScoped<SeriesRepsitory>();
+            builder.Services.AddScoped<GenreRepository>();
+            builder.Services.AddScoped<CommentsRepository>();
+            builder.Services.AddScoped<UserFavoriteRepository>();
+            builder.Services.AddScoped<UserWatchListRepository>();
+            builder.Services.AddScoped<SeriesRatingRepository>();
+            builder.Services.AddScoped<SeriesStateRepository>();
 
             var app = builder.Build();
 

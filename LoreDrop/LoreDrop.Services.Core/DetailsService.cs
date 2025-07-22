@@ -1,5 +1,7 @@
 using LoreDrop.Data;
 using LoreDrop.Data.Models;
+using LoreDrop.Data.Repository;
+using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.EntityFrameworkCore;
@@ -8,22 +10,27 @@ namespace LoreDrop.Services.Core;
 
 public class DetailsService : IDetailsService
 {
-    private readonly LoreDropDbContext _context;
+    private readonly SeriesRepsitory seriesRepsitory;
+    private readonly SeriesRatingRepository ratingRepository;
     private readonly IFavoriteService _favoritesService;
-   private readonly IWatchListService watchListService;
+    private readonly IWatchListService watchListService;
     
-    public DetailsService(LoreDropDbContext context, IFavoriteService favoritesService, IWatchListService watchListService )
+    public DetailsService(SeriesRepsitory context,
+        IFavoriteService favoritesService,
+        IWatchListService watchListService,
+        SeriesRatingRepository ratingRepository)
     {
         _favoritesService = favoritesService;
-        _context = context;
+        seriesRepsitory = context;
         this.watchListService = watchListService;
+        this.ratingRepository = ratingRepository;
     }
     
     public async Task<SeriesDetailesViewModel> GetSeriesDetailsAsync(Guid? id, string? userId)
     {
         if (id == null) return null;
 
-        var series = await _context.Series
+        var series = await seriesRepsitory.GetAllAttached()
             .Include(s => s.Genre)
             .Include(s => s.Ratings)
             .Include(s => s.Comments)
@@ -80,21 +87,24 @@ public class DetailsService : IDetailsService
         if (rating < 1 || rating > 5)
             throw new ArgumentOutOfRangeException(nameof(rating), "Rating must be between 1 and 5.");
 
-        var existing = await _context.SeriesRatings
+        var existing = await ratingRepository
             .FirstOrDefaultAsync(s => s.SeriesId == seriesId && s.UserId == userId);
+        
         if (existing != null)
         {
             existing.Rating = rating;
+            await ratingRepository.UpdateAsync(existing);
         }
         else
         {
-            _context.SeriesRatings.Add(new SeriesRating
+            var newRating = new SeriesRating
             {
                 SeriesId = seriesId,
                 UserId = userId,
                 Rating = rating,
-            });
+            };
+        
+            await ratingRepository.AddAsync(newRating);
         }
-        await _context.SaveChangesAsync();
     }
 }

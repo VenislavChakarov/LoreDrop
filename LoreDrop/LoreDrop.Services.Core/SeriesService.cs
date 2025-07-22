@@ -1,6 +1,7 @@
 using System.Globalization;
 using LoreDrop.Data;
 using LoreDrop.Data.Models;
+using LoreDrop.Data.Repository;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.EntityFrameworkCore;
@@ -10,16 +11,18 @@ namespace LoreDrop.Services.Core;
 
 public class SeriesService : ISeriesService
 {
-    private readonly LoreDropDbContext _context;
+    private readonly SeriesRepsitory seriesRepository;
+    private readonly GenreRepository genreRepository;
     
-public SeriesService(LoreDropDbContext context)
+public SeriesService(SeriesRepsitory context, GenreRepository genreRepository)
 {
-        this._context = context;
+        this.seriesRepository = context;
+        this.genreRepository = genreRepository;
     }
     
     public async Task<IEnumerable<AllSeriesIndexViewModel>> GetAllSeriesAsync()
     {
-        var series = await _context.Series
+        var series = await seriesRepository.GetAllAttached()
             .Include(s => s.Ratings)
             .AsNoTracking()
             .Select(s => new AllSeriesIndexViewModel
@@ -41,7 +44,7 @@ public SeriesService(LoreDropDbContext context)
     {
         bool optResult = false;
         
-        Genre? genre = await _context.Genres.FindAsync(model.GenreId);
+        Genre? genre = await genreRepository.GetByIdAsync(model.GenreId);
         
         bool IsPublishedOnValid = DateTime.TryParseExact(model.CreatedOn, DateFormat, CultureInfo.InvariantCulture, 
             DateTimeStyles.None, out DateTime createdOn);
@@ -58,10 +61,9 @@ public SeriesService(LoreDropDbContext context)
                 ImageUrl = model.ImageUrl,
             };
 
-            await _context.Series.AddAsync(series);
-            int result = await _context.SaveChangesAsync();
+            await seriesRepository.AddAsync(series);
             
-            optResult = result > 0;
+            optResult = true;
         }
         
         return optResult;
