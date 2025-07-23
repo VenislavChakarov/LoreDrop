@@ -4,13 +4,13 @@ using LoreDrop.Data.Repository;
 using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core;
 using LoreDrop.Services.Core.Contracts;
+using static LoreDrop.Web.Infrastructure.Extensions.ServiceCollectionExtensions; // Fixed typo
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace LoreDrop
 {
-
-
     public class Program
     {
         public static void Main(string[] args)
@@ -35,26 +35,15 @@ namespace LoreDrop
                 }).AddEntityFrameworkStores<LoreDropDbContext>()
                     .AddDefaultUI();
             builder.Services.AddControllersWithViews();
-
-            builder.Services.AddScoped<ISeriesService, SeriesService>();
-            builder.Services.AddScoped<IHomeService, HomeServiece>();
-            builder.Services.AddScoped<IGenreService, GenreService>();
-            builder.Services.AddScoped<IDetailsService, DetailsService>();
-            builder.Services.AddScoped<ICommentService, CommentService>();
-            builder.Services.AddScoped<IFavoriteService, FavoriteService>();
-            builder.Services.AddScoped<IWatchListService, WatchListService>();
             
-            builder.Services.AddScoped<SeriesRepsitory>();
-            builder.Services.AddScoped<GenreRepository>();
-            builder.Services.AddScoped<CommentsRepository>();
-            builder.Services.AddScoped<UserFavoriteRepository>();
-            builder.Services.AddScoped<UserWatchListRepository>();
-            builder.Services.AddScoped<SeriesRatingRepository>();
-            builder.Services.AddScoped<SeriesStateRepository>();
-
+           
+            builder.Services.AddUserDefinedServices(typeof(SeriesService).Assembly);
+            builder.Services.AddRepositories(typeof(ISeriesRepository).Assembly); 
+            
+            
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Rest of configuration...
             if (app.Environment.IsDevelopment())
             {
                 app.UseMigrationsEndPoint();
@@ -62,15 +51,12 @@ namespace LoreDrop
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication(); 
             app.UseAuthorization();
 

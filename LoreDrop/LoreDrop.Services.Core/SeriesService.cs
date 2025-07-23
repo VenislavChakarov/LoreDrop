@@ -2,6 +2,7 @@ using System.Globalization;
 using LoreDrop.Data;
 using LoreDrop.Data.Models;
 using LoreDrop.Data.Repository;
+using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.EntityFrameworkCore;
@@ -11,10 +12,10 @@ namespace LoreDrop.Services.Core;
 
 public class SeriesService : ISeriesService
 {
-    private readonly SeriesRepsitory seriesRepository;
-    private readonly GenreRepository genreRepository;
+    private readonly ISeriesRepository seriesRepository;
+    private readonly IGenreRepository genreRepository;
     
-public SeriesService(SeriesRepsitory context, GenreRepository genreRepository)
+public SeriesService(ISeriesRepository context, IGenreRepository genreRepository)
 {
         this.seriesRepository = context;
         this.genreRepository = genreRepository;

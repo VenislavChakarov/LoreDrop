@@ -1,6 +1,7 @@
 using LoreDrop.Data;
 using LoreDrop.Data.Models;
 using LoreDrop.Data.Repository;
+using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.AspNetCore.Identity;
@@ -10,10 +11,10 @@ namespace LoreDrop.Services.Core;
 
 public class CommentService : ICommentService
 {
-    private readonly CommentsRepository commentsRepository;
+    private readonly ICommentsRepository commentsRepository;
     private readonly UserManager<IdentityUser> _userManager;
 
-    public CommentService(CommentsRepository context, UserManager<IdentityUser> userManager)
+    public CommentService(ICommentsRepository context, UserManager<IdentityUser> userManager)
     {
         commentsRepository = context;
         _userManager = userManager;

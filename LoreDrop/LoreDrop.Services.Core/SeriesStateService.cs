@@ -1,5 +1,6 @@
 using LoreDrop.Data;
 using LoreDrop.Data.Repository;
+using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.WatchList;
 using Microsoft.EntityFrameworkCore;
@@ -8,9 +9,9 @@ namespace LoreDrop.Services.Core;
 
 public class SeriesStateService : ISeriesStateService
 {
-    private readonly SeriesStateRepository stateRepository;
+    private readonly ISeriesStateRepository stateRepository;
     
-public SeriesStateService(SeriesStateRepository context)
+public SeriesStateService(ISeriesStateRepository context)
     {
         stateRepository = context;
     }

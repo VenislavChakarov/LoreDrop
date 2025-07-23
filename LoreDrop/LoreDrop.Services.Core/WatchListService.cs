@@ -1,6 +1,7 @@
 using LoreDrop.Data;
 using LoreDrop.Data.Models;
 using LoreDrop.Data.Repository;
+using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.WatchList;
 using Microsoft.EntityFrameworkCore;
@@ -9,10 +10,10 @@ namespace LoreDrop.Services.Core;
 
 public class WatchListService : IWatchListService
 {
-    private readonly UserWatchListRepository watchListRepository;
-    private readonly SeriesStateRepository stateRepository;
+    private readonly IUserWatchListRepository watchListRepository;
+    private readonly ISeriesStateRepository stateRepository;
     
-    public WatchListService(UserWatchListRepository context, SeriesStateRepository stateRepository)
+    public WatchListService(IUserWatchListRepository context, ISeriesStateRepository stateRepository)
     {
         watchListRepository = context;
         this.stateRepository = stateRepository;

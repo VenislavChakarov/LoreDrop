@@ -2951,6 +2951,23 @@
           "bin/placeholder/LoreDrop.Services.Core.dll": {}
         }
       },
+      "LoreDrop.Web.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "LoreDrop.Data": "1.0.0",
+          "LoreDrop.Data.Models": "1.0.0",
+          "LoreDrop.GCommon": "1.0.0",
+          "LoreDrop.Services.Core": "1.0.0",
+          "LoreDrop.Web.ViewModels": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/LoreDrop.Web.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/LoreDrop.Web.Infrastructure.dll": {}
+        }
+      },
       "LoreDrop.Web.ViewModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
@@ -8132,6 +8149,11 @@
       "path": "../LoreDrop.Services.Core/LoreDrop.Services.Core.csproj",
       "msbuildProject": "../LoreDrop.Services.Core/LoreDrop.Services.Core.csproj"
     },
+    "LoreDrop.Web.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../LoreDrop.Web.Infrastructure/LoreDrop.Web.Infrastructure.csproj",
+      "msbuildProject": "../LoreDrop.Web.Infrastructure/LoreDrop.Web.Infrastructure.csproj"
+    },
     "LoreDrop.Web.ViewModels/1.0.0": {
       "type": "project",
       "path": "../LoreDrop.Web.ViewModels/LoreDrop.Web.ViewModels.csproj",
@@ -8142,6 +8164,7 @@
     "net8.0": [
       "LoreDrop.Data >= 1.0.0",
       "LoreDrop.Services.Core >= 1.0.0",
+      "LoreDrop.Web.Infrastructure >= 1.0.0",
       "LoreDrop.Web.ViewModels >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 8.0.17",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.17",
@@ -8186,6 +8209,9 @@
             },
             "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/LoreDrop.Services.Core.csproj": {
               "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Services.Core/LoreDrop.Services.Core.csproj"
+            },
+            "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.Infrastructure/LoreDrop.Web.Infrastructure.csproj": {
+              "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.Infrastructure/LoreDrop.Web.Infrastructure.csproj"
             },
             "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/LoreDrop.Web.ViewModels.csproj": {
               "projectPath": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web.ViewModels/LoreDrop.Web.ViewModels.csproj"

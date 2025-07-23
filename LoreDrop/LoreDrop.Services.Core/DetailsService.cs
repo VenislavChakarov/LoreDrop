@@ -10,18 +10,18 @@ namespace LoreDrop.Services.Core;
 
 public class DetailsService : IDetailsService
 {
-    private readonly SeriesRepsitory seriesRepsitory;
-    private readonly SeriesRatingRepository ratingRepository;
+    private readonly ISeriesRepository _seriesRepository;
+    private readonly ISeriesRatingRepository ratingRepository;
     private readonly IFavoriteService _favoritesService;
     private readonly IWatchListService watchListService;
     
-    public DetailsService(SeriesRepsitory context,
+    public DetailsService(ISeriesRepository context,
         IFavoriteService favoritesService,
         IWatchListService watchListService,
-        SeriesRatingRepository ratingRepository)
+        ISeriesRatingRepository ratingRepository)
     {
         _favoritesService = favoritesService;
-        seriesRepsitory = context;
+        _seriesRepository = context;
         this.watchListService = watchListService;
         this.ratingRepository = ratingRepository;
     }
@@ -30,7 +30,7 @@ public class DetailsService : IDetailsService
     {
         if (id == null) return null;
 
-        var series = await seriesRepsitory.GetAllAttached()
+        var series = await _seriesRepository.GetAllAttached()
             .Include(s => s.Genre)
             .Include(s => s.Ratings)
             .Include(s => s.Comments)

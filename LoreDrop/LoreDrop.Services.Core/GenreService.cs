@@ -1,5 +1,6 @@
 using LoreDrop.Data;
 using LoreDrop.Data.Repository;
+using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.EntityFrameworkCore;
@@ -8,9 +9,9 @@ namespace LoreDrop.Services.Core;
 
 public class GenreService : IGenreService
 {
-    private readonly GenreRepository genreRepository;
+    private readonly IGenreRepository genreRepository;
     
-    public GenreService(GenreRepository context)
+    public GenreService(IGenreRepository context)
     {
         genreRepository = context;
     }

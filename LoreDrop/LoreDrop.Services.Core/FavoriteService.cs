@@ -1,6 +1,7 @@
 using LoreDrop.Data;
 using LoreDrop.Data.Models;
 using LoreDrop.Data.Repository;
+using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Favorites;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +10,8 @@ namespace LoreDrop.Services.Core;
 
 public class FavoriteService : IFavoriteService
 {
-    private readonly UserFavoriteRepository favRepository;
-    public FavoriteService(UserFavoriteRepository context)
+    private readonly IUserFavoritesRepository favRepository;
+    public FavoriteService(IUserFavoritesRepository context)
     {
         favRepository = context;
     }

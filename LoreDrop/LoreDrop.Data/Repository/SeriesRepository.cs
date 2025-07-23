@@ -3,9 +3,9 @@ using LoreDrop.Data.Repository.Interfaces;
 
 namespace LoreDrop.Data.Repository;
 
-public class SeriesRepsitory : BaseRepository<Series, Guid>, ISeriesRepository
+public class SeriesRepository : BaseRepository<Series, Guid>, ISeriesRepository
 {
-    public SeriesRepsitory(LoreDropDbContext dbContext) 
+    public SeriesRepository(LoreDropDbContext dbContext) 
         : base(dbContext)
     {
         
