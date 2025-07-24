@@ -2,6 +2,7 @@ using System.Globalization;
 using LoreDrop.Data.Models;
 using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Admin.Interface;
+using LoreDrop.Services.Core.Contracts;
 using LoreDrop.Web.ViewModels.Admin.SeriesAdmin;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.EntityFrameworkCore;
@@ -13,11 +14,13 @@ public class SeriesAdminService : ISeriesAdminService
 {
     private readonly ISeriesRepository seriesRepository;
     private readonly IGenreRepository genreRepository;
+    private readonly IGenreService genreService;
     
-    public SeriesAdminService(ISeriesRepository context, IGenreRepository genreRepository)
+    public SeriesAdminService(ISeriesRepository context, IGenreRepository genreRepository, IGenreService genreService)
     {
         this.seriesRepository = context;
         this.genreRepository = genreRepository;
+        this.genreService = genreService;
     }
     
     public async Task<IEnumerable<AllSeriesIndexViewModel>> GetAllSeriesAsync()
@@ -56,7 +59,7 @@ public class SeriesAdminService : ISeriesAdminService
                 Tittle = model.Title,
                 Description = model.Description,
                 Author = model.Author,
-                GenreId = model.GenreId,
+                GenreId = genre.Id,
                 CreatedOn = createdOn,
                 ImageUrl = model.ImageUrl,
             };
@@ -66,6 +69,106 @@ public class SeriesAdminService : ISeriesAdminService
             optResult = true;
         }
         
+        return optResult;
+    }
+
+    public async Task<EditSerieViewModel?> GetSeriesForEditAsync(Guid seriesId, string? userId)
+    {
+        var series = await seriesRepository.GetAllAttached()
+            .Select(s => new EditSerieViewModel
+            {
+                Id = s.Id.ToString(),
+                Title = s.Tittle,
+                ImageUrl = s.ImageUrl,
+                Description = s.Description,
+                Author = s.Author,
+                CreatedOn = s.CreatedOn.ToString("yyyy-MM-dd"),
+                GenreId = s.GenreId
+            })
+            .FirstOrDefaultAsync();
+
+        if (series == null)
+        {
+            return null;
+        }
+
+        // Load genres
+        series.Genres = await this.genreService.GetAllGenresAsync();
+
+        return series;
+    }
+
+    public async Task<bool> EditSeriesAsync(EditSerieViewModel model, string? userId)
+    {
+        bool optResult = false;
+        
+        Genre? genre = await genreRepository.GetByIdAsync(model.GenreId);
+
+        if (model != null && model.Id != null)
+        {
+            var series = await seriesRepository.GetByIdAsync(Guid.Parse(model.Id));
+
+            if (series != null)
+            {
+                bool IsPublishedOnValid = DateTime.TryParseExact(model.CreatedOn, DateFormat, CultureInfo.InvariantCulture, 
+                    DateTimeStyles.None, out DateTime createdOn);
+
+                if (IsPublishedOnValid)
+                {
+                    series.Tittle = model.Title;
+                    series.Description = model.Description;
+                    series.Author = model.Author;
+                    series.GenreId = genre.Id;
+                    series.CreatedOn = createdOn;
+                    series.ImageUrl = model.ImageUrl;
+
+                    await seriesRepository.UpdateAsync(series);
+                    
+                    optResult = true;
+                }
+            }
+        }
+
+        return optResult;
+    }
+
+    public async Task<DeleteSeriesViewModel> GetSeriesForDeleteAsync(Guid seriesId, string? userId)
+    {
+        DeleteSeriesViewModel deleteModel = new DeleteSeriesViewModel();
+
+        if (seriesId != null)
+        {
+            var deleteSeriesModel = await seriesRepository.GetByIdAsync(seriesId);
+
+            if (deleteSeriesModel != null)
+            {
+                deleteModel.Id = deleteSeriesModel.Id.ToString();
+                deleteModel.Tittle = deleteSeriesModel.Tittle;
+                deleteModel.Author = deleteSeriesModel.Author;
+            }
+        }
+
+        return deleteModel;
+    }
+
+    public async Task<bool> SoftDeleteSeriesAsync(DeleteSeriesViewModel model, string userId)
+    {
+        bool optResult = false;
+
+        if (model != null && model.Id != null)
+        {
+            var series = await seriesRepository.GetByIdAsync(Guid.Parse(model.Id));
+
+            if (series != null )
+            {
+                series.IsDeleted = true;
+
+                await seriesRepository.UpdateAsync(series);
+                
+                optResult = true;
+            }
+        }
+
         return optResult;
     }
 }

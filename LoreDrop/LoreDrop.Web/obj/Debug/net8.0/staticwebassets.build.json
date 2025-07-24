@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "1rJbUynrww4dH6I9Xa8/PHOWqZokyIENsPwYg61So5Y=",
+  "Hash": "UWSdVzU4T4jHCqr/UgL/2+o89mxIsMyc2FWwmnHe4XE=",
   "Source": "LoreDrop.Web",
   "BasePath": "_content/LoreDrop.Web",
   "Mode": "Default",
@@ -1212,6 +1212,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/dashboard.css"
+    },
+    {
+      "Identity": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/delete-page.css",
+      "SourceId": "LoreDrop.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/",
+      "BasePath": "_content/LoreDrop.Web",
+      "RelativePath": "css/delete-page.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/delete-page.css"
     },
     {
       "Identity": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/favorites.css",

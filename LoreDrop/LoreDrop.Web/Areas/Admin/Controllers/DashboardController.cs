@@ -92,4 +92,117 @@ public class DashboardController : BaseAdminController
             return View(inputModel);
         }
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> Edit(Guid seriesId)
+        {
+            try
+            {
+                var model = await this.seriesAdminService.GetSeriesForEditAsync(seriesId, this.GetUserId());
+                if (model == null)
+                {
+                    return NotFound();
+                }
+                return View(model);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new ArgumentException("An error occurred while retrieving the series for editing.", e);
+            }
+        }
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(EditSerieViewModel model)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+            {
+                // Redisplay the form with validation errors
+                return View(model);
+            }
+
+            // Pass in the current user’s ID if you track LastModifiedBy, etc.
+            string userId = User.FindFirst("sub")?.Value ?? User.Identity.Name;
+            var success = await this.seriesAdminService.EditSeriesAsync(model, userId);
+
+            if (!success)
+            {
+                // handle failure (e.g. show a generic error)
+                ModelState.AddModelError("", "Unable to save changes. Please try again.");
+                return View(model);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return View(model); 
+        }
+        
+    }
+
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(Guid seriesId)
+    {
+        try
+        {
+            var id = seriesId;
+            if (id == Guid.Empty)
+            {
+                return NotFound();
+            }
+
+            {
+                var model = await this.seriesAdminService.GetSeriesForDeleteAsync(seriesId, this.GetUserId());
+                ;
+                if (model == null)
+                {
+                    return NotFound();
+                }
+
+                return View(model); // Returns Views/Dashboard/Delete.cshtml
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return RedirectToAction(nameof(Index));
+        }
+        
+    }
+    
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Delete(DeleteSeriesViewModel model)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            string userId = User.FindFirst("sub")?.Value ?? User.Identity.Name;
+            var success = await this.seriesAdminService.SoftDeleteSeriesAsync(model, userId);
+
+            if (!success)
+            {
+                ModelState.AddModelError("", "Unable to delete series. Please try again.");
+                return View(model);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception e)
+        {
+            ModelState.AddModelError("", "An error occurred while deleting the series. Please try again.");
+            return View(model); 
+        }
+        
+    }
 }

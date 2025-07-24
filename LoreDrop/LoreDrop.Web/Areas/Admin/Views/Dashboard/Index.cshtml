@@ -25,8 +25,6 @@
         @foreach (var series in Model)
         {
             <div class="series-card">
-
-                <!-- Left Side: Image + Info -->
                 <div class="series-left">
                     <img src="@series.ImageUrl" alt="@series.Title" class="series-image" />
                     <div class="series-info">
@@ -35,21 +33,25 @@
                     </div>
                 </div>
 
-                <!-- Right Side: Actions -->
                 <div class="series-actions">
-                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Edit" asp-route-id="@series.Id"
+                    <!-- EDIT -->
+                    <a asp-area="Admin"
+                       asp-controller="Dashboard"
+                       asp-action="Edit"
+                       asp-route-seriesId="@series.Id"
                        class="edit-button">
                         <i class="fa fa-edit"></i> Edit
                     </a>
 
-                    <form asp-area="Admin" asp-controller="Dashboard" asp-action="Delete" asp-route-id="@series.Id"
-                          method="post" onsubmit="return confirm('Delete this series?');">
-                        <button type="submit" class="delete-button">
-                            <i class="fa fa-trash"></i> Delete
-                        </button>
-                    </form>
+                    <!-- DELETE -->
+                    <a asp-area="Admin"
+                       asp-controller="Dashboard"
+                       asp-action="Delete"
+                       asp-route-seriesId="@series.Id"
+                       class="delete-button">
+                        <i class="fa fa-trash"></i> Delete
+                    </a>
                 </div>
-
             </div>
         }
     </div>

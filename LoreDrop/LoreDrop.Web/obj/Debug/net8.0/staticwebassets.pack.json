@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets/css/dashboard.css"
     },
     {
+      "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/delete-page.css",
+      "PackagePath": "staticwebassets/css/delete-page.css"
+    },
+    {
       "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/favorites.css",
       "PackagePath": "staticwebassets/css/favorites.css"
     },

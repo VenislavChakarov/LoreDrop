@@ -1,7 +1,7 @@
-@model LoreDrop.Web.ViewModels.Admin.SeriesAdmin.CreateSeriesFormViewModel
+@model LoreDrop.Web.ViewModels.Admin.SeriesAdmin.EditSerieViewModel
 
 @{
-    ViewData["Title"] = "Create Series";
+    ViewData["Title"] = "Edit Series";
     Layout = "_Layout";
 }
 
@@ -11,10 +11,12 @@
 
 <div class="series-form-page">
     <div class="series-form-card">
-        <h2>Create New Series</h2>
-        <form asp-action="Create" method="post">
+        <h2>Edit Series</h2>
+        <form asp-action="Edit" method="post">
             @Html.AntiForgeryToken()
-      
+            
+            <input asp-for="Id" type="hidden" />
+            
             <div class="form-group">
                 <label asp-for="Title"></label>
                 <input asp-for="Title" class="form-input" />
@@ -56,7 +58,7 @@
       
             <div class="form-actions">
                 <a asp-action="Index" class="btn-cancel">Cancel</a>
-                <button type="submit" class="btn-submit">Create Series</button>
+                <button type="submit" class="btn-submit">Save Changes</button>
             </div>
         </form>
     </div>

@@ -8,4 +8,10 @@ public interface ISeriesAdminService
 {
     Task<IEnumerable<AllSeriesIndexViewModel>> GetAllSeriesAsync();
     Task<bool> CreateSeriesAsync(CreateSeriesFormViewModel model, string? userId);
+    
+    Task<EditSerieViewModel?> GetSeriesForEditAsync(Guid seriesId, string? userId);
+    Task<bool> EditSeriesAsync(EditSerieViewModel model, string? userId);
+
+    Task<DeleteSeriesViewModel> GetSeriesForDeleteAsync(Guid seriesId, string? userId);
+    Task<bool> SoftDeleteSeriesAsync(DeleteSeriesViewModel model, string userId);
 }

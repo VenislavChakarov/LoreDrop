@@ -1,0 +1,109 @@
+/* Delete Confirmation Page - Redesigned */
+.delete-container {
+    max-width: 420px;
+    margin: 6rem auto;
+    padding: 0 1rem;
+}
+
+.delete-card {
+    background: var(--white);
+    border-radius: 1rem;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    border: 1px solid var(--light-gray);
+    text-align: center;
+}
+
+.delete-card-header {
+    background: var(--danger-red);
+    color: var(--white);
+    padding: 1.5rem;
+}
+
+.delete-card-header h3 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.delete-card-body {
+    padding: 2rem 1.5rem;
+}
+
+.delete-card-body p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+.delete-card-body h4 {
+    margin: 0 0 0.5rem;
+    color: var(--danger-red);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.delete-card-body h5 {
+    margin-bottom: 1.75rem;
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+.delete-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-confirm-delete,
+.btn-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-confirm-delete {
+    background: var(--danger-red);
+    color: var(--white);
+}
+
+.btn-confirm-delete:hover {
+    background: #b02a37;
+    transform: translateY(-2px);
+}
+
+.btn-cancel {
+    background: var(--green-main);
+    color: var(--white);
+}
+
+.btn-cancel:hover {
+    background: var(--green-hover);
+    transform: translateY(-2px);
+}
+
+.btn-confirm-delete i,
+.btn-cancel i {
+    font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .delete-buttons {
+        flex-direction: column;
+    }
+
+    .btn-confirm-delete,
+    .btn-cancel {
+        width: 100%;
+    }
+}
