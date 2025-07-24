@@ -2,7 +2,8 @@ using LoreDrop.Data;
 using LoreDrop.Data.Repository;
 using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Contracts;
-using LoreDrop.Web.ViewModels.Series;
+using LoreDrop.Web.ViewModels.Admin.SeriesAdmin;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace LoreDrop.Services.Core;

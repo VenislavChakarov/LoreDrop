@@ -1,4 +1,4 @@
-namespace LoreDrop.Web.ViewModels.Series;
+namespace LoreDrop.Web.ViewModels.Admin.SeriesAdmin;
 
 public class AddSeriesGenreDropDownMenu
 {

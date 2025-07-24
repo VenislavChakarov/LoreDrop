@@ -1,4 +1,5 @@
-namespace LoreDrop.Web.ViewModels.Series;
+
+namespace LoreDrop.Web.ViewModels.Admin.SeriesAdmin;
 
 using System.ComponentModel.DataAnnotations;
 using static ViewModels.ValidationMessage.Series;

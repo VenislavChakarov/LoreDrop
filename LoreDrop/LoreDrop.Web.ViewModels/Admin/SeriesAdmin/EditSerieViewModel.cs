@@ -1,6 +1,6 @@
 using LoreDrop.Web.ViewModels.Series;
 
-namespace LoreDrop.Web.ViewModels.Admin;
+namespace LoreDrop.Web.ViewModels.Admin.SeriesAdmin;
 
 public class EditSerieViewModel : CreateSeriesFormViewModel
 {

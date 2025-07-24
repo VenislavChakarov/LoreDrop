@@ -12,8 +12,4 @@
       <ProjectReference Include="..\LoreDrop.GCommon\LoreDrop.GCommon.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Admin\SeriesAdmin\" />
-    </ItemGroup>
-
 </Project>

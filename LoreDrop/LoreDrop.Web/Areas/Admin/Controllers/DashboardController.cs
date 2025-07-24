@@ -1,7 +1,6 @@
 using LoreDrop.Services.Core.Admin.Interface;
 using LoreDrop.Services.Core.Contracts;
-using LoreDrop.Web.ViewModels.Admin;
-using LoreDrop.Web.ViewModels.Series;
+using LoreDrop.Web.ViewModels.Admin.SeriesAdmin;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;

@@ -1,4 +1,4 @@
-namespace LoreDrop.Web.ViewModels.Admin;
+namespace LoreDrop.Web.ViewModels.Admin.SeriesAdmin;
 
 public class DeleteSeriesViewModel
 {

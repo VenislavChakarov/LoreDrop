@@ -2,6 +2,7 @@ using System.Globalization;
 using LoreDrop.Data.Models;
 using LoreDrop.Data.Repository.Interfaces;
 using LoreDrop.Services.Core.Admin.Interface;
+using LoreDrop.Web.ViewModels.Admin.SeriesAdmin;
 using LoreDrop.Web.ViewModels.Series;
 using Microsoft.EntityFrameworkCore;
 using static LoreDrop.GCommon.ValidationConstants.Series;

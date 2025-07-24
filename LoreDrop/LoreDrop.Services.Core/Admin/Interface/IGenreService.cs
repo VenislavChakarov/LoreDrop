@@ -1,4 +1,4 @@
-using LoreDrop.Web.ViewModels.Series;
+using LoreDrop.Web.ViewModels.Admin.SeriesAdmin;
 
 namespace LoreDrop.Services.Core.Contracts;
 
