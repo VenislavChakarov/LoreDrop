@@ -1,0 +1,167 @@
+:root {
+    /* bring in your core palette */
+    --green-main:    #22cc22;
+    --green-hover:   #1bb21b;
+    --green-deep:    #138613;
+    --green-mid:     #22aa22;
+    --green-dark:    #0f6f0f;
+
+    --white:         #ffffff;
+    --offwhite:      #fafafa;
+    --soft-offwhite: #e8fdf0;
+    --light-gray:    #ddd;
+    --mid-gray:      #666;
+    --dark-gray:     #555;
+    --text-dark:     #1a1a1a;
+    --text-light:    #333;
+
+    --star-gold:     #f5c518;
+    --danger-red:    #e63946;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1024px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    background: var(--offwhite);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-dark);
+}
+
+/* Header / New Series */
+.dashboard-header {
+    text-align: right;
+    margin-bottom: 2rem;
+}
+
+.create-button {
+    background-color: var(--green-main);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.create-button:hover {
+    background-color: var(--green-hover);
+    transform: translateY(-2px);
+}
+
+/* Series List */
+.series-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Series Card */
+.series-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.series-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* Left Side */
+.series-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.series-image {
+    width: 160px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.series-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.series-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--green-deep);
+}
+
+.series-author {
+    font-size: 0.9rem;
+    color: var(--mid-gray);
+    margin-top: 0.25rem;
+}
+
+/* Actions */
+.series-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.edit-button,
+.delete-button {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    color: var(--white);
+}
+
+.edit-button {
+    background: var(--green-deep);
+}
+
+.edit-button:hover {
+    background: var(--green-dark);
+    transform: translateY(-1px);
+}
+
+.delete-button {
+    background: var(--danger-red);
+}
+
+.delete-button:hover {
+    background: #b02a37;
+    transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .series-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .series-actions {
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .series-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+    }
+}

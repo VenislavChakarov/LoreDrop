@@ -98,15 +98,29 @@ public class DetailsController : BaseController
         }
     }
     
+    [Authorize]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Rate([FromBody] RateRequestViewModel req)
     {
-        if (req.Rating < 0.5 || req.Rating > 5 || (req.Rating * 2) % 1 != 0)
-            return BadRequest("Rating must be in half-star increments between 0.5 and 5.");
+        try
+        {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction(nameof(Index), "Home", new { returnUrl = Request.Path });
+            }
+        
+            if (req.Rating < 0.5 || req.Rating > 5 || (req.Rating * 2) % 1 != 0)
+                return BadRequest("Rating must be in half-star increments between 0.5 and 5.");
 
-        await detailsService.SetRatingAsync(req.SeriesId, req.Rating, GetUserId());
-        return Ok();
+            await detailsService.SetRatingAsync(req.SeriesId, req.Rating, GetUserId());
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500, "An error occurred while processing your request.");
+        }
     }
     
 }

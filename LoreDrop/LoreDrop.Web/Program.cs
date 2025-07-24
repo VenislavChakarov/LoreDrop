@@ -1,14 +1,11 @@
 using LoreDrop.Data;
-using LoreDrop.Data.Models;
-using LoreDrop.Data.Repository;
 using LoreDrop.Data.Repository.Interfaces;
+using LoreDrop.Data.Seeder;
+using LoreDrop.Data.Seeder.Interface;
 using LoreDrop.Services.Core;
-using LoreDrop.Services.Core.Contracts;
-using static LoreDrop.Web.Infrastructure.Extensions.ServiceCollectionExtensions; // Fixed typo
+using LoreDrop.Web.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-
 namespace LoreDrop
 {
     public class Program
@@ -16,11 +13,11 @@ namespace LoreDrop
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
+            
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ??
                                    throw new InvalidOperationException(
                                        "Connection string 'DefaultConnection' not found.");
+            
             builder.Services.AddDbContext<LoreDropDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -32,16 +29,23 @@ namespace LoreDrop
                     options.Password.RequireLowercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireUppercase = false;
-                }).AddEntityFrameworkStores<LoreDropDbContext>()
-                    .AddDefaultUI();
+                })
+                .AddRoles<IdentityRole>() // Added for role support
+                .AddEntityFrameworkStores<LoreDropDbContext>();
+            
             builder.Services.AddControllersWithViews();
             
-           
+            builder.Services.AddRazorPages();
+            
             builder.Services.AddUserDefinedServices(typeof(SeriesService).Assembly);
-            builder.Services.AddRepositories(typeof(ISeriesRepository).Assembly); 
+            builder.Services.AddRepositories(typeof(ISeriesRepository).Assembly);
+            
+            // Register Identity Seeder
+            builder.Services.AddTransient<IIdentitySeeder, IdentitySeeder>();
             
             
             var app = builder.Build();
+            
 
             // Rest of configuration...
             if (app.Environment.IsDevelopment())
@@ -54,15 +58,30 @@ namespace LoreDrop
                 app.UseHsts();
             }
 
+           
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseRouting();
-            app.UseAuthentication(); 
+
+            app.SeedDefaultIdentity();
+
+            app.UseAuthentication();
             app.UseAuthorization();
+            
+            
+
+            app.UserAdminRedirection();
+            
+            app.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+            
             app.MapRazorPages();
 
             app.Run();

@@ -5,8 +5,8 @@
       "PackagePath": "staticwebassets/LoreDrop.Web.bundle.scp.css"
     },
     {
-      "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/admin.css",
-      "PackagePath": "staticwebassets/css/admin.css"
+      "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/dashboard.css",
+      "PackagePath": "staticwebassets/css/dashboard.css"
     },
     {
       "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/favorites.css",
@@ -27,6 +27,10 @@
     {
       "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
+    },
+    {
+      "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/user-managment-view.css",
+      "PackagePath": "staticwebassets/css/user-managment-view.css"
     },
     {
       "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/css/watchlist.css",

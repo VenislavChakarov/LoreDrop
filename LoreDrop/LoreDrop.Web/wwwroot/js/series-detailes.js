@@ -45,13 +45,18 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             body: JSON.stringify({ seriesId: seriesId, rating: rating })
         })
-            .then(response => {
-                if (!response.ok) throw new Error("Rating failed");
-                currentRating = rating;
-                updateStars(rating);
-                animateStars();
-            })
-            .catch(error => console.error("Rating error:", error));
+        .then(response => {
+            if (response.status === 401) {
+                // User is not authenticated, redirect to login
+                window.location.href = '/Identity/Account/Login?ReturnUrl=' + encodeURIComponent(window.location.pathname);
+                return;
+            }
+            if (!response.ok) throw new Error("Rating failed");
+            currentRating = rating;
+            updateStars(rating);
+            animateStars();
+        })
+        .catch(error => console.error("Rating error:", error));
     }
 
     function updateStars(rating) {

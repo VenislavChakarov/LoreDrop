@@ -13,12 +13,10 @@ namespace LoreDrop.Services.Core;
 public class SeriesService : ISeriesService
 {
     private readonly ISeriesRepository seriesRepository;
-    private readonly IGenreRepository genreRepository;
     
-public SeriesService(ISeriesRepository context, IGenreRepository genreRepository)
-{
+    public SeriesService(ISeriesRepository context)
+    {
         this.seriesRepository = context;
-        this.genreRepository = genreRepository;
     }
     
     public async Task<IEnumerable<AllSeriesIndexViewModel>> GetAllSeriesAsync()
@@ -40,33 +38,5 @@ public SeriesService(ISeriesRepository context, IGenreRepository genreRepository
 
         return series;
     }
-
-    public async Task<bool> CreateSeriesAsync(CreateSeriesFormViewModel? model, string? userId)
-    {
-        bool optResult = false;
-        
-        Genre? genre = await genreRepository.GetByIdAsync(model.GenreId);
-        
-        bool IsPublishedOnValid = DateTime.TryParseExact(model.CreatedOn, DateFormat, CultureInfo.InvariantCulture, 
-            DateTimeStyles.None, out DateTime createdOn);
-        
-        if (genre != null && IsPublishedOnValid)
-        {
-            Series series = new Series
-            {
-                Tittle = model.Title,
-                Description = model.Description,
-                Author = model.Author,
-                GenreId = model.GenreId,
-                CreatedOn = createdOn,
-                ImageUrl = model.ImageUrl,
-            };
-
-            await seriesRepository.AddAsync(series);
-            
-            optResult = true;
-        }
-        
-        return optResult;
-    }
+    
 }

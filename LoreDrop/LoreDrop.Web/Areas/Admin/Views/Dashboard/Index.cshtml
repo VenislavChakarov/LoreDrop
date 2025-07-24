@@ -1,0 +1,57 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@model IEnumerable<LoreDrop.Web.ViewModels.Series.AllSeriesIndexViewModel>
+
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/dashboard.css" />
+
+<div class="dashboard-container">
+
+    <!-- Create Series Button -->
+    <div class="dashboard-header">
+        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Create" class="create-button">
+            <i class="fa fa-plus"></i> New Series
+        </a>
+    </div>
+
+    <!-- Series List -->
+    <div class="series-list">
+        @foreach (var series in Model)
+        {
+            <div class="series-card">
+
+                <!-- Left Side: Image + Info -->
+                <div class="series-left">
+                    <img src="@series.ImageUrl" alt="@series.Title" class="series-image" />
+                    <div class="series-info">
+                        <h3 class="series-title">@series.Title</h3>
+                        <p class="series-author">by @series.Author</p>
+                    </div>
+                </div>
+
+                <!-- Right Side: Actions -->
+                <div class="series-actions">
+                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Edit" asp-route-id="@series.Id"
+                       class="edit-button">
+                        <i class="fa fa-edit"></i> Edit
+                    </a>
+
+                    <form asp-area="Admin" asp-controller="Dashboard" asp-action="Delete" asp-route-id="@series.Id"
+                          method="post" onsubmit="return confirm('Delete this series?');">
+                        <button type="submit" class="delete-button">
+                            <i class="fa fa-trash"></i> Delete
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        }
+    </div>
+
+</div>

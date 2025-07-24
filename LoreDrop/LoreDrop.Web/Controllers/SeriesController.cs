@@ -14,12 +14,10 @@ namespace LoreDrop.Controllers
     {
 
         private readonly ISeriesService seriesService;
-        private readonly IGenreService genreService;
 
-        public SeriesController(ISeriesService seriesService, IGenreService genreService)
+        public SeriesController(ISeriesService seriesService)
         {
             this.seriesService = seriesService;
-            this.genreService = genreService;
         }
 
         [AllowAnonymous]
@@ -40,60 +38,7 @@ namespace LoreDrop.Controllers
                 Console.WriteLine(e);
                 return RedirectToAction(nameof(Index), "Home");
             }
-
-
         }
         
-
-        [HttpGet]
-        public async Task<IActionResult> Create()
-        {
-            try
-            {
-                CreateSeriesFormViewModel inputModel = new CreateSeriesFormViewModel()
-                {
-                    CreatedOn = DateTime.UtcNow.ToString(DateFormat),
-                    Genres = await this.genreService.GetAllGenresAsync()
-
-                };
-                return View(inputModel);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return RedirectToAction(nameof(Index));
-            }
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Create(CreateSeriesFormViewModel inputModel)
-        {
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    inputModel.Genres = await this.genreService.GetAllGenresAsync();
-                    return View(inputModel);
-                }
-
-                bool isCreated = await this.seriesService.CreateSeriesAsync(inputModel, this.GetUserId());
-
-                if (!isCreated)
-                {
-                    ModelState.AddModelError(string.Empty,
-                        "There was an error while creating the series. Please try again.");
-                    inputModel.Genres = await this.genreService.GetAllGenresAsync();
-                }
-                
-                return RedirectToAction(nameof(Index));
-                
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                inputModel.Genres = await this.genreService.GetAllGenresAsync();
-                return View(inputModel);
-            }
-        }
     }
 }

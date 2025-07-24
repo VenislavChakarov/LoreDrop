@@ -26,8 +26,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/Areas/Admin/Views/Dashboard/index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRGFzaGJvYXJkL2luZGV4LmNzaHRtbA==
+[/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/Areas/Admin/Views/Dashboard/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRGFzaGJvYXJkL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/Areas/Admin/Views/UserManagement/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlck1hbmFnZW1lbnQvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/Areas/Identity/Pages/Account/Login.cshtml]
