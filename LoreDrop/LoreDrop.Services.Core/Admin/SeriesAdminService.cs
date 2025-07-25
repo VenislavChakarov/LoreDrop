@@ -134,18 +134,24 @@ public class SeriesAdminService : ISeriesAdminService
 
     public async Task<DeleteSeriesViewModel> GetSeriesForDeleteAsync(Guid seriesId, string? userId)
     {
-        DeleteSeriesViewModel deleteModel = new DeleteSeriesViewModel();
+        DeleteSeriesViewModel? deleteModel = null;
 
         if (seriesId != null)
         {
-            var deleteSeriesModel = await seriesRepository.GetByIdAsync(seriesId);
+            var deleteSeriesModel = await seriesRepository.GetAllAttached()
+                .AsNoTracking()
+                .SingleOrDefaultAsync(s => s.Id == seriesId);
 
             if (deleteSeriesModel != null)
             {
-                deleteModel.Id = deleteSeriesModel.Id.ToString();
-                deleteModel.Tittle = deleteSeriesModel.Tittle;
-                deleteModel.Author = deleteSeriesModel.Author;
+                deleteModel = new DeleteSeriesViewModel()
+                {
+                    Id = deleteSeriesModel.Id.ToString(),
+                    Tittle = deleteSeriesModel.Tittle,
+                    Author = deleteSeriesModel.Author,
+                };
             }
+            
         }
 
         return deleteModel;
@@ -155,15 +161,16 @@ public class SeriesAdminService : ISeriesAdminService
     {
         bool optResult = false;
 
-        if (model != null && model.Id != null)
+        if (model != null)
         {
-            var series = await seriesRepository.GetByIdAsync(Guid.Parse(model.Id));
+            var series = await seriesRepository.GetAllAttached()
+                .SingleOrDefaultAsync(s => s.Id == Guid.Parse(model.Id));
 
             if (series != null )
             {
                 series.IsDeleted = true;
 
-                await seriesRepository.UpdateAsync(series);
+                await seriesRepository.SaveChangesAsync();
                 
                 optResult = true;
             }

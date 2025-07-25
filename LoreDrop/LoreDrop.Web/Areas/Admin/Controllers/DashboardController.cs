@@ -187,7 +187,7 @@ public class DashboardController : BaseAdminController
                 return View(model);
             }
 
-            string userId = User.FindFirst("sub")?.Value ?? User.Identity.Name;
+            var userId = this.GetUserId();
             var success = await this.seriesAdminService.SoftDeleteSeriesAsync(model, userId);
 
             if (!success)

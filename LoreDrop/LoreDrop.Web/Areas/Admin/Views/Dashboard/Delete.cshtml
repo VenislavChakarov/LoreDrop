@@ -19,8 +19,9 @@
 
             <div class="delete-buttons">
                 <form asp-action="Delete" method="post">
-                    @Html.AntiForgeryToken()
                     <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="Tittle" />
+                    <input type="hidden" asp-for="Author" />
                     <button type="submit" class="btn-confirm-delete">
                         <i class="fa fa-trash"></i> Yes, Delete
                     </button>
