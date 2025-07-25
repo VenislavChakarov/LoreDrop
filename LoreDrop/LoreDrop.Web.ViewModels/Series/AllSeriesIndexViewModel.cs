@@ -14,5 +14,7 @@ public class AllSeriesIndexViewModel
     
     public string? ImageUrl { get; set; }
     
+    public bool IsDeleted { get; set; }
+    
     public string CreatedOn { get; set; } = null!;
 }

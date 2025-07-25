@@ -146,45 +146,47 @@ public class DashboardController : BaseAdminController
     }
 
 
-    [HttpGet]
-    public async Task<IActionResult> Delete(Guid seriesId)
-    {
-        try
-        {
-            var id = seriesId;
-            if (id == Guid.Empty)
-            {
-                return NotFound();
-            }
-
-            {
-                var model = await this.seriesAdminService.GetSeriesForDeleteAsync(seriesId, this.GetUserId());
-                ;
-                if (model == null)
-                {
-                    return NotFound();
-                }
-
-                return View(model); // Returns Views/Dashboard/Delete.cshtml
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return RedirectToAction(nameof(Index));
-        }
-        
-    }
+    // [HttpGet]
+    // public async Task<IActionResult> Remove(Guid seriesId)
+    // {
+    //     try
+    //     {
+    //         var id = seriesId;
+    //         if (id == Guid.Empty)
+    //         {
+    //             return NotFound();
+    //         }
+    //
+    //         {
+    //             var model = await this.seriesAdminService.GetSeriesForDeleteAsync(seriesId, this.GetUserId());
+    //             ;
+    //             if (model == null)
+    //             {
+    //                 return NotFound();
+    //             }
+    //
+    //             return View(nameof(Index));
+    //         }
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         Console.WriteLine(e);
+    //         return RedirectToAction(nameof(Index));
+    //     }
+    //     
+    // }
     
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Delete(DeleteSeriesViewModel model)
+    public async Task<IActionResult> Remove(DeleteSeriesViewModel model)
     {
         try
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                // Optionally add message
+                TempData["Error"] = "Invalid data.";
+                return RedirectToAction(nameof(Index));
             }
 
             var userId = this.GetUserId();
@@ -192,16 +194,17 @@ public class DashboardController : BaseAdminController
 
             if (!success)
             {
-                ModelState.AddModelError("", "Unable to delete series. Please try again.");
-                return View(model);
+                TempData["Error"] = "Unable to delete series. Please try again.";
+                return RedirectToAction(nameof(Index));
             }
 
+            TempData["Success"] = "Series removed successfully.";
             return RedirectToAction(nameof(Index));
         }
         catch (Exception e)
         {
             ModelState.AddModelError("", "An error occurred while deleting the series. Please try again.");
-            return View(model); 
+            return View(nameof(Index)); 
         }
         
     }

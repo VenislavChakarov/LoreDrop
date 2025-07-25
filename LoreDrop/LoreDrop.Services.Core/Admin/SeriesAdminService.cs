@@ -26,6 +26,7 @@ public class SeriesAdminService : ISeriesAdminService
     public async Task<IEnumerable<AllSeriesIndexViewModel>> GetAllSeriesAsync()
     {
         var series = await seriesRepository.GetAllAttached()
+            .IgnoreQueryFilters()
             .Include(s => s.Ratings)
             .AsNoTracking()
             .Select(s => new AllSeriesIndexViewModel
@@ -36,7 +37,8 @@ public class SeriesAdminService : ISeriesAdminService
                 Genre = s.Genre.Name,
                 Rating = s.Ratings.Any() ? (double?)s.Ratings.Average(r => r.Rating) : null,
                 CreatedOn = s.CreatedOn.ToString(DateFormat),
-                ImageUrl = s.ImageUrl
+                ImageUrl = s.ImageUrl,
+                IsDeleted = s.IsDeleted
             })
             .ToListAsync();
 

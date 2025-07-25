@@ -9,7 +9,8 @@
     Layout = "_Layout";
 }
 
-<link rel="stylesheet" href="~/css/dashboard.css" />
+<link rel="stylesheet" href="@(Url.Content("~/css/dashboard.css"))" asp-append-version="true" />
+
 
 <div class="dashboard-container">
 
@@ -34,23 +35,51 @@
                 </div>
 
                 <div class="series-actions">
-                    <!-- EDIT -->
-                    <a asp-area="Admin"
-                       asp-controller="Dashboard"
-                       asp-action="Edit"
-                       asp-route-seriesId="@series.Id"
-                       class="edit-button">
-                        <i class="fa fa-edit"></i> Edit
-                    </a>
+                    
+                    @if (series.IsDeleted)
+                    {
+                        <!-- ADD / RESTORE -->
+                        <a asp-area="Admin"
+                           asp-controller="Dashboard"
+                           asp-action="Restore"
+                           asp-route-seriesId="@series.Id"
+                           class="add-button">
+                            <i class="fa fa-plus"></i> Add
+                        </a>
+                        
+                        <a asp-area="Admin"
+                           asp-controller="Dashboard"
+                           asp-action="HardDelete"
+                           asp-route-seriesId = "@series.Id"
+                           class="delete-button">
+                            <i class="fa fa-trash"></i> Delete Permanently
+                        </a>
+                    }
+                    else
+                    {
+                        
+                        <!-- EDIT -->
+                        <a asp-area="Admin"
+                           asp-controller="Dashboard"
+                           asp-action="Edit"
+                           asp-route-seriesId="@series.Id"
+                           class="edit-button">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+                        
+                        <!-- DELETE -->
+                        <form method="post" asp-area="Admin" asp-controller="Dashboard" asp-action="Remove" class="remove-form" style="display:inline;">
+                            <input type="hidden" name="Id" value="@series.Id" />
+                            <input type="hidden" name="Tittle" value="@series.Title" />
+                            <input type="hidden" name="Author" value="@series.Author" />
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="delete-button">
+                                <i class="fa fa-trash"></i> Remove
+                            </button>
+                        </form>
 
-                    <!-- DELETE -->
-                    <a asp-area="Admin"
-                       asp-controller="Dashboard"
-                       asp-action="Delete"
-                       asp-route-seriesId="@series.Id"
-                       class="delete-button">
-                        <i class="fa fa-trash"></i> Delete
-                    </a>
+                    }
+                    
                 </div>
             </div>
         }

@@ -1,5 +1,5 @@
 :root {
-    /* bring in your core palette */
+    /* Core Palette */
     --green-main:    #22cc22;
     --green-hover:   #1bb21b;
     --green-deep:    #138613;
@@ -109,7 +109,7 @@
     margin-top: 0.25rem;
 }
 
-/* Actions */
+/* Actions Container */
 .series-actions {
     display: flex;
     flex-direction: column;
@@ -117,8 +117,10 @@
     padding: 1rem;
 }
 
-.edit-button,
-.delete-button {
+/* Base Action Buttons */
+.series-actions a {
+    display: inline-block;
+    text-align: center;
     padding: 0.5rem 1rem;
     font-weight: 600;
     border: none;
@@ -126,8 +128,10 @@
     cursor: pointer;
     transition: background 0.2s, transform 0.2s;
     color: var(--white);
+    text-decoration: none; /* Removes underline */
 }
 
+/* Individual Buttons */
 .edit-button {
     background: var(--green-deep);
 }
@@ -138,11 +142,33 @@
 }
 
 .delete-button {
-    background: var(--danger-red);
+    background-color: #e74c3c;  /* Red */
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none; /* in case used on <a> */
+    font-family: inherit;
+}
+
+.delete-button i {
+    margin-right: 5px;
 }
 
 .delete-button:hover {
-    background: #b02a37;
+    background-color: #c0392b;
+}
+
+.add-button {
+    background: var(--green-deep);
+}
+
+.add-button:hover {
+    background: var(--green-dark);
     transform: translateY(-1px);
 }
 
