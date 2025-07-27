@@ -143,16 +143,16 @@
 
 .delete-button {
     background-color: #e74c3c;  /* Red */
-    color: white;
+    display: inline-block;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
     border: none;
-    padding: 8px 12px;
-    font-size: 14px;
+    border-radius: 0.25rem;
     cursor: pointer;
-    border-radius: 4px;
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none; /* in case used on <a> */
-    font-family: inherit;
+    transition: background 0.2s, transform 0.2s;
+    color: var(--white);
+    text-decoration: none;
 }
 
 .delete-button i {
@@ -163,14 +163,29 @@
     background-color: #c0392b;
 }
 
-.add-button {
-    background: var(--green-deep);
+.restore-button {
+    background-color: #28a745; 
+    display: inline-block;
+    text-align: center;
+    padding: 0.8rem 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    color: var(--white);
+    text-decoration: none;
 }
 
-.add-button:hover {
-    background: var(--green-dark);
+.restore-button i {
+    margin-right: 4px;
+}
+
+.restore-button:hover {
+    background-color: #218838;
     transform: translateY(-1px);
 }
+
 
 /* Responsive */
 @media (max-width: 768px) {

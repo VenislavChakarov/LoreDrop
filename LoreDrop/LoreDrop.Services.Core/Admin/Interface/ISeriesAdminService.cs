@@ -11,7 +11,12 @@ public interface ISeriesAdminService
     
     Task<EditSerieViewModel?> GetSeriesForEditAsync(Guid seriesId, string? userId);
     Task<bool> EditSeriesAsync(EditSerieViewModel model, string? userId);
-
-    Task<DeleteSeriesViewModel> GetSeriesForDeleteAsync(Guid seriesId, string? userId);
+    
     Task<bool> SoftDeleteSeriesAsync(DeleteSeriesViewModel model, string userId);
+    
+    Task<bool> RestoreSeriesAsync(RestoreSeriesViewModel model, string userId);
+    
+    Task<DeleteSeriesViewModel> GetSeriesForHardDeleteAsync(Guid seriesId, string? userId);
+    
+    Task<bool> HardDeleteSeriesAsync(Guid seriesId, string userId);
 }

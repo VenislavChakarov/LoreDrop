@@ -146,35 +146,35 @@ public class DashboardController : BaseAdminController
     }
 
 
-    // [HttpGet]
-    // public async Task<IActionResult> Remove(Guid seriesId)
-    // {
-    //     try
-    //     {
-    //         var id = seriesId;
-    //         if (id == Guid.Empty)
-    //         {
-    //             return NotFound();
-    //         }
-    //
-    //         {
-    //             var model = await this.seriesAdminService.GetSeriesForDeleteAsync(seriesId, this.GetUserId());
-    //             ;
-    //             if (model == null)
-    //             {
-    //                 return NotFound();
-    //             }
-    //
-    //             return View(nameof(Index));
-    //         }
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         Console.WriteLine(e);
-    //         return RedirectToAction(nameof(Index));
-    //     }
-    //     
-    // }
+    [HttpGet]
+    public async Task<IActionResult> Remove(Guid seriesId)
+    {
+        try
+        {
+            var id = seriesId;
+            if (id == Guid.Empty)
+            {
+                return NotFound();
+            }
+    
+            {
+                var model = await this.seriesAdminService.GetSeriesForHardDeleteAsync(seriesId, this.GetUserId());
+                ;
+                if (model == null)
+                {
+                    return NotFound();
+                }
+    
+                return View(nameof(Index));
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return RedirectToAction(nameof(Index));
+        }
+        
+    }
     
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -208,4 +208,36 @@ public class DashboardController : BaseAdminController
         }
         
     }
+    
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Restore(RestoreSeriesViewModel model)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "Invalid data.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            var userId = this.GetUserId();
+            var success = await this.seriesAdminService.RestoreSeriesAsync(model, userId);
+
+            if (!success)
+            {
+                TempData["Error"] = "Unable to restore series. Please try again.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            TempData["Success"] = "Series restored successfully.";
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception e)
+        {
+            ModelState.AddModelError("", "An error occurred while restoring the series. Please try again.");
+            return View(nameof(Index)); 
+        }
+        
+    }
 }
+

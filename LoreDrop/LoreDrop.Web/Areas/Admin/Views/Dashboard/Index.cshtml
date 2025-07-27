@@ -39,20 +39,20 @@
                     @if (series.IsDeleted)
                     {
                         <!-- ADD / RESTORE -->
-                        <a asp-area="Admin"
-                           asp-controller="Dashboard"
-                           asp-action="Restore"
-                           asp-route-seriesId="@series.Id"
-                           class="add-button">
-                            <i class="fa fa-plus"></i> Add
-                        </a>
+                        <form method="post" asp-area="Admin" asp-controller="Dashboard" asp-action="Restore" class="restore-form" style="display:inline;">
+                            <input type="hidden" name="Id" value="@series.Id" />
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="restore-button">
+                                <i class="fa fa-plus"></i> Restore
+                            </button>
+                        </form>
                         
                         <a asp-area="Admin"
                            asp-controller="Dashboard"
                            asp-action="HardDelete"
                            asp-route-seriesId = "@series.Id"
                            class="delete-button">
-                            <i class="fa fa-trash"></i> Delete Permanently
+                            <i class="fa fa-trash"></i> Delete
                         </a>
                     }
                     else

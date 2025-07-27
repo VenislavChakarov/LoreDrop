@@ -133,8 +133,56 @@ public class SeriesAdminService : ISeriesAdminService
 
         return optResult;
     }
+    
 
-    public async Task<DeleteSeriesViewModel> GetSeriesForDeleteAsync(Guid seriesId, string? userId)
+    public async Task<bool> SoftDeleteSeriesAsync(DeleteSeriesViewModel model, string userId)
+    {
+        bool optResult = false;
+
+        if (model != null)
+        {
+            var series = await seriesRepository.GetAllAttached()
+                .IgnoreQueryFilters() // Add this
+                .SingleOrDefaultAsync(s => s.Id == Guid.Parse(model.Id));
+
+            if (series != null )
+            {
+                series.IsDeleted = true;
+
+                await seriesRepository.SaveChangesAsync();
+                
+                optResult = true;
+            }
+        }
+
+        return optResult;
+    }
+
+    public async Task<bool> RestoreSeriesAsync(RestoreSeriesViewModel model, string userId)
+    {
+        bool optResult = false;
+
+        if (model != null)
+        {
+            var series = await seriesRepository.GetAllAttached()
+                .IgnoreQueryFilters() // Add this
+                .SingleOrDefaultAsync(s => s.Id == Guid.Parse(model.Id));
+
+            if(series != null )
+            {
+                series.IsDeleted = false;
+
+                await seriesRepository.SaveChangesAsync();
+                
+                optResult = true;
+            }
+        }
+
+        return optResult;
+    }
+
+
+    public async Task<DeleteSeriesViewModel> GetSeriesForHardDeleteAsync(Guid seriesId, string? userId)
     {
         DeleteSeriesViewModel? deleteModel = null;
 
@@ -159,25 +207,8 @@ public class SeriesAdminService : ISeriesAdminService
         return deleteModel;
     }
 
-    public async Task<bool> SoftDeleteSeriesAsync(DeleteSeriesViewModel model, string userId)
+    public async Task<bool> HardDeleteSeriesAsync(Guid seriesId, string userId)
     {
-        bool optResult = false;
-
-        if (model != null)
-        {
-            var series = await seriesRepository.GetAllAttached()
-                .SingleOrDefaultAsync(s => s.Id == Guid.Parse(model.Id));
-
-            if (series != null )
-            {
-                series.IsDeleted = true;
-
-                await seriesRepository.SaveChangesAsync();
-                
-                optResult = true;
-            }
-        }
-
-        return optResult;
+        throw new NotImplementedException();
     }
 }
