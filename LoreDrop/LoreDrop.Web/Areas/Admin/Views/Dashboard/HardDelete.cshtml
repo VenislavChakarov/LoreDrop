@@ -1,4 +1,4 @@
-@model LoreDrop.Web.ViewModels.Admin.SeriesAdmin.DeleteSeriesViewModel
+@model LoreDrop.Web.ViewModels.Admin.SeriesAdmin.HardDeleteSeriesViewModel
 
 @{
     ViewData["Title"] = "Delete Series";
@@ -18,10 +18,11 @@
             <h5>by @Model.Author</h5>
 
             <div class="delete-buttons">
-                <form asp-action="Delete" method="post">
+                <form asp-action="HardDelete" method="post">
                     <input type="hidden" asp-for="Id" />
                     <input type="hidden" asp-for="Tittle" />
                     <input type="hidden" asp-for="Author" />
+                    @Html.AntiForgeryToken()
                     <button type="submit" class="btn-confirm-delete">
                         <i class="fa fa-trash"></i> Yes, Delete Permanently
                     </button>

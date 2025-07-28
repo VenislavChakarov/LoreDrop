@@ -98,7 +98,8 @@ public class DashboardController : BaseAdminController
         {
             try
             {
-                var model = await this.seriesAdminService.GetSeriesForEditAsync(seriesId, this.GetUserId());
+                var userId = this.GetUserId();
+                var model = await this.seriesAdminService.GetSeriesForEditAsync(seriesId, userId);
                 if (model == null)
                 {
                     return NotFound();
@@ -141,37 +142,6 @@ public class DashboardController : BaseAdminController
         {
             Console.WriteLine(e);
             return View(model); 
-        }
-        
-    }
-
-
-    [HttpGet]
-    public async Task<IActionResult> Remove(Guid seriesId)
-    {
-        try
-        {
-            var id = seriesId;
-            if (id == Guid.Empty)
-            {
-                return NotFound();
-            }
-    
-            {
-                var model = await this.seriesAdminService.GetSeriesForHardDeleteAsync(seriesId, this.GetUserId());
-                ;
-                if (model == null)
-                {
-                    return NotFound();
-                }
-    
-                return View(nameof(Index));
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return RedirectToAction(nameof(Index));
         }
         
     }
@@ -239,5 +209,76 @@ public class DashboardController : BaseAdminController
         }
         
     }
+    
+    [HttpGet]
+    public async Task<IActionResult> HardDelete(Guid seriesId)
+    {
+        try
+        {
+            var id = seriesId;
+            if (id == Guid.Empty)
+            {
+                return NotFound();
+            }
+            
+            var userId = this.GetUserId();
+            var model = await this.seriesAdminService.GetSeriesForHardDeleteAsync(seriesId, userId);
+                
+            if (model == null)
+            {
+                    return NotFound();
+            }
+    
+            return View(model);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return RedirectToAction(nameof(Index));
+        }
+        
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> HardDelete(HardDeleteSeriesViewModel model)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+            {
+                // If the model isn’t valid, re‑show the confirmation page
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Parse the GUID
+            if (!Guid.TryParse(model.Id, out var seriesId))
+            {
+                ModelState.AddModelError("", "Invalid series identifier.");
+                return View("HardDelete", model);
+            }
+
+            // Call the service to hard‑delete
+            var userId = this.GetUserId();
+            var success = await seriesAdminService.HardDeleteSeriesAsync(seriesId, userId);
+
+            if (!success)
+            {
+                ModelState.AddModelError("", "Unable to delete series permanently. Please try again.");
+                return View("HardDelete", model);
+            }
+
+            // Optionally add a success message
+            TempData["Success"] = "Series deleted permanently.";
+            return RedirectToAction(nameof(Index));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            ModelState.AddModelError("", "An unexpected error occurred.");
+            return View("HardDelete", model);
+        }
+    }
+
 }
 

@@ -24,6 +24,6 @@ public class UserFavoritesConfiguration : IEntityTypeConfiguration<UserFavorites
             .HasOne(uf => uf.Series)
             .WithMany(c => c.UserFavorites)
             .HasForeignKey(uf => uf.SeriesId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

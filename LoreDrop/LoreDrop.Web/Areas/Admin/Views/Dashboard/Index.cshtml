@@ -11,7 +11,6 @@
 
 <link rel="stylesheet" href="@(Url.Content("~/css/dashboard.css"))" asp-append-version="true" />
 
-
 <div class="dashboard-container">
 
     <!-- Create Series Button -->
@@ -22,67 +21,69 @@
     </div>
 
     <!-- Series List -->
-    <div class="series-list">
-        @foreach (var series in Model)
-        {
-            <div class="series-card">
-                <div class="series-left">
-                    <img src="@series.ImageUrl" alt="@series.Title" class="series-image" />
-                    <div class="series-info">
-                        <h3 class="series-title">@series.Title</h3>
-                        <p class="series-author">by @series.Author</p>
+    @if (Model != null && Model.Any())
+    {
+        <div class="series-list">
+            @foreach (var series in Model.Where(s => s != null))
+            {
+                <div class="series-card">
+                    <div class="series-left">
+                        <img src="@(series.ImageUrl ?? "/images/placeholder.png")" alt="@(series.Title ?? "Untitled")" class="series-image" />
+                        <div class="series-info">
+                            <h3 class="series-title">@(series.Title ?? "Untitled")</h3>
+                            <p class="series-author">by @(series.Author ?? "Unknown")</p>
+                        </div>
+                    </div>
+
+                    <div class="series-actions">
+                        @if (series.IsDeleted)
+                        {
+                            <!-- RESTORE -->
+                            <form method="post" asp-area="Admin" asp-controller="Dashboard" asp-action="Restore" class="restore-form" style="display:inline;">
+                                <input type="hidden" name="Id" value="@series.Id" />
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="restore-button">
+                                    <i class="fa fa-undo"></i> Restore
+                                </button>
+                            </form>
+
+                            <!-- HARD DELETE CONFIRMATION LINK -->
+                            <a asp-area="Admin"
+                               asp-controller="Dashboard"
+                               asp-action="HardDelete"
+                               asp-route-seriesId="@series.Id"
+                               class="delete-button">
+                                <i class="fa fa-trash"></i> Delete
+                            </a>
+                        }
+                        else
+                        {
+                            <!-- EDIT -->
+                            <a asp-area="Admin"
+                               asp-controller="Dashboard"
+                               asp-action="Edit"
+                               asp-route-seriesId="@series.Id"
+                               class="edit-button">
+                                <i class="fa fa-edit"></i> Edit
+                            </a>
+
+                            <!-- SOFT DELETE -->
+                            <form method="post" asp-area="Admin" asp-controller="Dashboard" asp-action="Remove" class="remove-form" style="display:inline;">
+                                <input type="hidden" name="Id" value="@series.Id" />
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="delete-button">
+                                    <i class="fa fa-trash"></i> Remove
+                                </button>
+                            </form>
+                        }
                     </div>
                 </div>
-
-                <div class="series-actions">
-                    
-                    @if (series.IsDeleted)
-                    {
-                        <!-- ADD / RESTORE -->
-                        <form method="post" asp-area="Admin" asp-controller="Dashboard" asp-action="Restore" class="restore-form" style="display:inline;">
-                            <input type="hidden" name="Id" value="@series.Id" />
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="restore-button">
-                                <i class="fa fa-plus"></i> Restore
-                            </button>
-                        </form>
-                        
-                        <a asp-area="Admin"
-                           asp-controller="Dashboard"
-                           asp-action="HardDelete"
-                           asp-route-seriesId = "@series.Id"
-                           class="delete-button">
-                            <i class="fa fa-trash"></i> Delete
-                        </a>
-                    }
-                    else
-                    {
-                        
-                        <!-- EDIT -->
-                        <a asp-area="Admin"
-                           asp-controller="Dashboard"
-                           asp-action="Edit"
-                           asp-route-seriesId="@series.Id"
-                           class="edit-button">
-                            <i class="fa fa-edit"></i> Edit
-                        </a>
-                        
-                        <!-- DELETE -->
-                        <form method="post" asp-area="Admin" asp-controller="Dashboard" asp-action="Remove" class="remove-form" style="display:inline;">
-                            <input type="hidden" name="Id" value="@series.Id" />
-                            <input type="hidden" name="Tittle" value="@series.Title" />
-                            <input type="hidden" name="Author" value="@series.Author" />
-                            @Html.AntiForgeryToken()
-                            <button type="submit" class="delete-button">
-                                <i class="fa fa-trash"></i> Remove
-                            </button>
-                        </form>
-
-                    }
-                    
-                </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>No series available.</p>
+    }
 
 </div>

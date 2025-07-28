@@ -16,7 +16,7 @@ public interface ISeriesAdminService
     
     Task<bool> RestoreSeriesAsync(RestoreSeriesViewModel model, string userId);
     
-    Task<DeleteSeriesViewModel> GetSeriesForHardDeleteAsync(Guid seriesId, string? userId);
+    Task<HardDeleteSeriesViewModel> GetSeriesForHardDeleteAsync(Guid seriesId, string? userId);
     
     Task<bool> HardDeleteSeriesAsync(Guid seriesId, string userId);
 }

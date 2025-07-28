@@ -28,7 +28,6 @@ public class SeriesAdminService : ISeriesAdminService
         var series = await seriesRepository.GetAllAttached()
             .IgnoreQueryFilters()
             .Include(s => s.Ratings)
-            .AsNoTracking()
             .Select(s => new AllSeriesIndexViewModel
             {
                 Id = s.Id.ToString(),
@@ -77,6 +76,7 @@ public class SeriesAdminService : ISeriesAdminService
     public async Task<EditSerieViewModel?> GetSeriesForEditAsync(Guid seriesId, string? userId)
     {
         var series = await seriesRepository.GetAllAttached()
+            .Where(s => s.Id == seriesId)
             .Select(s => new EditSerieViewModel
             {
                 Id = s.Id.ToString(),
@@ -106,7 +106,7 @@ public class SeriesAdminService : ISeriesAdminService
         
         Genre? genre = await genreRepository.GetByIdAsync(model.GenreId);
 
-        if (model != null && model.Id != null)
+        if (model != null)
         {
             var series = await seriesRepository.GetByIdAsync(Guid.Parse(model.Id));
 
@@ -182,23 +182,23 @@ public class SeriesAdminService : ISeriesAdminService
     }
 
 
-    public async Task<DeleteSeriesViewModel> GetSeriesForHardDeleteAsync(Guid seriesId, string? userId)
+    public async Task<HardDeleteSeriesViewModel> GetSeriesForHardDeleteAsync(Guid seriesId, string? userId)
     {
-        DeleteSeriesViewModel? deleteModel = null;
+        HardDeleteSeriesViewModel? deleteModel = null;
 
         if (seriesId != null)
         {
             var deleteSeriesModel = await seriesRepository.GetAllAttached()
-                .AsNoTracking()
+                .IgnoreQueryFilters() // Add this to include soft-deleted entities
                 .SingleOrDefaultAsync(s => s.Id == seriesId);
 
             if (deleteSeriesModel != null)
             {
-                deleteModel = new DeleteSeriesViewModel()
+                deleteModel = new HardDeleteSeriesViewModel()
                 {
                     Id = deleteSeriesModel.Id.ToString(),
                     Tittle = deleteSeriesModel.Tittle,
-                    Author = deleteSeriesModel.Author,
+                    Author = deleteSeriesModel.Author
                 };
             }
             
@@ -209,6 +209,22 @@ public class SeriesAdminService : ISeriesAdminService
 
     public async Task<bool> HardDeleteSeriesAsync(Guid seriesId, string userId)
     {
-        throw new NotImplementedException();
+        bool optResult = false;
+
+        if (seriesId != null)
+        {
+            var series = await seriesRepository.GetAllAttached()
+                .IgnoreQueryFilters() // Add this to include soft-deleted entities
+                .SingleOrDefaultAsync(s => s.Id == seriesId);
+
+            if (series != null)
+            {
+                await seriesRepository.HardDeleteAsync(series);
+                
+                optResult = true;
+            }
+        }
+
+        return optResult;
     }
 }

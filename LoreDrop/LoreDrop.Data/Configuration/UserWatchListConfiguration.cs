@@ -24,7 +24,7 @@ public class UserWatchListConfiguration : IEntityTypeConfiguration<UserWatchList
             .HasOne(us => us.Series)
             .WithMany(c => c.UserWathList)
             .HasForeignKey(us => us.SeriesId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Cascade);
         
         entity
             .HasOne(us => us.SeriesState)
