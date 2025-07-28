@@ -1,76 +1,83 @@
-/* Delete Confirmation Page - Redesigned */
+/* Glass‑morphism Delete Confirmation */
 .delete-container {
-    max-width: 420px;
-    margin: 6rem auto;
-    padding: 0 1rem;
+    max-width: 450px;
+    margin: 5rem auto;
+    padding: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .delete-card {
-    background: var(--white);
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(10px);
     border-radius: 1rem;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255,255,255,0.5);
     overflow: hidden;
-    border: 1px solid var(--light-gray);
-    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
 
 .delete-card-header {
-    background: var(--danger-red);
-    color: var(--white);
-    padding: 1.5rem;
+    background: rgba(230,57,70,0.9);
+    color: #fff;
+    padding: 1rem 1.5rem;
+    text-align: center;
 }
 
 .delete-card-header h3 {
     margin: 0;
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     font-weight: 700;
 }
 
 .delete-card-body {
-    padding: 2rem 1.5rem;
-}
-
-.delete-card-body p {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
+    padding: 1.5rem;
+    text-align: center;
     color: var(--text-dark);
 }
 
+.delete-card-body p {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+}
+
 .delete-card-body h4 {
-    margin: 0 0 0.5rem;
+    margin: .5rem 0;
+    font-size: 1.4rem;
     color: var(--danger-red);
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .delete-card-body h5 {
-    margin-bottom: 1.75rem;
-    color: var(--text-light);
-    font-size: 1.1rem;
+    margin: 0 0 1.25rem;
+    font-size: 0.95rem;
+    color: var(--mid-gray);
 }
 
+/* Buttons row */
 .delete-buttons {
     display: flex;
-    justify-content: center;
     gap: 1rem;
-    flex-wrap: wrap;
+    padding: 1.25rem;
+    justify-content: center;
+    background: rgba(255,255,255,0.25);
 }
 
 .btn-confirm-delete,
 .btn-cancel {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;    /* remove underline */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
+    transition: transform 0.1s ease, background 0.2s ease;
 }
 
+/* Delete button */
 .btn-confirm-delete {
     background: var(--danger-red);
     color: var(--white);
@@ -81,27 +88,33 @@
     transform: translateY(-2px);
 }
 
+/* Cancel link styled as button */
 .btn-cancel {
-    background: var(--green-main);
-    color: var(--white);
+    background: transparent;
+    color: var(--danger-red);
+    border: 2px solid var(--danger-red);
 }
 
 .btn-cancel:hover {
-    background: var(--green-hover);
+    background: var(--danger-red);
+    color: var(--white);
     transform: translateY(-2px);
+    background: rgba(136, 136, 136, 0.58);  /* light red tint */
+    /* keep the red border and text color */
+    border-color: var(--danger-red);
+    color: var(--danger-red);
 }
 
-.btn-confirm-delete i,
 .btn-cancel i {
-    font-size: 1.1rem;
+    margin-right: 0.5rem;
 }
 
-/* Responsive */
+
+/* Responsive: stack */
 @media (max-width: 480px) {
     .delete-buttons {
         flex-direction: column;
     }
-
     .btn-confirm-delete,
     .btn-cancel {
         width: 100%;

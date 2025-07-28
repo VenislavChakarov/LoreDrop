@@ -7,26 +7,6 @@
     margin: 0 auto;
 }
 
-/* — Admin “New Series” Button — */
-.admin-actions {
-    text-align: right;
-    margin-bottom: 1rem;
-}
-.btn-create {
-    display: inline-block;
-    background-color: #22cc22;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.2s;
-}
-.btn-create:hover,
-.btn-create:focus {
-    background-color: #1bb21b;
-}
-
 /* — Page Title — */
 .page-title {
     text-align: center;
@@ -42,11 +22,51 @@
     font-style: italic;
 }
 
+/* Search / Filter Bar */
+.fav-filter {
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    gap: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.fav-filter input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border: none;
+    font-size: 1rem;
+    outline-offset: 2px;
+}
+
+.fav-filter input:focus {
+    outline: 2px solid #138613;
+}
+
+.fav-filter button {
+    padding: 0 1.5rem;
+    background: #138613;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.fav-filter button:hover {
+    background: #0f6f0f;
+}
+
 /* — Grid Container — */
 .series-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
     gap: 1.5rem;
+    align-items: stretch;    /* ensure all grid items match height */
+    grid-auto-rows: 28rem
 }
 
 /* — Card — */
@@ -59,6 +79,8 @@
     flex-direction: column;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     transition: transform 0.2s, box-shadow 0.2s;
+    height: 100%;            /* fill the grid cell */
+    max-height: 28rem;       /* cap overall height */
 }
 .series-card:hover,
 .series-card:focus-within {
@@ -70,7 +92,7 @@
 .card-link {
     color: inherit;
     text-decoration: none;
-    flex: 1;
+    flex: 1;                 /* grow to fill space */
     display: block;
 }
 
@@ -86,6 +108,7 @@
 .card-content {
     padding: 1rem;
     text-align: center;
+    flex: 1;                 /* grow to push footer down */
 }
 .card-content h3 {
     margin: 0 0 0.5rem;
@@ -103,6 +126,7 @@
     color: #f5c518;
     margin-right: 0.1rem;
 }
+
 /* visually-hidden for screen readers */
 .visually-hidden {
     position: absolute;
@@ -147,3 +171,9 @@
         height: 10rem;
     }
 }
+
+/* — Delete Confirmation Card Uniformity — */
+/* (ensures cards always same height) */
+/* Already applied above: .series-grid align-items: stretch and .series-card height/max-height */
+
+/* No further CSS required—card heights will now all match uniformly. */
