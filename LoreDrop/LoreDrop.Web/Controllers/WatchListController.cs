@@ -51,6 +51,34 @@ public class WatchListController : BaseController
         }
         
     }
+
+    [HttpPost]
+    public async Task<IActionResult> RemoveFromWatchList(string seriesId)
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(seriesId))
+            {
+                ModelState.AddModelError("seriesId", "Try again, something went wrong.");
+                return RedirectToAction("Index");
+            }
+            
+            var userId = this.GetUserId();
+            bool isInWatchList = await this.watchListService.IsSeriesInWatchListAsync(userId, seriesId);
+            
+            if (isInWatchList)
+            {
+                await this.watchListService.RemoveFromWatchListAsync(userId, seriesId);
+            }
+            return RedirectToAction("Index");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            ModelState.AddModelError("seriesId", "Try again, something went wrong.");
+            return RedirectToAction("Index");
+        }
+    }
     
     [HttpPost]
     public async Task<IActionResult> ChangeState(string seriesId, Guid stateId)

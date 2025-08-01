@@ -12,6 +12,8 @@ public interface IWatchListService
     Task<SeriesState?> GetSeriesStateAsync(string userId, string seriesId);
 
     Task AddToWatchListAsync(string userId, string seriesId);
+    
+    Task RemoveFromWatchListAsync(string userId, string seriesId);
 
     Task ChageSateAsync(string seriesId, string userId, Guid stateId);
 }

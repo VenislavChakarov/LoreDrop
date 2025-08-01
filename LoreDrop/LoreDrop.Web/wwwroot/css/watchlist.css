@@ -4,7 +4,7 @@
 .watchlist-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.5rem;
     padding: 2rem;
     max-width: 800px;
     margin: auto;
@@ -53,11 +53,10 @@
     align-items: center;
     justify-content: space-between;
     border: 2px solid #ccc;
-    padding: 1rem;
+    padding: 1.5rem 2rem;
     border-radius: 6px;
     background: #fff;
     position: relative;
-    /* default card shadow + transition */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -110,7 +109,7 @@
 
 /* poster image */
 .image-container img {
-    width: 150px;
+    width: 180px;
     height: auto;
     border-radius: 4px;
     object-fit: cover;
@@ -221,6 +220,38 @@
 .dropdown:hover .dropdown-content {
     display: block;
 }
+
+.remove-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #888; /* gray */
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.remove-form {
+    position: absolute;
+    top: 12px;   /* a little padding from top */
+    right: 12px; /* a little padding from right */
+    z-index: 5;  /* above other content */
+}
+
+.remove-btn svg {
+    display: block;
+    stroke: currentColor;
+    width: 18px;
+    height: 18px;
+}
+
+.remove-btn:hover {
+    color: #555; /* darker gray on hover */
+}
+
+
 
 /* Responsive */
 @media (max-width: 600px) {

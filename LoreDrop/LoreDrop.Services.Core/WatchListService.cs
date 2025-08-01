@@ -78,6 +78,21 @@ public class WatchListService : IWatchListService
         await watchListRepository.AddAsync(UserWatchList);
     }
 
+    public async Task RemoveFromWatchListAsync(string userId, string seriesId)
+    {
+        var seriesGuid = Guid.Parse(seriesId);
+        var UserWatchList = await watchListRepository
+            .FirstOrDefaultAsync(us => us.UserId == userId && us.SeriesId == seriesGuid);
+
+        if (UserWatchList == null)
+        {
+            throw new InvalidOperationException("Watchlist entry not found.");
+        }
+
+        await watchListRepository.HardDeleteAsync(UserWatchList);
+    }
+
+
     public async Task ChageSateAsync(string seriesId, string userId, Guid stateId)
     {
         if (!Guid.TryParse(seriesId, out var seriesGuid))
