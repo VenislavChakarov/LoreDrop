@@ -54,7 +54,8 @@ namespace LoreDrop
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error/500"); // Handles 500 errors with custom view
+                app.UseStatusCodePagesWithReExecute("/Error/{0}"); // Handles 404, 403, etc.
                 app.UseHsts();
             }
 
