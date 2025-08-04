@@ -39,4 +39,8 @@
       <Folder Include="Areas\Identity\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserManagement\Index.cshtml" />
+    </ItemGroup>
+
 </Project>

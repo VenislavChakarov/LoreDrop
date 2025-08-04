@@ -32,6 +32,14 @@
                 <a asp-area="" asp-controller="Favorite" asp-action="Index">Favorite</a>
                 <a asp-area="" asp-controller="WatchList" asp-action="Index">Watch List</a>
                 <a asp-area="" asp-controller="Home" asp-action="About">About Us</a>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    var currentUser = await UserManager.GetUserAsync(User);
+                    if (await UserManager.IsInRoleAsync(currentUser, "Admin"))
+                    {
+                        <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                    }
+                }
             </div>
 
             <!-- Auth links -->
@@ -50,14 +58,7 @@
                 }
             </div>
 
-            @*@if (SignInManager.IsSignedIn(User))
-            {
-                var currentUser = await UserManager.GetUserAsync(User);
-                if (await UserManager.IsInRoleAsync(currentUser, "Admin"))
-                {
-                    <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
-                }
-            }*@
+            
 
         </div>
     </nav>

@@ -5,7 +5,7 @@ namespace LoreDrop.Web.Infrastructure.Middlewares;
 public class AdminRedirectionMiddleware
 {
     private const string IndexPath = "/";
-    private const string AdminIndexPath = "/Admin/Dashboard/Index";
+    private const string AdminIndexPath = "/Home/Index";
 
     private readonly RequestDelegate next;
 
