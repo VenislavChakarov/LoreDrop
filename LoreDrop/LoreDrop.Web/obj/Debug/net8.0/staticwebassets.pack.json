@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/js/search-bar.js",
+      "PackagePath": "staticwebassets/js/search-bar.js"
+    },
+    {
       "Id": "/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/wwwroot/js/series-detailes.js",
       "PackagePath": "staticwebassets/js/series-detailes.js"
     },

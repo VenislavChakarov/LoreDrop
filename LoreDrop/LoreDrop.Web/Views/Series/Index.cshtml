@@ -1,27 +1,32 @@
-@using LoreDrop.GCommon
-@using LoreDrop.Web.ViewModels.Series
-@using static LoreDrop.GCommon.ValidationConstants.Series
-@model IEnumerable<AllSeriesIndexViewModel>
+@using static LoreDrop.GCommon.ValidationConstants.Series;
+@model IEnumerable<LoreDrop.Web.ViewModels.Series.AllSeriesIndexViewModel>
 
 @{
     ViewData["Title"] = "All Series";
     Layout = "_Layout";
-    const string DateFormat = ValidationConstants.Series.DateFormat;// Define the date format directly in the Razor view
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/series.css" asp-append-version="true" />
 }
 
-
 <div class="series-page">
-    
     <h1 class="page-title">@ViewData["Title"]</h1>
-    
-    <div class="fav-filter">
-        <input id="filter-input" type="text" placeholder="Search favorites..." />
-        <button id="filter-btn"><i class="fas fa-search"></i></button>
-    </div>
+
+   <div class="autocomplete">
+  <div class="fav-filter">
+    <input id="filter-input" />
+    <button id="filter-btn"><i class="fas fa-search"></i></button>
+  </div>
+  <ul id="suggestions" class="suggestions-list"></ul>
+</div>
+
+    @* serialize series into a hidden script tag for JS to pick up *@
+    <script id="series-data" type="application/json">@Html.Raw(
+        System.Text.Json.JsonSerializer.Serialize(
+            Model.Select(s => new { s.Id, s.Title })
+        )
+        )</script>
 
     @if (!Model.Any())
     {
@@ -32,7 +37,7 @@
         <div class="series-grid">
             @foreach (var series in Model)
             {
-                <div class="series-card">
+                <div class="series-card" data-id="@series.Id">
                     <a asp-controller="Details" asp-action="Details" asp-route-id="@series.Id" class="card-link">
                         <div class="card-image">
                             <img src="@(series.ImageUrl ?? "/images/placeholder.jpg")"
@@ -72,5 +77,8 @@
             }
         </div>
     }
-
 </div>
+
+@section Scripts {
+    <script src="~/js/search-bar.js?v=@DateTime.UtcNow.Ticks"></script>
+}
