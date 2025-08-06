@@ -28,10 +28,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Services\User\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\LoreDrop.Data\LoreDrop.Data.csproj" />
       <ProjectReference Include="..\LoreDrop.Services.Core\LoreDrop.Services.Core.csproj" />
     </ItemGroup>

@@ -76,6 +76,7 @@ public class WatchListService : IWatchListService
         };
         
         await watchListRepository.AddAsync(UserWatchList);
+        await watchListRepository.SaveChangesAsync();
     }
 
     public async Task RemoveFromWatchListAsync(string userId, string seriesId)
