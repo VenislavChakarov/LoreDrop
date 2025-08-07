@@ -1,0 +1,40 @@
+.aboutus-page {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    padding: 2.5rem 2rem;
+}
+.aboutus-intro {
+    font-size: 1.2em;
+    margin-bottom: 2rem;
+}
+.aboutus-mission, .aboutus-team, .aboutus-contact {
+    margin-bottom: 2.5rem;
+}
+.aboutus-mission h2, .aboutus-team h2, .aboutus-contact h2 {
+    margin-bottom: 0.7rem;
+    color: #22cc22;
+}
+.team-grid {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+.team-member {
+    text-align: center;
+    flex: 1 1 200px;
+}
+.team-photo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 0.7rem;
+    border: 3px solid #22cc22;
+}
+@media (max-width: 700px) {
+    .aboutus-page { padding: 1rem; }
+    .team-grid { flex-direction: column; gap: 1.5rem; }
+}
