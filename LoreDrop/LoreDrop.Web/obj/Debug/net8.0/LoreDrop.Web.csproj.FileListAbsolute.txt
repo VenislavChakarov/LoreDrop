@@ -245,9 +245,11 @@
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Data.Models.dll
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.GCommon.dll
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Services.Core.dll
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Web.Infrastructure.dll
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Web.ViewModels.dll
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Data.pdb
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Services.Core.pdb
+/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Web.Infrastructure.pdb
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Web.ViewModels.pdb
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Data.Models.pdb
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.GCommon.pdb
@@ -277,5 +279,3 @@
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/obj/Debug/net8.0/LoreDrop.Web.pdb
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/obj/Debug/net8.0/LoreDrop.Web.genruntimeconfig.cache
 /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/obj/Debug/net8.0/ref/LoreDrop.Web.dll
-/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Web.Infrastructure.dll
-/Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Web/bin/Debug/net8.0/LoreDrop.Web.Infrastructure.pdb

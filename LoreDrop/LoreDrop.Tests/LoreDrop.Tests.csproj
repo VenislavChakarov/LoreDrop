@@ -30,6 +30,12 @@
     <ItemGroup>
       <ProjectReference Include="..\LoreDrop.Data\LoreDrop.Data.csproj" />
       <ProjectReference Include="..\LoreDrop.Services.Core\LoreDrop.Services.Core.csproj" />
+        <ProjectReference Include="..\LoreDrop.Web.ViewModels\LoreDrop.Web.ViewModels.csproj" />
+        <ProjectReference Include="..\LoreDrop.Web\LoreDrop.Web.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\User\" />
     </ItemGroup>
 
 </Project>
