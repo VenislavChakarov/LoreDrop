@@ -18,3 +18,5 @@ build_property.RootNamespace = LoreDrop.Data.Models
 build_property.ProjectDir = /Users/venislavchakarov/Document/Develper/LoreDrop/LoreDrop/LoreDrop.Data.Models/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 

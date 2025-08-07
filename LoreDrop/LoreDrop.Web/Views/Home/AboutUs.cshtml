@@ -1,0 +1,72 @@
+@{
+    ViewData["Title"] = "About Us";
+    Layout = "_Layout";
+}
+
+<div class="container aboutus-page">
+    <h1 class="page-title">About Us</h1>
+    <section class="aboutus-intro">
+        <p>
+            <strong>LoreDrop</strong> is your go-to platform for discovering, tracking, and sharing your favorite series. Our mission is to connect fans with the stories they love and help them explore new adventures in the world of entertainment.
+        </p>
+    </section>
+
+    <section class="aboutus-mission">
+        <h2>Our Mission</h2>
+        <p>
+            We believe in the power of storytelling. LoreDrop is dedicated to providing a seamless and engaging experience for users to find, rate, and discuss series from all genres. Whether you're a casual viewer or a passionate fan, our platform is designed to make your journey enjoyable and interactive.
+        </p>
+    </section>
+
+    <section class="aboutus-contact">
+        <h2>Contact Us</h2>
+        <p>
+            Have questions or feedback? Reach out to us at <a href="mailto:info@loredrop.com">info@loredrop.com</a>.
+        </p>
+    </section>
+</div>
+
+@section Styles {
+    <style>
+        .aboutus-page {
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+            padding: 2.5rem 2rem;
+        }
+        .aboutus-intro {
+            font-size: 1.2em;
+            margin-bottom: 2rem;
+        }
+        .aboutus-mission, .aboutus-team, .aboutus-contact {
+            margin-bottom: 2.5rem;
+        }
+        .aboutus-mission h2, .aboutus-team h2, .aboutus-contact h2 {
+            margin-bottom: 0.7rem;
+            color: #22cc22;
+        }
+        .team-grid {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .team-member {
+            text-align: center;
+            flex: 1 1 200px;
+        }
+        .team-photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 0.7rem;
+            border: 3px solid #22cc22;
+        }
+        @@media (max-width: 700px) {
+            .aboutus-page { padding: 1rem; }
+            .team-grid { flex-direction: column; gap: 1.5rem; }
+        }
+    </style>
+}

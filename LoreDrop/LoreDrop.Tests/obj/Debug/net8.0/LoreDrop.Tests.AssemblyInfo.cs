@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoreDrop.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+127da1f599ef705cc647ff8ebfa9413e188b13a4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a11e41ed199326245f49da128da25a41ba425d1c")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoreDrop.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoreDrop.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
