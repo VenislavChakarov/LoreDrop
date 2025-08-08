@@ -34,8 +34,4 @@
         <ProjectReference Include="..\LoreDrop.Web\LoreDrop.Web.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Controllers\User\" />
-    </ItemGroup>
-
 </Project>

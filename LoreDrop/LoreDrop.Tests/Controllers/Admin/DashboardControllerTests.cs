@@ -24,7 +24,7 @@ public class DashboardControllerTests
     {
         _controller = new DashboardController(_seriesAdminServiceMock.Object, _genreServiceMock.Object);
 
-        // Use the same claim type your controller actually reads (e.g. ClaimTypes.NameIdentifier)
+        
         var user = new ClaimsPrincipal(new ClaimsIdentity(new[]
         { 
             new Claim("sub", "test-user-id"), 
@@ -100,7 +100,6 @@ public class DashboardControllerTests
     [Fact]
     public async Task Create_Post_InvalidModel_ReturnsViewWithGenres()
     {
-        // force model‐state error
         _controller.ModelState.AddModelError("Title", "Required");
 
         var seededGenreId = Guid.Parse("22222222-2222-2222-2222-222222222222");
