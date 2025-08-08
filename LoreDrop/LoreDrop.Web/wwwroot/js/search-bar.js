@@ -1,4 +1,3 @@
-// wwwroot/js/search-bar.js
 
 document.addEventListener('DOMContentLoaded', function() {
     const dataEl = document.getElementById('series-data');
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showSuggestions(matches) {
         suggestions.innerHTML = '';
 
-        if (matches.length === 0) {
+        if (!matches || matches.length === 0) {
             suggestions.style.display = 'none';
             return;
         }
@@ -46,14 +45,18 @@ document.addEventListener('DOMContentLoaded', function() {
         matches.forEach(series => {
             const item = document.createElement('li');
             item.classList.add('suggestion-item');
+            
+            const safeImage = series.ImageUrl || '/images/placeholder.jpg';
 
             item.innerHTML = `
-            <img src="${series.ImageUrl || '/images/placeholder.jpg'}" alt="${series.Title}" />
+            <img src="${safeImage}" alt="${series.Title}" onerror="this.onerror=null;this.src='/images/placeholder.jpg'" />
             <span>${series.Title}</span>
         `;
 
             item.addEventListener('click', () => {
-                window.location.href = `/Details/Details?id=${series.Id}`;
+                // Prefer the real card link if it's present in the page
+                const url = getSeriesUrl(series.Id) || `/Details/Details?id=${series.Id}`;
+                window.location.href = url;
             });
 
             suggestions.appendChild(item);
@@ -61,6 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         suggestions.style.display = 'block';
     }
+
 
     function findMatches(term) {
         return term

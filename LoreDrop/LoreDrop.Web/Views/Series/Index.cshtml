@@ -13,18 +13,17 @@
 <div class="series-page">
     <h1 class="page-title">@ViewData["Title"]</h1>
 
-   <div class="autocomplete">
-  <div class="fav-filter">
-    <input id="filter-input" />
-    <button id="filter-btn"><i class="fas fa-search"></i></button>
-  </div>
-  <ul id="suggestions" class="suggestions-list"></ul>
-</div>
-
-    @* serialize series into a hidden script tag for JS to pick up *@
+    <div class="autocomplete">
+        <div class="fav-filter">
+            <input id="filter-input" />
+            <button id="filter-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <ul id="suggestions" class="suggestions-list"></ul>
+    </div>
+    
     <script id="series-data" type="application/json">@Html.Raw(
         System.Text.Json.JsonSerializer.Serialize(
-            Model.Select(s => new { s.Id, s.Title })
+            Model.Select(s => new { s.Id, s.Title, s.ImageUrl })
         )
         )</script>
 
